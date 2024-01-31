@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Workout Tracker</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div id="header">
+    <div id="menu">
+        <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="#">Workout</a></li>
+            <li><a href="#">Progress</a></li>
+            <li><a href="#">Strength</a></li>
+        </ul>
+    </div>
+    {% if 'username' in session %}
+    <div id="profile">
+        <a href="{{ url_for('home') }}">
+            <b><p>{{ session['username'] }}</p></b>
+        </a>
+    </div>
+    {% endif %}
+</div>
+
+
+
+</body>
+<script>
+
+</script>
+</html>
