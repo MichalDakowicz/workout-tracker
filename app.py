@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, session
+from flask import Flask, render_template, request, url_for, redirect, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
@@ -97,10 +97,10 @@ def register():
 
 
 # Logout
-@app.route("/logout")
+@app.route('/logout')
 def logout():
-    session.pop("username", None)
-    return redirect(url_for("login"))
+    session.pop('username', None)
+    return redirect(url_for('home'))
 
 if __name__ == "__main__":
     create_table()
