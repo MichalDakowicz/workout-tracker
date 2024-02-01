@@ -14,11 +14,7 @@
                 <li><a href="#">Workout</a></li>
                 <li><a href="#">Progress</a></li>
                 <li><a href="#">Strength</a></li>
-                {% if 'username' in session %}
-                {% if session['username'] == 'Michu' %}
                 <li><a href="{{ url_for('admin') }}">Admin page</a></li>
-                {% endif %}
-                {% endif %}
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
         </div>
@@ -29,6 +25,18 @@
             </a>
         </div>
         {% endif %}
+    </div>
+    <div>
+        <div id="add-exercise-panel">
+            <br>
+            <h1>Add exercise</h1>
+            <form action="{{ url_for('admin') }}" method="post">
+                <input type="text" name="exercise" placeholder="Name" required><br>
+                <input type="text" name="muscle_group" placeholder="Muscle grpup" required><br>
+                <input type="text" name="muscle" placeholder="Muscle" required><br>
+                <input type="submit" value="Add">
+            </form>
+        </div>
     </div>
 </body>
 </html>

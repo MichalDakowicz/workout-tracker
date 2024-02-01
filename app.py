@@ -9,7 +9,7 @@ app.secret_key = secrets.token_hex(16)
 
 # Function to connect to the SQLite database
 def connect_db():
-    return sqlite3.connect("users.db", check_same_thread=False)
+    return sqlite3.connect("tracker.db", check_same_thread=False)
 
 # Create a table to store user information if not exists
 def create_table():
@@ -21,6 +21,23 @@ def create_table():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             password TEXT NOT NULL
+        )
+        """
+    )
+    conn.commit()
+    conn.close()
+
+# Excercise table
+def create_table_ex():
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS exercises (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            exercise TEXT NOT NULL,
+            muscle_group TEXT NOT NULL,
+            muscle TEXT NOT NULL
         )
         """
     )
@@ -95,6 +112,28 @@ def register():
 
     return render_template("register.html")
 
+# Admin page
+@app.route("/admin", methods=["GET", "POST"])
+def admin():
+    if "username" in session:
+        if request.method == "POST":
+            exercise = request.form["exercise"]
+            muscle_group = request.form["muscle_group"]
+            muscle = request.form["muscle"]
+
+            conn = connect_db()
+            cursor = conn.cursor()
+
+            cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for("admin"))
+
+        return render_template("admin.html")
+    return redirect(url_for("login"))
+
 
 # Logout
 @app.route('/logout')
@@ -104,4 +143,5 @@ def logout():
 
 if __name__ == "__main__":
     create_table()
+    create_table_ex()
     app.run(debug=True)
