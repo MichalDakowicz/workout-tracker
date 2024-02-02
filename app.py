@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, url_for, redirect, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
+import re
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -130,48 +131,128 @@ def register():
     return render_template("register.html")
 
 # Admin page
+# @app.route("/admin", methods=["GET", "POST"])
+# def admin():
+#     if "username" in session:
+#         if request.method == "POST":
+#             exercise = request.form["exercise"]
+#             muscle_group = request.form["muscle_group"]
+#             muscle = request.form["muscle"]
+
+#             conn = connect_db()
+#             cursor = conn.cursor()
+
+#             cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+
+#             conn.commit()
+#             conn.close()
+
+#             return redirect(url_for("admin"))
+
+#         return render_template("admin.html")
+#     return redirect(url_for("login"))
+
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if "username" in session:
+        conn = connect_db()
+        cursor = conn.cursor()
+
         if request.method == "POST":
-            exercise = request.form["exercise"]
-            muscle_group = request.form["muscle_group"]
-            muscle = request.form["muscle"]
+            action = request.form["action"]
 
-            conn = connect_db()
-            cursor = conn.cursor()
+            if action == "add_exercise":
+                exercise = request.form["exercise"]
+                muscle_group = request.form["muscle_group"]
+                muscle = request.form["muscle"]
 
-            cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+                cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+
+            elif action == "remove_exercise":
+                exercise_id = request.form["exercise_id"]
+
+                cursor.execute("DELETE FROM exercises WHERE id=?", (exercise_id,))
+
+            elif action == "remove_user":
+                user_id = request.form["user_id"]
+
+                cursor.execute("DELETE FROM users WHERE id=?", (user_id,))
+
+            elif action == "remove_workout":
+                workout_id = request.form["workout_id"]
+
+                cursor.execute("DELETE FROM workouts WHERE id=?", (workout_id,))
 
             conn.commit()
-            conn.close()
 
-            return redirect(url_for("admin"))
+        # Fetch all users, exercises, and workouts from the database
+        cursor.execute("SELECT * FROM users")
+        users = cursor.fetchall()
 
-        return render_template("admin.html")
+        cursor.execute("SELECT * FROM exercises")
+        exercises = cursor.fetchall()
+
+        cursor.execute("SELECT * FROM workouts")
+        workouts = cursor.fetchall()
+
+        conn.close()
+
+        # Pass the users, exercises, and workouts to the template
+        return render_template("admin.html", users=users, exercises=exercises, workouts=workouts)
+
     return redirect(url_for("login"))
 
 # Workout page
 @app.route("/workout", methods=["GET", "POST"])
 def workout():
     if "username" in session:
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        # Fetch exercises from the database
+        cursor.execute("SELECT exercise FROM exercises")
+        exercises_db = cursor.fetchall()
+
+        # Convert the result to a list of exercise names
+        exercises_list = [exercise[0] for exercise in exercises_db]
+
         if request.method == "POST":
             username = session["username"]
             date = request.form["date"]
             exercises = request.form["exercises"]
+            
+            exercises = re.split(r'(\w+(?: \w+)*)', exercises)[1:]
 
-            conn = connect_db()
-            cursor = conn.cursor()
+            result = []
+
+            for i in range(0, len(exercises), 2):
+                exercise_name = exercises[i]
+                sets_data = exercises[i + 1].split('Set ')[1:]
+
+                sets_count = 0
+                reps_list = []
+                weights_list = []
+
+                for set_data in sets_data:
+                    set_info = re.findall(r'(\d+): (\d+) reps, (\d+)kg', set_data)[0]
+                    sets_count += 1
+                    reps_list.append(int(set_info[1]))
+                    weights_list.append(int(set_info[2]))
+
+                result.append({exercise_name: [sets_count, reps_list, weights_list]})
+            
+            exercises = str(result)
 
             cursor.execute("INSERT INTO workouts (username, date, exercises) VALUES (?, ?, ?)", (username, date, exercises))
 
             conn.commit()
-            conn.close()
 
-            return redirect(url_for("workout"))
+        conn.close()
 
-        return render_template("workout.html")
-    return redirect(url_for("login"))
+        # Pass the list of exercises to the template
+        return render_template("workout.html", exercises=exercises_list)
+
+    return redirect(url_for("home"))
 
 # Logout
 @app.route('/logout')

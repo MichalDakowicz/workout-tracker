@@ -167,6 +167,15 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+#add-exercise-panel select {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
 #add-exercise-panel form input[type="submit"] {
     background-color: #333;
     color: #fff;
@@ -209,4 +218,68 @@ input {
 #exercise-container{
     height: 40px;
     display: inline-block;
+}
+
+#panels {
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+.panels {
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 100px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #333;
+}
+.panels h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 40px;
+}
+.panels form {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 40px;
+}
+.panels form input {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.panels select {
+    width: 100%;
+    height: 40px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+.panels form input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.panels form input[type="submit"]:hover {
+    background-color: #666;
+}
+.panels p {
+    text-align: center;
+    margin-top: 20px;
+}
+.panels p a {
+    text-decoration: none;
+    color: #333;
+}
+.panels p a:hover {
+    text-decoration: underline;
 }
