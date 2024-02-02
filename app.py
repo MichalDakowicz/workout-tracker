@@ -163,10 +163,13 @@ def admin():
 
             if action == "add_exercise":
                 exercise = request.form["exercise"]
-                muscle_group = request.form["muscle_group"]
-                muscle = request.form["muscle"]
+                if exercise in [ex[0] for ex in cursor.execute("SELECT exercise FROM exercises").fetchall()]:
+                    pass
+                else:
+                    muscle_group = request.form["muscle_group"]
+                    muscle = request.form["muscle"]
 
-                cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+                    cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
 
             elif action == "remove_exercise":
                 exercise_id = request.form["exercise_id"]
