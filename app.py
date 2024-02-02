@@ -3,7 +3,6 @@ import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
-
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
@@ -43,6 +42,24 @@ def create_table_ex():
     )
     conn.commit()
     conn.close()
+
+# Create a table to store workout information if not exists
+def create_table_workout():
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS workouts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            username TEXT NOT NULL,
+            date TEXT NOT NULL,
+            exercises TEXT NOT NULL -- Touple list with a structure of [{exercise: [sets(amount), [reps], [weight]]}, {exercise: [sets(amount), [reps], [weight]]}, ...]
+        )
+        """
+    )
+    conn.commit()
+    conn.close()
+
 
 # Home page
 @app.route("/")
@@ -134,6 +151,27 @@ def admin():
         return render_template("admin.html")
     return redirect(url_for("login"))
 
+# Workout page
+@app.route("/workout", methods=["GET", "POST"])
+def workout():
+    if "username" in session:
+        if request.method == "POST":
+            username = session["username"]
+            date = request.form["date"]
+            exercises = request.form["exercises"]
+
+            conn = connect_db()
+            cursor = conn.cursor()
+
+            cursor.execute("INSERT INTO workouts (username, date, exercises) VALUES (?, ?, ?)", (username, date, exercises))
+
+            conn.commit()
+            conn.close()
+
+            return redirect(url_for("workout"))
+
+        return render_template("workout.html")
+    return redirect(url_for("login"))
 
 # Logout
 @app.route('/logout')
@@ -144,4 +182,5 @@ def logout():
 if __name__ == "__main__":
     create_table()
     create_table_ex()
+    create_table_workout()
     app.run(debug=True)

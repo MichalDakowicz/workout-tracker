@@ -11,13 +11,12 @@
         <div id="menu">
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">Workout</a></li>
+                <li><a href="#">Exercises</a></li>
+                <li><a href="{{ url_for('workout') }}">Workout</a></li>
                 <li><a href="#">Progress</a></li>
                 <li><a href="#">Strength</a></li>
-                {% if 'username' in session %}
                 {% if session['username'] == 'Michu' %}
                 <li><a href="{{ url_for('admin') }}">Admin page</a></li>
-                {% endif %}
                 {% endif %}
                 <li><a href="{{ url_for('logout') }}">Logout</a></li>
             </ul>
