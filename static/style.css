@@ -213,7 +213,7 @@ input {
     box-sizing: border-box;
 }
 #workout {
-    margin-top: 80px;
+    margin-top: 70px;
 }
 #exercise-container{
     height: 40px;
@@ -283,4 +283,52 @@ input {
 }
 .panels p a:hover {
     text-decoration: underline;
+}
+#home-page {
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.home-page-panel {
+    display: inline-block;
+    width: 400px;
+    height: 400px;
+    background-color: #fff;
+    margin: 0 auto;
+    margin-top: 15px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px #333;
+}
+.home-page-panel h2 {
+    text-align: center;
+    font-size: 36px;
+    margin-top: 40px;
+}
+.home-page-panel p {
+    text-align: center;
+    margin-top: 20px;
+}
+.home-page-panel h3 {
+    text-align: center;
+    margin-top: 20px;
+}
+#workouts table {
+    width: 90%;
+    margin: 0 auto;
+}
+#workouts table tr td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: center;
+}
+#exercise-list {
+    margin-top: 70px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.exercise-container ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }

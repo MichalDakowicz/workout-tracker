@@ -10,7 +10,7 @@
         <div id="menu">
             <ul>
                 <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">Exercises</a></li>
+                <li><a href="{{ url_for('exercises') }}">Exercises</a></li>
                 <li><a href="{{ url_for('workout') }}">Workout</a></li>
                 <li><a href="#">Progress</a></li>
                 <li><a href="#">Strength</a></li>
@@ -28,5 +28,39 @@
         </div>
         {% endif %}
     </div>
+    <div id="home-page">
+        <h1>Welcome to the Workout Tracker</h1>
+        <p>Here you can track your workouts, progress and strength.</p>
+        <p>Use the menu to navigate through the site.</p>
+        <div class="home-page-panel">
+            <h2>Workout history</h2>
+            <p>Here you can see your workout history.</p>
+            {% if workouts == [] %}
+            <h3>No workouts yet.</h3>
+            {% endif %}
+            {% if workouts != [] %}
+            <div id="workouts">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Exercises</th>
+                    </tr>
+                    {% for workout in workouts %}
+                    <tr>
+                        <td>{{ workout[2] }}</td>
+                        <td>{{ workout[3]|replace('\n', '<br>')|safe }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            {% endif %}
+        </div>
+    </div>
 </body>
+<script>
+
+        
+
+
+</script>
 </html>

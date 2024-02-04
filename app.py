@@ -2,7 +2,6 @@ from flask import Flask, render_template, request, url_for, redirect, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
-import re
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -54,19 +53,41 @@ def create_table_workout():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             date TEXT NOT NULL,
-            exercises TEXT NOT NULL -- Touple list with a structure of [{exercise: [sets(amount), [reps], [weight]]}, {exercise: [sets(amount), [reps], [weight]]}, ...]
-        )
+            exercises TEXT NOT NULL
+            )
         """
     )
     conn.commit()
     conn.close()
 
-
 # Home page
 @app.route("/")
 def home():
     if "username" in session:
-        return render_template("home.html")
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
+        workouts = cursor.fetchall()
+        
+        for i in range(len(workouts)):
+            workout = list(workouts[i])
+            exercises = workout[3].split(",")
+            exercises = [exercise.split("\xa0")[0] for exercise in exercises if 'kg' not in exercise and exercise.strip()]
+            workout[3] = "\n".join(exercises)
+            workouts[i] = tuple(workout)
+        
+        for i in range(len(workouts)):
+            workout = list(workouts[i])
+            exercises = workout[3].split("\n")
+            exercises = [exercise for exercise in exercises if exercise.strip()]
+            workout[3] = "\n".join(exercises)
+            workouts[i] = tuple(workout)
+            
+        conn.close()
+        
+        return render_template("home.html", workouts=workouts)
+
     return redirect(url_for("login"))
 
 # Login page
@@ -131,27 +152,6 @@ def register():
     return render_template("register.html")
 
 # Admin page
-# @app.route("/admin", methods=["GET", "POST"])
-# def admin():
-#     if "username" in session:
-#         if request.method == "POST":
-#             exercise = request.form["exercise"]
-#             muscle_group = request.form["muscle_group"]
-#             muscle = request.form["muscle"]
-
-#             conn = connect_db()
-#             cursor = conn.cursor()
-
-#             cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
-
-#             conn.commit()
-#             conn.close()
-
-#             return redirect(url_for("admin"))
-
-#         return render_template("admin.html")
-#     return redirect(url_for("login"))
-
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if "username" in session:
@@ -224,27 +224,7 @@ def workout():
             date = request.form["date"]
             exercises = request.form["exercises"]
             
-            exercises = re.split(r'(\w+(?: \w+)*)', exercises)[1:]
-
-            result = []
-
-            for i in range(0, len(exercises), 2):
-                exercise_name = exercises[i]
-                sets_data = exercises[i + 1].split('Set ')[1:]
-
-                sets_count = 0
-                reps_list = []
-                weights_list = []
-
-                for set_data in sets_data:
-                    set_info = re.findall(r'(\d+): (\d+) reps, (\d+)kg', set_data)[0]
-                    sets_count += 1
-                    reps_list.append(int(set_info[1]))
-                    weights_list.append(int(set_info[2]))
-
-                result.append({exercise_name: [sets_count, reps_list, weights_list]})
-            
-            exercises = str(result)
+            exercises = exercises[1:-1]
 
             cursor.execute("INSERT INTO workouts (username, date, exercises) VALUES (?, ?, ?)", (username, date, exercises))
 
@@ -254,6 +234,37 @@ def workout():
 
         # Pass the list of exercises to the template
         return render_template("workout.html", exercises=exercises_list)
+
+    return redirect(url_for("home"))
+
+# Exercises list page
+@app.route("/exercises", methods=["GET", "POST"])
+def exercises():
+    if "username" in session:
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Chest",))
+        chest_exercises = cursor.fetchall()
+        
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Back",))
+        back_exercises = cursor.fetchall()
+        
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Legs",))
+        legs_exercises = cursor.fetchall()
+        
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Shoulders",))
+        shoulders_exercises = cursor.fetchall()
+        
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Arms",))
+        arms_exercises = cursor.fetchall()
+        
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Abs",))
+        abs_exercises = cursor.fetchall()
+        
+        conn.close()
+        
+        return render_template("exercises.html", chest_exercises=chest_exercises, back_exercises=back_exercises, legs_exercises=legs_exercises, shoulders_exercises=shoulders_exercises, arms_exercises=arms_exercises, abs_exercises=abs_exercises)
 
     return redirect(url_for("home"))
 
