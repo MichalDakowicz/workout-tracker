@@ -259,7 +259,7 @@ def exercises():
         cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Arms",))
         arms_exercises = cursor.fetchall()
         
-        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Abs",))
+        cursor.execute("SELECT * FROM exercises WHERE muscle_group=?", ("Core",))
         abs_exercises = cursor.fetchall()
         
         conn.close()
