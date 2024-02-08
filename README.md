@@ -48,3 +48,24 @@ This Flask Workout Tracker is designed to help users keep track of their workout
 
 ## Contributing
 
+Contributions are welcome! If you'd like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature-branch
+   ```
+3. Make your changes.
+4. Commit your changes: 
+   ```bash
+   git commit -am 'Add new feature'
+   ```
+5. Push to the branch:
+   ```bash
+   git push origin feature-branch.
+   ```
+6. Create a new pull request.
+
+## License
+
+This project is licensed under the MIT License.
