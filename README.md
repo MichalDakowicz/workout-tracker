@@ -61,11 +61,11 @@ Contributions are welcome! If you'd like to contribute to this project, please f
    git commit -am 'Add new feature'
    ```
 5. Push to the branch:
-   ```git
+   ```bash
    git push origin feature-branch
    ```
 6. Create a new pull request.
 
 ## License
 
-This project is licensed under the MIT License.
+This project is licensed under the [MIT license](LICENSE)
