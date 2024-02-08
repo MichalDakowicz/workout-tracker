@@ -61,8 +61,8 @@ Contributions are welcome! If you'd like to contribute to this project, please f
    git commit -am 'Add new feature'
    ```
 5. Push to the branch:
-   ```shell
-   git push origin feature-branch.
+   ```git
+   git push origin feature-branch
    ```
 6. Create a new pull request.
 
