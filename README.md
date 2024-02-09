@@ -1,10 +1,3 @@
-<style>
-   img {
-      border-radius: 5px;
-      width: 100%
-   }
-</style>
-
 # Flask Workout Tracker
 
 A simple web application built with Flask for tracking workouts.
