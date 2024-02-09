@@ -1,3 +1,10 @@
+<style>
+   img {
+      border-radius: 5px;
+      width: 100%
+   }
+</style>
+
 # Flask Workout Tracker
 
 A simple web application built with Flask for tracking workouts.
@@ -58,21 +65,29 @@ This Flask Workout Tracker is designed to help users keep track of their workout
 #### Login and Register
 
 When you launch the application and navigate to the website, you'll encounter a login form. To log in, enter your username and password, then click the login button.
+
 <br>
+
 ![Login Form](readme-images/login.png "Login Form")
 
 If you're new to the platform, click the register button located below the login form.
+
 <br>
+
 ![Register Buttom](readme-images/register_button.png "Register Button")
 
 You'll be directed to the registration page where you can choose a username and password. 
+
 <br>
+
 ![Register Form](readme-images/register.png "Register Form")
 
 Confirm your password by entering it again, then click the register button to complete the registration process. Once registered, you'll be redirected to the login page where you can proceed to log in.
 
 Alternatively, while on the registration page, you can switch back to the login form by clicking the login text below the registration form.
+
 <br>
+
 ![Login Buttom](readme-images/login_button.png "Login Button")
 
 
