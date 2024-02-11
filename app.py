@@ -6,6 +6,16 @@ import secrets
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
+# Function to calculate strength scores
+def calculate_strength(exercises):
+    scores = {}
+    for exercise, data in exercises.items():
+        weight_lifted = data['weight']
+        reps = data['reps']
+        one_rep_max = weight_lifted * (1 + 0.0333 * reps)
+        scores[exercise] = one_rep_max
+    return scores
+
 # Function to connect to the SQLite database
 def connect_db():
     return sqlite3.connect("tracker.db", check_same_thread=False)
@@ -266,6 +276,39 @@ def exercises():
         
         return render_template("exercises.html", chest_exercises=chest_exercises, back_exercises=back_exercises, legs_exercises=legs_exercises, shoulders_exercises=shoulders_exercises, arms_exercises=arms_exercises, abs_exercises=abs_exercises)
 
+    return redirect(url_for("home"))
+
+# Strength levels page
+@app.route("/strength", methods=["GET", "POST"])
+def strength():
+    if "username" in session:
+        exercises = {
+            'bench press': {
+                'weight': float(request.form['bench_press_weight']), 
+                'reps': int(request.form['bench_press_reps'])
+                },
+            'deadlift': {
+                'weight': float(request.form['deadlift_weight']), 
+                'reps': int(request.form['deadlift_reps'])
+                },
+            'squat': {
+                'weight': float(request.form['squat_weight']), 
+                'reps': int(request.form['squat_reps'])
+                },
+            'overhead press': {
+                'weight': float(request.form['overhead_press_weight']), 
+                'reps': int(request.form['overhead_press_reps'])
+                },
+            'barbell row': {
+                'weight': float(request.form['barbell_row_weight']), 
+                'reps': int(request.form['barbell_row_reps'])
+                }
+        }
+        
+        strength_scores = calculate_strength(exercises)
+        
+        return render_template("strength.html", strength_scores=strength_scores)
+        
     return redirect(url_for("home"))
 
 # Logout

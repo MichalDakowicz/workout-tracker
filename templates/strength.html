@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Workout Tracker</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    </head>
+    <body>
+    <div id="header">
+        <div id="menu">
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('exercises') }}">Exercises</a></li>
+                <li><a href="{{ url_for('workout') }}">Workout</a></li>
+                <li><a href="#">Progress</a></li>
+                <li><a href="{{ url_for('strength') }}">Strength</a></li>
+                {% if 'username' in session %}
+                {% if session['username'] == 'Michu' %}
+                <li><a href="{{ url_for('admin') }}">Admin page</a></li>
+                {% endif %}
+                {% endif %}
+                <li><a href="{{ url_for('logout') }}">Logout</a></li>
+            </ul>
+        </div>
+        {% if 'username' in session %}
+        <div id="profile">
+            <a href="{{ url_for('home') }}">
+                <b><p>{{ session['username'] }}</p></b>
+            </a>
+        </div>
+        {% endif %}
+    </div>
+    <div id="strength-page">
+        <h1>Calculate Strength</h1>
+        <form action="{{ url_for('strength') }}" method="post">
+            <h3>Exercises:</h3>
+            <!-- ['bench press', 'deadlift', 'squat', 'overhead press', 'barbell row'] -->
+            <label for="bench_press_weight">Bench Press Weight:</label>
+            <input type="number" id="bench_press_weight" name="bench_press_weight" required><br>
+            <label for="bench_press_reps">Bench Press Reps:</label>
+            <input type="number" id="bench_press_reps" name="bench_press_reps" required><br>
+            <label for="deadlift_weight">Deadlift Weight:</label>
+            <input type="number" id="deadlift_weight" name="deadlift_weight" required><br>
+            <label for="deadlift_reps">Deadlift Reps:</label>
+            <input type="number" id="deadlift_reps" name="deadlift_reps" required><br>
+            <label for="squat_weight">Squat Weight:</label>
+            <input type="number" id="squat_weight" name="squat_weight" required><br>
+            <label for="squat_reps">Squat Reps:</label>
+            <input type="number" id="squat_reps" name="squat_reps" required><br>
+            <label for="overhead_press_weight">Overhead Press Weight:</label>
+            <input type="number" id="overhead_press_weight" name="overhead_press_weight" required><br>
+            <label for="overhead_press_reps">Overhead Press Reps:</label>
+            <input type="number" id="overhead_press_reps" name="overhead_press_reps" required><br>
+            <label for="barbell_row_weight">Barbell Row Weight:</label>
+            <input type="number" id="barbell_row_weight" name="barbell_row_weight" required><br>
+            <label for="barbell_row_reps">Barbell Row Reps:</label>
+            <input type="number" id="barbell_row_reps" name="barbell_row_reps" required><br>
+
+            <button type="submit">Calculate Strength</button>
+        </form>
+    </div>
+</body>
+<script>
+
+        
+
+
+</script>
+</html>
