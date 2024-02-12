@@ -309,7 +309,7 @@ def strength():
         
         return render_template("strength.html", strength_scores=strength_scores)
         
-    return redirect(url_for("home"))
+    return redirect(url_for("login"))
 
 # Logout
 @app.route('/logout')

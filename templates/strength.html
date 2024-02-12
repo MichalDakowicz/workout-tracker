@@ -33,28 +33,35 @@
     <div id="strength-page">
         <h1>Calculate Strength</h1>
         <form action="{{ url_for('strength') }}" method="post">
-            <h3>Exercises:</h3>
-            <!-- ['bench press', 'deadlift', 'squat', 'overhead press', 'barbell row'] -->
-            <label for="bench_press_weight">Bench Press Weight:</label>
-            <input type="number" id="bench_press_weight" name="bench_press_weight" required><br>
-            <label for="bench_press_reps">Bench Press Reps:</label>
-            <input type="number" id="bench_press_reps" name="bench_press_reps" required><br>
-            <label for="deadlift_weight">Deadlift Weight:</label>
-            <input type="number" id="deadlift_weight" name="deadlift_weight" required><br>
-            <label for="deadlift_reps">Deadlift Reps:</label>
-            <input type="number" id="deadlift_reps" name="deadlift_reps" required><br>
-            <label for="squat_weight">Squat Weight:</label>
-            <input type="number" id="squat_weight" name="squat_weight" required><br>
-            <label for="squat_reps">Squat Reps:</label>
-            <input type="number" id="squat_reps" name="squat_reps" required><br>
-            <label for="overhead_press_weight">Overhead Press Weight:</label>
-            <input type="number" id="overhead_press_weight" name="overhead_press_weight" required><br>
-            <label for="overhead_press_reps">Overhead Press Reps:</label>
-            <input type="number" id="overhead_press_reps" name="overhead_press_reps" required><br>
-            <label for="barbell_row_weight">Barbell Row Weight:</label>
-            <input type="number" id="barbell_row_weight" name="barbell_row_weight" required><br>
-            <label for="barbell_row_reps">Barbell Row Reps:</label>
-            <input type="number" id="barbell_row_reps" name="barbell_row_reps" required><br>
+            <h2>Bench Press</h2>
+            <label for="bench_press_weight">Weight:</label>
+            <input type="number" id="bench_press_weight" name="bench_press_weight">
+            <label for="bench_press_reps">Reps:</label>
+            <input type="number" id="bench_press_reps" name="bench_press_reps">
+
+            <h2>Deadlift</h2>
+            <label for="deadlift_weight">Weight:</label>
+            <input type="number" id="deadlift_weight" name="deadlift_weight">
+            <label for="deadlift_reps">Reps:</label>
+            <input type="number" id="deadlift_reps" name="deadlift_reps">
+
+            <h2>Squat</h2>
+            <label for="squat_weight">Weight:</label>
+            <input type="number" id="squat_weight" name="squat_weight">
+            <label for="squat_reps">Reps:</label>
+            <input type="number" id="squat_reps" name="squat_reps">
+
+            <h2>Overhead Press</h2>
+            <label for="overhead_press_weight">Weight:</label>
+            <input type="number" id="overhead_press_weight" name="overhead_press_weight">
+            <label for="overhead_press_reps">Reps:</label>
+            <input type="number" id="overhead_press_reps" name="overhead_press_reps">
+
+            <h2>Barbell Row</h2>
+            <label for="barbell_row_weight">Weight:</label>
+            <input type="number" id="barbell_row_weight" name="barbell_row_weight">
+            <label for="barbell_row_reps">Reps:</label>
+            <input type="number" id="barbell_row_reps" name="barbell_row_reps">
 
             <button type="submit">Calculate Strength</button>
         </form>
