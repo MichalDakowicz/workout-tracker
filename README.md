@@ -4,9 +4,8 @@ A simple web application built with Flask for tracking workouts.
 
 ## The program is still a work in progress, the UI and the README isn't complete
 
-<!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database).
 
-Future Plans: If you have a roadmap for additional features, include a section titled "Planned Features" or "Future Development" to let users know what they can look forward to. -->
+<!-- Future Plans: If you have a roadmap for additional features, include a section titled "Planned Features" or "Future Development" to let users know what they can look forward to. -->
 
 ## Table of Contents
 
@@ -24,6 +23,12 @@ Future Plans: If you have a roadmap for additional features, include a section t
 - [Contributing](#contributing)
 - [Issues](#issues)
 - [Feature Requests](#feature-requests)
+- [Technologies](#technologies)
+   - [Python](#python)
+      - [Modules](#modules)
+   - [WWW](#www)
+      - [Languages](#languages)
+   - [SQLite](#sqlite)
 - [License](#license)
 
 ## Introduction
@@ -174,6 +179,30 @@ Encountered a bug or have an issue with the application? Please head to GitHub I
 
 ## Feature Requests
 Have a suggestion or want to see a new feature added? Your input is invaluable! Visit GitHub Issues to create a new issue, and mark it as an *"enhancement"* request. I'll review your proposal with enthusiasm!
+
+## Technologies
+
+<!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database). -->
+### Python
+
+#### Modules
+
+   - flask
+   - sqlite3
+   - werkzeug.security
+   - secrets
+
+### WWW
+
+#### Languages
+
+   - HTML
+   - CSS
+   - JavaScript
+
+### SQLite
+
+   Custom database edited using python.
 
 ## License
 
