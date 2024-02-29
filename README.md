@@ -2,7 +2,7 @@
 
 A simple web application built with Flask for tracking workouts.
 
-## THE PROGRAM IS STILL A WORK IN PROGGRESS AND THE UI ISN'T COMPLETE THE READNME ME TOO
+## The program is still a work in progress, the UI and the README isn't complete
 
 <!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database).
 
