@@ -29,7 +29,9 @@ def create_table():
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
-            password TEXT NOT NULL
+            password TEXT NOT NULL,
+            strength_scores TEXT,
+            body_measurements TEXT
         )
         """
     )
@@ -70,12 +72,42 @@ def create_table_workout():
     conn.commit()
     conn.close()
 
-# Home page
-@app.route("/")
+@app.route("/", methods=['GET', 'POST'])
 def home():
     if "username" in session:
         conn = connect_db()
         cursor = conn.cursor()
+
+        if request.method == 'POST':
+            bodyfat = request.form['bodyfat']
+            left_arm_fat = request.form['left-arm-fat']
+            right_arm_fat = request.form['right-arm-fat']
+            trunk_fat = request.form['trunk-fat']
+            left_leg_fat = request.form['left-leg-fat']
+            right_leg_fat = request.form['right-leg-fat']
+            muscle = request.form['muscle']
+            left_arm_muscle = request.form['left-arm-muscle']
+            right_arm_muscle = request.form['right-arm-muscle']
+            trunk_muscle = request.form['trunk-muscle']
+            left_leg_muscle = request.form['left-leg-muscle']
+            right_leg_muscle = request.form['right-leg-muscle']
+
+            data = {
+                'bodyfat': bodyfat,
+                'left_arm_fat': left_arm_fat,
+                'right_arm_fat': right_arm_fat,
+                'trunk_fat': trunk_fat,
+                'left_leg_fat': left_leg_fat,
+                'right_leg_fat': right_leg_fat,
+                'muscle': muscle,
+                'left_arm_muscle': left_arm_muscle,
+                'right_arm_muscle': right_arm_muscle,
+                'trunk_muscle': trunk_muscle,
+                'left_leg_muscle': left_leg_muscle,
+                'right_leg_muscle': right_leg_muscle
+            }
+            
+            cursor.execute("UPDATE users SET body_measurements=? WHERE username=?", (str(data), session["username"]))
 
         cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
         workouts = cursor.fetchall()

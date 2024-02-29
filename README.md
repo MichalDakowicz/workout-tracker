@@ -5,7 +5,7 @@ A simple web application built with Flask for tracking workouts.
 ## The program is still a work in progress, the UI and the README isn't complete
 
 
-<!-- Future Plans: If you have a roadmap for additional features, include a section titled "Planned Features" or "Future Development" to let users know what they can look forward to. -->
+<!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
 
 ## Table of Contents
 
@@ -13,6 +13,8 @@ A simple web application built with Flask for tracking workouts.
 - [Installation](#installation)
 - [Running the program](#running-the-program)
 - [Features](#features)
+   - [Feature Requests](#feature-requests)
+   - [Feature Plans](#feature-plans)
 - [Usage](#usage)
    - [Login and Register](#login-and-register)
    - [Home Page](#home-page)
@@ -22,7 +24,6 @@ A simple web application built with Flask for tracking workouts.
    - [Additional Information](#additional-information)
 - [Contributing](#contributing)
 - [Issues](#issues)
-- [Feature Requests](#feature-requests)
 - [Technologies](#technologies)
    - [Python](#python)
       - [Modules](#modules)
@@ -64,6 +65,14 @@ This Flask Workout Tracker is designed to help users keep track of their workout
 - Record and view workouts with date and exercises performed.
 - Strength tracking (currently broken)
 - More comming soon.
+
+#### Feature Requests
+
+Have a suggestion or want to see a new feature added? Your input is invaluable! Visit GitHub Issues to create a new issue, and mark it as an *"enhancement"* request. I'll review your proposal with enthusiasm!
+
+#### Feature Plans
+
+for now the project is in early developement so i cant write anything here yet
 
 ## Usage
 
@@ -176,9 +185,6 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Issues
 
 Encountered a bug or have an issue with the application? Please head to GitHub Issues and click on the *"New Issue"* button. Specify your problem in detail, and make sure to select *"bug"* as the label. Rest assured, I'll strive to address it promptly.
-
-## Feature Requests
-Have a suggestion or want to see a new feature added? Your input is invaluable! Visit GitHub Issues to create a new issue, and mark it as an *"enhancement"* request. I'll review your proposal with enthusiasm!
 
 ## Technologies
 
