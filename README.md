@@ -2,6 +2,12 @@
 
 A simple web application built with Flask for tracking workouts.
 
+## THE PROGRAM IS STILL A WORK IN PROGGRESS AND THE UI ISN'T COMPLETE THE READNME ME TOO
+
+<!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database).
+
+Future Plans: If you have a roadmap for additional features, include a section titled "Planned Features" or "Future Development" to let users know what they can look forward to. -->
+
 ## Table of Contents
 
 - [Introduction](#introduction)
