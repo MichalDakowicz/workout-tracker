@@ -17,7 +17,6 @@ body {
     grid-template-columns: 60px auto;
     grid-template-rows: 60px 100vh;
     grid-template-areas: "header header" "sidebar body";
-    overflow: hidden;
 }
 button {
     color: #fff;
@@ -28,6 +27,32 @@ button {
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
+}
+input[type="button"] {
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+input[type="button"]:hover {
+    background-color: #666;
+}
+input[type="submit"] {
+    color: #fff;
+    width: 100px;
+    height: 40px;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+input[type="submit"]:hover {
+    background-color: #666;
 }
 button:hover {
     background-color: #666;
@@ -53,7 +78,6 @@ input {
 }
 svg {
     margin-right: 10px;
-    width: 40px !important;
 }
 
 
@@ -304,20 +328,23 @@ svg {
     text-decoration: underline;
 }
 #home-page {
-    margin-top: 70px;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 7px;
+    margin-right: 7px;
+}
+#home-page-panels {
+    display: flex;
+    flex-wrap: wrap;
 }
 .home-page-panel {
-    display: inline-block;
     width: 400px;
-    height: 400px;
+    height: 450px;
     background-color: #fff;
-    margin: 0 auto;
-    margin-top: 15px;
-    margin-bottom: 30px;
+    margin: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
+    padding: 10px;
 }
 .home-page-panel h2 {
     text-align: center;
@@ -357,7 +384,9 @@ svg {
     background-color: #333;
     text-decoration: none;
     color: white;
-    overflow: hidden;
+    position: fixed;
+    height: 100vh;
+    margin-top: 60px;
 }
 #sidebar a {
     text-decoration: none;
@@ -368,8 +397,11 @@ svg {
     flex-direction: column;
     align-items: end;
 }
+#sdb2 {
+    position: fixed;
+    bottom: 5px;
+}
 .sidebar-content {
-    /* text-align: right; */
     font-size: 24px;
     width: 170px;
 }

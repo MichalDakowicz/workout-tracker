@@ -13,16 +13,16 @@
     </div>
 </div>
 <div id="body">
-<div id="login_register_box">
-    <br>
-    <h1>Workout Tracker</h1>
-    <form action="{{ url_for('login') }}" method="post">
-        <input type="text" name="username" placeholder="Username" required><br>
-        <input type="password" name="password" placeholder="Password" required><br>
-        <input type="submit" value="Log in">
-    </form>
-    <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
-</div>
+    <div id="login_register_box">
+        <br>
+        <h1>Workout Tracker</h1>
+        <form action="{{ url_for('login') }}" method="post">
+            <input type="text" name="username" placeholder="Username" required><br>
+            <input type="password" name="password" placeholder="Password" required><br>
+            <input type="submit" value="Log in">
+        </form>
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register</a></p>
+    </div>
 </div>
 <div id="sidebar" style="width: 60px; transition: 0.5s;">
     <a href="javascript:void(0)" class="close-btn" onclick="toggleSidebar()" style="margin-left: 9.5px;">
@@ -64,7 +64,4 @@
 
 
 </body>
-<script>
-
-</script>
 </html>

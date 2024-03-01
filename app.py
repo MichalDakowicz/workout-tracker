@@ -98,7 +98,7 @@ def home():
         cursor = conn.cursor()
 
         if request.method == 'POST':
-            bodyfat = request.form['bodyfat']
+            bodyfat = request.form['body-fat']
             left_arm_fat = request.form['left-arm-fat']
             right_arm_fat = request.form['right-arm-fat']
             trunk_fat = request.form['trunk-fat']
@@ -112,7 +112,7 @@ def home():
             right_leg_muscle = request.form['right-leg-muscle']
 
             data = {
-                'bodyfat': bodyfat,
+                'body_fat': bodyfat,
                 'left_arm_fat': left_arm_fat,
                 'right_arm_fat': right_arm_fat,
                 'trunk_fat': trunk_fat,
