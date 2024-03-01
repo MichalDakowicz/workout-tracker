@@ -8,13 +8,32 @@ app.secret_key = secrets.token_hex(16)
 
 # Function to calculate strength scores
 def calculate_strength(exercises):
-    scores = {}
-    for exercise, data in exercises.items():
-        weight_lifted = data['weight']
+    strength_scores = {}
+    male_coefficient = 1.0
+    female_coefficient = 0.75
+    
+
+    if gender == 'male':
+        coefficient = male_coefficient
+    elif gender == 'female':
+        coefficient = female_coefficient
+    else:
+        raise ValueError("Invalid gender specified")
+
+    for exercise_name, data in exercises.items():
+        weight = data['weight']
         reps = data['reps']
-        one_rep_max = weight_lifted * (1 + 0.0333 * reps)
-        scores[exercise] = one_rep_max
-    return scores
+
+        if reps == 1:
+            estimated_one_rep_max = weight
+        else:
+            estimated_one_rep_max = weight * (1 + reps/30)
+
+        adjusted_one_rep_max = estimated_one_rep_max * (user_weight / 75.0) * coefficient
+        strength_scores[exercise_name] = adjusted_one_rep_max
+
+    return strength_scores
+    
 
 # Function to connect to the SQLite database
 def connect_db():
@@ -281,34 +300,60 @@ def exercises():
 # Strength levels page
 @app.route("/strength", methods=["GET", "POST"])
 def strength():
+    if "username" in session:        
+        if request.method == "POST":
+            exercises = {}
+            info = {}
+            for exercise in ['bench_press', 'deadlift', 'squat', 'overhead_press', 'barbell_row']:
+                weight_key = exercise + '_weight'
+                reps_key = exercise + '_reps'
+                if weight_key in request.form and reps_key in request.form:
+                    exercises[exercise] = {
+                        'weight': float(request.form[weight_key]),
+                        'reps': int(request.form[reps_key])
+                    }
+            for more_info in ['weight', 'gender']:
+                if more_info in request.form:
+                    if more_info == 'weight':
+                        info[more_info] = {'weight': float(request.form[more_info])}
+                    else:
+                        info[more_info] = {'gender': request.form[more_info]}
+
+            strength_scores = calculate_strength(exercises, info)
+            print(strength_scores)
+            return render_template("strength.html", strength_scores=strength_scores)
+        return render_template("strength.html")
+    return redirect(url_for("login"))
+
+
+# Progress page
+@app.route("/progress", methods=["GET", "POST"])
+def progress():
     if "username" in session:
-        exercises = {
-            'bench press': {
-                'weight': float(request.form['bench_press_weight']), 
-                'reps': int(request.form['bench_press_reps'])
-                },
-            'deadlift': {
-                'weight': float(request.form['deadlift_weight']), 
-                'reps': int(request.form['deadlift_reps'])
-                },
-            'squat': {
-                'weight': float(request.form['squat_weight']), 
-                'reps': int(request.form['squat_reps'])
-                },
-            'overhead press': {
-                'weight': float(request.form['overhead_press_weight']), 
-                'reps': int(request.form['overhead_press_reps'])
-                },
-            'barbell row': {
-                'weight': float(request.form['barbell_row_weight']), 
-                'reps': int(request.form['barbell_row_reps'])
-                }
-        }
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
+        workouts = cursor.fetchall()
         
-        strength_scores = calculate_strength(exercises)
+        for i in range(len(workouts)):
+            workout = list(workouts[i])
+            exercises = workout[3].split(",")
+            exercises = [exercise.split("\xa0")[0] for exercise in exercises if 'kg' not in exercise and exercise.strip()]
+            workout[3] = "\n".join(exercises)
+            workouts[i] = tuple(workout)
         
-        return render_template("strength.html", strength_scores=strength_scores)
+        for i in range(len(workouts)):
+            workout = list(workouts[i])
+            exercises = workout[3].split("\n")
+            exercises = [exercise for exercise in exercises if exercise.strip()]
+            workout[3] = "\n".join(exercises)
+            workouts[i] = tuple(workout)
+            
+        conn.close()
         
+        return render_template("progress.html", workouts=workouts)
+
     return redirect(url_for("login"))
 
 # Logout
