@@ -4,33 +4,32 @@ A simple web application built with Flask for tracking workouts.
 
 ## The program is still a work in progress, the UI and the README isn't complete
 
-
 <!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Installation](#installation)
-- [Running the program](#running-the-program)
-- [Features](#features)
-   - [Feature Requests](#feature-requests)
-   - [Feature Plans](#feature-plans)
-- [Usage](#usage)
-   - [Login and Register](#login-and-register)
-   - [Home Page](#home-page)
-   - [Exercise List](#exercise-list)
-   - [Tracking Your Workout](#tracking-your-workout)
-   - [Strength Tracking](#strength-tracking)
-   - [Additional Information](#additional-information)
-- [Contributing](#contributing)
-- [Issues](#issues)
-- [Technologies](#technologies)
-   - [Python](#python)
-      - [Modules](#modules)
-   - [WWW](#www)
-      - [Languages](#languages)
-   - [SQLite](#sqlite)
-- [License](#license)
+-   [Introduction](#introduction)
+-   [Installation](#installation)
+-   [Running the program](#running-the-program)
+-   [Features](#features)
+    -   [Feature Requests](#feature-requests)
+    -   [Feature Plans](#feature-plans)
+-   [Usage](#usage)
+    -   [Login and Register](#login-and-register)
+    -   [Home Page](#home-page)
+    -   [Exercise List](#exercise-list)
+    -   [Tracking Your Workout](#tracking-your-workout)
+    -   [Strength Tracking](#strength-tracking)
+    -   [Additional Information](#additional-information)
+-   [Contributing](#contributing)
+-   [Issues](#issues)
+-   [Technologies](#technologies)
+    -   [Python](#python)
+        -   [Modules](#modules)
+    -   [WWW](#www)
+        -   [Languages](#languages)
+    -   [SQLite](#sqlite)
+-   [License](#license)
 
 ## Introduction
 
@@ -39,40 +38,40 @@ This Flask Workout Tracker is designed to help users keep track of their workout
 ## Installation
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/MichalDakowicz/workout-tracker.git
-   ```
+    ```bash
+    git clone https://github.com/MichalDakowicz/workout-tracker.git
+    ```
 2. Navigate to the project directory:
-   ```bash
-   cd workout-tracker
-   ```
+    ```bash
+    cd workout-tracker
+    ```
 3. Install the dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+    ```bash
+    pip install -r requirements.txt
+    ```
 
 ## Running the program
 
 1. Run the Flask application:
-   ```bash
-   python app.py
-   ```
-2. Open your web browser and go to http://localhost:5000 or the ip adress given during the starting process of the program.
+    ```bash
+    python app.py
+    ```
+2. Open your web browser and go to http://localhost:5000 or http://127.0.0.1:5000.
 
 ## Features
 
-- User authentication: Register and log in securely.
-- Record and view workouts with date and exercises performed.
-- Strength tracking (currently broken)
-- More comming soon.
+-   User authentication: Register and log in securely.
+-   Record and view workouts with date and exercises performed.
+-   Strength tracking (currently broken)
+-   More coming soon.
 
 #### Feature Requests
 
-Have a suggestion or want to see a new feature added? Your input is invaluable! Visit GitHub Issues to create a new issue, and mark it as an *"enhancement"* request. I'll review your proposal with enthusiasm!
+Have a suggestion or want to see a new feature added? Your input is invaluable! Visit GitHub Issues to create a new issue, and mark it as an _"enhancement"_ request. I'll review your proposal with enthusiasm!
 
 #### Feature Plans
 
-for now the project is in early developement so i cant write anything here yet
+for now the project is in early development so i cant write anything here yet
 
 ## Usage
 
@@ -83,21 +82,21 @@ When you launch the application and navigate to the website, you'll encounter a 
 <br>
 
 ![Login Form](readme-images/login.png "Login Form")
-*picture of the login page with the login form*
+_picture of the login page with the login form_
 
 If you're new to the platform, click the register button located below the login form.
 
 <br>
 
 ![Register Button](readme-images/register_button.png "Register Button")
-*picture of the register button*
+_picture of the register button_
 
-You'll be directed to the registration page where you can choose a username and password. 
+You'll be directed to the registration page where you can choose a username and password.
 
 <br>
 
 ![Register Form](readme-images/register.png "Register Form")
-*picture of the register page with the register form*
+_picture of the register page with the register form_
 
 Confirm your password by entering it again, then click the register button to complete the registration process. Once registered, you'll be redirected to the login page where you can proceed to log in.
 
@@ -106,7 +105,7 @@ Alternatively, while on the registration page, you can switch back to the login 
 <br>
 
 ![Login Button](readme-images/login_button.png "Login Button")
-*picture of the login button*
+_picture of the login button_
 
 #### Home Page
 
@@ -115,52 +114,51 @@ Upon successful login, you'll be directed to the home page. Here, you'll find a 
 <br>
 
 ![Home page](readme-images/home.png "Home Page")
-*pcture of the home screen with the workout history panel*
+_picture of the home screen with the workout history panel_
 
-When you do a workout it will display a simple overwiew of it inside the *"Workout history"* panel.
+When you do a workout it will display a simple overview of it inside the _"Workout history"_ panel.
 
 <br>
 
 ![Home page with a workout](readme-images/home_with_workout.png " Home Page With an Existing Workout")
-*picture of the home screen with the workout history panel with a workout*
-
+_picture of the home screen with the workout history panel with a workout_
 
 #### Exercise List
 
-To access the list of exercises, click the *"Exercises"* button at the top of the page. You'll be taken to a webpage where exercises are categorized by muscle group, along with specific muscle targeting information.
+To access the list of exercises, click the _"Exercises"_ button at the top of the page. You'll be taken to a webpage where exercises are categorized by muscle group, along with specific muscle targeting information.
 
 <br>
 
 ![Exercises](readme-images/exercises.png "Exercises Page")
-*picture of the exercise list (not the whole list added yet)*
+_picture of the exercise list (not the whole list added yet)_
 
 #### Tracking Your Workout
 
-Navigate to the *"Workout"* page by clicking the corresponding button on the top navigation bar. Here, you can track your workout sessions.
+Navigate to the _"Workout"_ page by clicking the corresponding button on the top navigation bar. Here, you can track your workout sessions.
 
 1. Select an exercise from the list.
 
-2. Input the number of sets and click *"Confirm"*.
+2. Input the number of sets and click _"Confirm"_.
 
 3. Enter the number of reps and weight for each set.
 
-   **Please note: Ensure all fields are accurately filled out before saving your workout.**
+    **Please note: Ensure all fields are accurately filled out before saving your workout.**
 
-4. Click *"Confirm"* to add the exercise to your workout.
+4. Click _"Confirm"_ to add the exercise to your workout.
 
 5. Repeat the process for each exercise you wish to include.
 
-6. Once finished, click the *"Save"* button at the bottom of the list to record your workout.
+6. Once finished, click the _"Save"_ button at the bottom of the list to record your workout.
 
 #### Strength Tracking
 
-On this dedicated page, diligently input all relevant data into the provided form. After entering the necessary information, click the *"Confirm"* button to process your input. Subsequently, you'll witness your results meticulously displayed as a comprehensive strength level analysis.
+On this dedicated page, diligently input all relevant data into the provided form. After entering the necessary information, click the _"Confirm"_ button to process your input. Subsequently, you'll witness your results meticulously displayed as a comprehensive strength level analysis.
 
 #### Additional Information
 
-Please note that any unsaved changes made on the *"Workout"* page will not be retained once you leave the page.
+Please note that any unsaved changes made on the _"Workout"_ page will not be retained once you leave the page.
 
-To return to the home page at any time, simply click the *"Home"* button located at the top of the page. This will swiftly redirect you back to the home page, allowing for seamless navigation throughout the application.
+To return to the home page at any time, simply click the _"Home"_ button located at the top of the page. This will swiftly redirect you back to the home page, allowing for seamless navigation throughout the application.
 
 ## Contributing
 
@@ -168,47 +166,53 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 
 1. Fork the repository.
 2. Create a new branch:
-   ```bash
-   git checkout -b feature-branch
-   ```
+    ```bash
+    git checkout -b feature-branch
+    ```
 3. Make your changes.
-4. Commit your changes: 
-   ```bash
-   git commit -am 'Add new feature'
-   ```
+4. Commit your changes:
+    ```bash
+    git commit -am 'Add new feature'
+    ```
 5. Push to the branch:
-   ```bash
-   git push origin feature-branch
-   ```
+    ```bash
+    git push origin feature-branch
+    ```
 6. Create a new pull request.
 
 ## Issues
 
-Encountered a bug or have an issue with the application? Please head to GitHub Issues and click on the *"New Issue"* button. Specify your problem in detail, and make sure to select *"bug"* as the label. Rest assured, I'll strive to address it promptly.
+Encountered a bug or have an issue with the application? Please head to GitHub Issues and click on the _"New Issue"_ button. Specify your problem in detail, and make sure to select _"bug"_ as the label. Rest assured, I'll strive to address it promptly.
 
 ## Technologies
 
 <!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database). -->
+
 ### Python
 
 #### Modules
 
-   - flask
-   - sqlite3
-   - werkzeug.security
-   - secrets
+-   flask
+-   sqlite3
+-   werkzeug.security
+-   secrets
+-   json
 
 ### WWW
 
 #### Languages
 
-   - HTML
-   - CSS
-   - JavaScript
+-   HTML
+-   CSS
+-   JavaScript
 
 ### SQLite
 
-   Custom database edited using python.
+Custom database edited using python.
+
+### JSON
+
+Used for storing the strength standards.
 
 ## License
 

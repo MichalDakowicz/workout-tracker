@@ -1,84 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
+        <meta charset="UTF-8" />
         <title>Workout Tracker</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='style.css') }}"
+        />
     </head>
     <body>
-    <div id="header">
-        <div id="menu">
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="#">Exercises</a></li>
-                <li><a href="{{ url_for('workout') }}">Workout</a></li>
-                <li><a href="#">Progress</a></li>
-                <li><a href="{{ url_for('strength') }}">Strength</a></li>
-                {% if session['username'] == 'Michu' %}
-                <li><a href="{{ url_for('admin') }}">Admin page</a></li>
-                {% endif %}
-                <li><a href="{{ url_for('logout') }}">Logout</a></li>
-            </ul>
+        <div id="header">
+            <div id="menu">
+                <ul>
+                    <li><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="#">Exercises</a></li>
+                    <li><a href="{{ url_for('workout') }}">Workout</a></li>
+                    <li><a href="#">Progress</a></li>
+                    <li><a href="{{ url_for('strength') }}">Strength</a></li>
+                    {% if session['username'] == 'Michu' %}
+                    <li><a href="{{ url_for('admin') }}">Admin page</a></li>
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                </ul>
+            </div>
+            {% if 'username' in session %}
+            <div id="profile">
+                <a href="{{ url_for('home') }}">
+                    <b><p>{{ session['username'] }}</p></b>
+                </a>
+            </div>
+            {% endif %}
         </div>
-        {% if 'username' in session %}
-        <div id="profile">
-            <a href="{{ url_for('home') }}">
-                <b><p>{{ session['username'] }}</p></b>
-            </a>
+        <div id="exercise-list">
+            <h1>Exercises</h1>
+            <div class="exercise-container">
+                <h2>Chest</h2>
+                <ul>
+                    {% for exercise in chest_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="exercise-container">
+                <h2>Back</h2>
+                <ul>
+                    {% for exercise in back_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="exercise-container">
+                <h2>Legs</h2>
+                <ul>
+                    {% for exercise in legs_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="exercise-container">
+                <h2>Shoulders</h2>
+                <ul>
+                    {% for exercise in shoulders_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="exercise-container">
+                <h2>Arms</h2>
+                <ul>
+                    {% for exercise in arms_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="exercise-container">
+                <h2>Core</h2>
+                <ul>
+                    {% for exercise in abs_exercises %}
+                    <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
         </div>
-        {% endif %}
-    </div>
-    <div id="exercise-list">
-        <h1>Exercises</h1>
-        <div class="exercise-container">
-            <h2>Chest</h2>
-            <ul>
-                {% for exercise in chest_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="exercise-container">
-            <h2>Back</h2>
-            <ul>
-                {% for exercise in back_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="exercise-container">
-            <h2>Legs</h2>
-            <ul>
-                {% for exercise in legs_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="exercise-container">
-            <h2>Shoulders</h2>
-            <ul>
-                {% for exercise in shoulders_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="exercise-container">
-            <h2>Arms</h2>
-            <ul>
-                {% for exercise in arms_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <div class="exercise-container">
-            <h2>Core</h2>
-            <ul>
-                {% for exercise in abs_exercises %}
-                <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    </div>
-        
-</body>
+    </body>
 </html>

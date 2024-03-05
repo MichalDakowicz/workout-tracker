@@ -2,21 +2,21 @@ from flask import Flask, render_template, request, url_for, redirect, session
 import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
+import json
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
 # Function to calculate strength scores
-def calculate_strength(exercises):
-    strength_scores = {}
-    male_coefficient = 1.0
-    female_coefficient = 0.75
-    
+def calculate_strength(exercises, info):
+    one_rep_maxes = {}
+    gender = info.get('gender')
+    user_weight = info.get('weight')
 
     if gender == 'male':
-        coefficient = male_coefficient
+        coefficient = 1.0
     elif gender == 'female':
-        coefficient = female_coefficient
+        coefficient = 0.75
     else:
         raise ValueError("Invalid gender specified")
 
@@ -27,12 +27,15 @@ def calculate_strength(exercises):
         if reps == 1:
             estimated_one_rep_max = weight
         else:
-            estimated_one_rep_max = weight * (1 + reps/30)
+            estimated_one_rep_max = weight / (1.0278 - 0.0278 * reps)
 
-        adjusted_one_rep_max = estimated_one_rep_max * (user_weight / 75.0) * coefficient
-        strength_scores[exercise_name] = adjusted_one_rep_max
+        one_rep_maxes[exercise_name] = estimated_one_rep_max
 
-    return strength_scores
+    print(one_rep_maxes)
+    print(user_weight)
+    print(gender)
+    return one_rep_maxes
+
     
 
 # Function to connect to the SQLite database
@@ -57,7 +60,7 @@ def create_table():
     conn.commit()
     conn.close()
 
-# Excercise table
+# Exercise table
 def create_table_ex():
     conn = connect_db()
     cursor = conn.cursor()
@@ -344,18 +347,21 @@ def strength():
                         'weight': float(request.form[weight_key]),
                         'reps': int(request.form[reps_key])
                     }
-            for more_info in ['weight', 'gender']:
-                if more_info in request.form:
-                    if more_info == 'weight':
-                        info[more_info] = {'weight': float(request.form[more_info])}
-                    else:
-                        info[more_info] = {'gender': request.form[more_info]}
+            gender = request.form.get('gender')  # Extract gender from form data
+            weight = float(request.form.get('weight'))  # Extract weight from form data
+            info['gender'] = gender
+            info['weight'] = weight
+
+            if gender not in ['male', 'female']:
+                return "Invalid gender specified"
 
             strength_scores = calculate_strength(exercises, info)
-            print(strength_scores)
             return render_template("strength.html", strength_scores=strength_scores)
         return render_template("strength.html")
     return redirect(url_for("login"))
+
+
+
 
 
 # Progress page
