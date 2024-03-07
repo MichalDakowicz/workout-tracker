@@ -1,8 +1,25 @@
-# Flask Workout Tracker
+<div align="center" id="top"> 
+  <img src="logo.png" alt="Workout Tracker" />
 
-A simple web application built with Flask for tracking workouts.
+&#xa0;
 
-## The program is still a work in progress, the UI and the README isn't complete
+</div>
+
+<h1 align="center">Workout Tracker</h1>
+
+<p align="center" >
+  <img alt="Github top language" src="https://img.shields.io/github/languages/top/MichalDakowicz/workout-tracker?color=56BEB8"> <img alt="Github issues" src="https://img.shields.io/github/issues/MichalDakowicz/workout-tracker?color=56BEB8" /> <img alt="Github stars" src="https://img.shields.io/github/stars/MichalDakowicz/workout-tracker?color=56BEB8" />
+</p>
+
+<h4 align="center">
+	🚧  Workout Tracker 💪 Under construction...  🚧
+</h4>
+
+<div align="center">
+    A simple web application built with Flask for tracking workouts.
+</div>
+
+<hr>
 
 <!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
 
@@ -217,3 +234,11 @@ Used for storing the strength standards.
 ## License
 
 This project is licensed under the **[MIT License](LICENSE)**
+
+<hr>
+
+Made with :heart: by <a href="https://github.com/MichalDakowicz" target="_blank">Michu</a>
+
+&#xa0;
+
+<a href="#top">Back to top</a>
