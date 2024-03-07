@@ -7,6 +7,7 @@ import json
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
+# tag:calculate_strength
 # Function to calculate strength scores
 def calculate_strength(exercises, info):
     one_rep_maxes = {}
@@ -35,6 +36,7 @@ def calculate_strength(exercises, info):
     print(user_weight)
     print(gender)
     return one_rep_maxes
+# endtag:calculate_strength
 
     
 

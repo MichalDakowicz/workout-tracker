@@ -236,9 +236,8 @@ Used for storing the strength standards.
 This project is licensed under the **[MIT License](LICENSE)**
 
 <hr>
-
-Made with :heart: by <a href="https://github.com/MichalDakowicz" target="_blank">Michu</a>
+<a href="#top">Back to top</a>
 
 &#xa0;
 
-<a href="#top">Back to top</a>
+Made with :heart: by <a href="https://github.com/MichalDakowicz" target="_blank">Michu</a>
