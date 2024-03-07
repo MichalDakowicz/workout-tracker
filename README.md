@@ -16,12 +16,10 @@
 </h4>
 
 <div align="center">
-    A simple web application built with Flask for tracking workouts.
+    A simple web application built with Flask for tracking workouts measuring strength and much more.
 </div>
 
 <hr>
-
-<!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
 
 ## Table of Contents
 
@@ -88,7 +86,9 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 #### Feature Plans
 
-for now the project is in early development so i cant write anything here yet
+For now the project is in early development so i cant write anything here yet.
+
+<!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
 
 ## Usage
 
