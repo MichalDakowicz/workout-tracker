@@ -11,10 +11,35 @@ The application is structured as follows:
 
 == Code
 
-[source,python]
-----
-include::app.py[tags=calculate_strength]
-----
+```python
+def calculate_strength(exercises, info):
+    one_rep_maxes = {}
+    gender = info.get('gender')
+    user_weight = info.get('weight')
+
+    if gender == 'male':
+        coefficient = 1.0
+    elif gender == 'female':
+        coefficient = 0.75
+    else:
+        raise ValueError("Invalid gender specified")
+
+    for exercise_name, data in exercises.items():
+        weight = data['weight']
+        reps = data['reps']
+
+        if reps == 1:
+            estimated_one_rep_max = weight
+        else:
+            estimated_one_rep_max = weight / (1.0278 - 0.0278 * reps)
+
+        one_rep_maxes[exercise_name] = estimated_one_rep_max
+
+    print(one_rep_maxes)
+    print(user_weight)
+    print(gender)
+    return one_rep_maxes
+```
 
 
 == Dependencies
