@@ -1,7 +1,5 @@
 <div align="center" id="top"> 
-  <img src="logo.png" alt="Workout Tracker" />
-
-&#xa0;
+  <img src="icon.png" alt="Workout Tracker" style="width: 25%;"/>
 
 </div>
 

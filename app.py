@@ -7,9 +7,8 @@ import json
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
-# tag:calculate_strength
-# Function to calculate strength scores
-def calculate_strength(exercises, info):
+# Function to calculate the one rep max's
+def calc_one_rep_max(exercises, info):
     one_rep_maxes = {}
     gender = info.get('gender')
     user_weight = info.get('weight')
@@ -32,13 +31,8 @@ def calculate_strength(exercises, info):
 
         one_rep_maxes[exercise_name] = estimated_one_rep_max
 
-    print(one_rep_maxes)
-    print(user_weight)
-    print(gender)
-    return one_rep_maxes
-# endtag:calculate_strength
 
-    
+    return one_rep_maxes
 
 # Function to connect to the SQLite database
 def connect_db():
@@ -357,7 +351,7 @@ def strength():
             if gender not in ['male', 'female']:
                 return "Invalid gender specified"
 
-            strength_scores = calculate_strength(exercises, info)
+            strength_scores = calc_one_rep_max(exercises, info)
             return render_template("strength.html", strength_scores=strength_scores)
         return render_template("strength.html")
     return redirect(url_for("login"))
