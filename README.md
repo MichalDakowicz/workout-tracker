@@ -11,6 +11,9 @@
 
 <h4 align="center">
 	🚧  Workout Tracker 💪 Under construction...  🚧
+
+    NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin"
+
 </h4>
 
 <div align="center">
@@ -80,9 +83,17 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 #### Feature Plans
 
-For now the project is in early development so i cant write anything here yet.
+1. IMPLEMENTING STRENGTH SCORES
 
-<!-- Future Plans: If you have a roadmap for additional features, include a section titled "" or "Future Development" to let users know what they can look forward to. -->
+2. ADDING A PROGRESS PAGE
+
+3. ADDING A USER PROFILE PAGE
+
+4. ADDING PROFILE PICTURE SUPPORT
+
+5. ADD MORE EXERCISES
+
+6. UPDATING THE README WHEN DONE
 
 ## Usage
 

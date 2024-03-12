@@ -2,7 +2,7 @@ function checkGroupDisplayMuscles() {
     var group = document.getElementById("group").value;
     var muscle = document.getElementById("muscle");
     if (group === "Chest") {
-        // Uper, Middle, Lower
+        // Upper, Middle, Lower
         muscle.innerHTML =
             '<option value="Upper Chest">Upper Chest</option><option value="Middle Chest">Middle Chest</option><option value="Lower Chest">Lower Chest</option>';
     } else if (group === "Back") {

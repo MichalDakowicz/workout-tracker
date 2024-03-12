@@ -57,7 +57,7 @@ def calc_one_rep_max(exercises):
     }
 }
 """
-def calculate_strength_scores(one_rep_maxes, info):
+def calculate_strength_scores(one_rep_maxes, info): # TODO:
     scores = {}
     for exercise, max_weight in one_rep_maxes.items():
         with open(f'{exercise}.json', 'r') as f:
@@ -141,36 +141,37 @@ def home():
         conn = connect_db()
         cursor = conn.cursor()
 
-        if request.method == 'POST':
-            bodyfat = request.form['body-fat']
-            left_arm_fat = request.form['left-arm-fat']
-            right_arm_fat = request.form['right-arm-fat']
-            trunk_fat = request.form['trunk-fat']
-            left_leg_fat = request.form['left-leg-fat']
-            right_leg_fat = request.form['right-leg-fat']
-            muscle = request.form['muscle']
-            left_arm_muscle = request.form['left-arm-muscle']
-            right_arm_muscle = request.form['right-arm-muscle']
-            trunk_muscle = request.form['trunk-muscle']
-            left_leg_muscle = request.form['left-leg-muscle']
-            right_leg_muscle = request.form['right-leg-muscle']
+        # if request.method == 'POST':
+        #     bodyfat = request.form['body-fat']
+        #     left_arm_fat = request.form['left-arm-fat']
+        #     right_arm_fat = request.form['right-arm-fat']
+        #     trunk_fat = request.form['trunk-fat']
+        #     left_leg_fat = request.form['left-leg-fat']
+        #     right_leg_fat = request.form['right-leg-fat']
+        #     muscle = request.form['muscle']
+        #     left_arm_muscle = request.form['left-arm-muscle']
+        #     right_arm_muscle = request.form['right-arm-muscle']
+        #     trunk_muscle = request.form['trunk-muscle']
+        #     left_leg_muscle = request.form['left-leg-muscle']
+        #     right_leg_muscle = request.form['right-leg-muscle']
 
-            data = {
-                'body_fat': bodyfat,
-                'left_arm_fat': left_arm_fat,
-                'right_arm_fat': right_arm_fat,
-                'trunk_fat': trunk_fat,
-                'left_leg_fat': left_leg_fat,
-                'right_leg_fat': right_leg_fat,
-                'muscle': muscle,
-                'left_arm_muscle': left_arm_muscle,
-                'right_arm_muscle': right_arm_muscle,
-                'trunk_muscle': trunk_muscle,
-                'left_leg_muscle': left_leg_muscle,
-                'right_leg_muscle': right_leg_muscle
-            }
+        #     data = {
+        #         'body_fat': bodyfat,
+        #         'left_arm_fat': left_arm_fat,
+        #         'right_arm_fat': right_arm_fat,
+        #         'trunk_fat': trunk_fat,
+        #         'left_leg_fat': left_leg_fat,
+        #         'right_leg_fat': right_leg_fat,
+        #         'muscle': muscle,
+        #         'left_arm_muscle': left_arm_muscle,
+        #         'right_arm_muscle': right_arm_muscle,
+        #         'trunk_muscle': trunk_muscle,
+        #         'left_leg_muscle': left_leg_muscle,
+        #         'right_leg_muscle': right_leg_muscle
+        #     }
             
-            cursor.execute("UPDATE users SET body_measurements=? WHERE username=?", (str(data), session["username"]))
+        #     cursor.execute("UPDATE users SET body_measurements=? WHERE username=?", (str(data), session["username"]))
+        # TODO: move to profile page
 
         cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
         workouts = cursor.fetchall()
@@ -260,53 +261,56 @@ def register():
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if "username" in session:
-        conn = connect_db()
-        cursor = conn.cursor()
+        if session["username"] == "ADMIN":
+            conn = connect_db()
+            cursor = conn.cursor()
 
-        if request.method == "POST":
-            action = request.form["action"]
+            if request.method == "POST":
+                action = request.form["action"]
 
-            if action == "add_exercise":
-                exercise = request.form["exercise"]
-                if exercise in [ex[0] for ex in cursor.execute("SELECT exercise FROM exercises").fetchall()]:
-                    pass
-                else:
-                    muscle_group = request.form["muscle_group"]
-                    muscle = request.form["muscle"]
+                if action == "add_exercise":
+                    exercise = request.form["exercise"]
+                    if exercise in [ex[0] for ex in cursor.execute("SELECT exercise FROM exercises").fetchall()]:
+                        pass
+                    else:
+                        muscle_group = request.form["muscle_group"]
+                        muscle = request.form["muscle"]
 
-                    cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
+                        cursor.execute("INSERT INTO exercises (exercise, muscle_group, muscle) VALUES (?, ?, ?)", (exercise, muscle_group, muscle))
 
-            elif action == "remove_exercise":
-                exercise_id = request.form["exercise_id"]
+                elif action == "remove_exercise":
+                    exercise_id = request.form["exercise_id"]
 
-                cursor.execute("DELETE FROM exercises WHERE id=?", (exercise_id,))
+                    cursor.execute("DELETE FROM exercises WHERE id=?", (exercise_id,))
 
-            elif action == "remove_user":
-                user_id = request.form["user_id"]
+                elif action == "remove_user":
+                    user_id = request.form["user_id"]
 
-                cursor.execute("DELETE FROM users WHERE id=?", (user_id,))
+                    cursor.execute("DELETE FROM users WHERE id=?", (user_id,))
 
-            elif action == "remove_workout":
-                workout_id = request.form["workout_id"]
+                elif action == "remove_workout":
+                    workout_id = request.form["workout_id"]
 
-                cursor.execute("DELETE FROM workouts WHERE id=?", (workout_id,))
+                    cursor.execute("DELETE FROM workouts WHERE id=?", (workout_id,))
 
-            conn.commit()
+                conn.commit()
 
-        # Fetch all users, exercises, and workouts from the database
-        cursor.execute("SELECT * FROM users")
-        users = cursor.fetchall()
+            # Fetch all users, exercises, and workouts from the database
+            cursor.execute("SELECT * FROM users")
+            users = cursor.fetchall()
 
-        cursor.execute("SELECT * FROM exercises")
-        exercises = cursor.fetchall()
+            cursor.execute("SELECT * FROM exercises")
+            exercises = cursor.fetchall()
 
-        cursor.execute("SELECT * FROM workouts")
-        workouts = cursor.fetchall()
+            cursor.execute("SELECT * FROM workouts")
+            workouts = cursor.fetchall()
 
-        conn.close()
+            conn.close()
 
-        # Pass the users, exercises, and workouts to the template
-        return render_template("admin.html", users=users, exercises=exercises, workouts=workouts)
+            # Pass the users, exercises, and workouts to the template
+            return render_template("admin.html", users=users, exercises=exercises, workouts=workouts)
+        else:
+            return redirect(url_for("home"))
 
     return redirect(url_for("login"))
 
@@ -405,8 +409,9 @@ def strength():
 
             one_rep_maxes = calc_one_rep_max(exercises)
             
-            strength_scores = calculate_strength_scores(one_rep_maxes, info)
-            return render_template("strength.html", strength_scores=strength_scores, one_rep_maxes=one_rep_maxes, exercises=exercises, info=info)
+            # TODO: strength_scores = calculate_strength_scores(one_rep_maxes, info)
+            
+            return render_template("strength.html", one_rep_maxes=one_rep_maxes, exercises=exercises, info=info) # TODO: strength_scores=strength_scores,
         return render_template("strength.html")
     return redirect(url_for("login"))
 
