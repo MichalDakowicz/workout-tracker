@@ -324,7 +324,14 @@ def exercises():
         
         conn.close()
         
-        return render_template("exercises.html", chest_exercises=chest_exercises, back_exercises=back_exercises, legs_exercises=legs_exercises, shoulders_exercises=shoulders_exercises, arms_exercises=arms_exercises, abs_exercises=abs_exercises)
+        return render_template("exercises.html", 
+                               chest_exercises=chest_exercises, 
+                               back_exercises=back_exercises, 
+                               legs_exercises=legs_exercises, 
+                               shoulders_exercises=shoulders_exercises, 
+                               arms_exercises=arms_exercises, 
+                               abs_exercises=abs_exercises
+                               )
 
     return redirect(url_for("home"))
 
