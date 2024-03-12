@@ -36,13 +36,9 @@
     -   [Additional Information](#additional-information)
 -   [Contributing](#contributing)
 -   [Issues](#issues)
--   [Technologies](#technologies)
-    -   [Python](#python)
-        -   [Modules](#modules)
-    -   [WWW](#www)
-        -   [Languages](#languages)
-    -   [SQLite](#sqlite)
 -   [License](#license)
+
+FOR TECHNICAL DOCUMENTATION GO [HERE](TECHNICAL.md)
 
 ## Introduction
 
@@ -198,36 +194,6 @@ Contributions are welcome! If you'd like to contribute to this project, please f
 ## Issues
 
 Encountered a bug or have an issue with the application? Please head to GitHub Issues and click on the _"New Issue"_ button. Specify your problem in detail, and make sure to select _"bug"_ as the label. Rest assured, I'll strive to address it promptly.
-
-## Technologies
-
-<!-- Technologies: In the introduction or a separate section, briefly mention the technologies used (Python, Flask, database). -->
-
-### Python
-
-#### Modules
-
--   flask
--   sqlite3
--   werkzeug.security
--   secrets
--   json
-
-### WWW
-
-#### Languages
-
--   HTML
--   CSS
--   JavaScript
-
-### SQLite
-
-Custom database edited using python.
-
-### JSON
-
-Used for storing the strength standards.
 
 ## License
 
