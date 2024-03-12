@@ -38,7 +38,7 @@
 -   [Issues](#issues)
 -   [License](#license)
 
-FOR TECHNICAL DOCUMENTATION GO [HERE](TECHNICAL.md)
+FOR TECHNICAL DOCUMENTATION GO [HERE](TECHNICAL.md) or [HERE](technical.adoc)
 
 ## Introduction
 
