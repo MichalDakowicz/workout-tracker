@@ -1,7 +1,7 @@
 = Gym Tracker App Documentation
 
 == Table of Contents
-* link:structure[Code Structure]
+* Code Structure
 * Code
 * Dependencies
 * Technologies
@@ -14,7 +14,7 @@
 
 For regular documentation go link:README.md[HERE]
 
-== Code Structure {#structure}
+== Code Structure
 
 The application is structured as follows:
 
