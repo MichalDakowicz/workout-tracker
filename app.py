@@ -7,18 +7,20 @@ import json
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
 
-# Function to calculate the one rep max's
-def calc_one_rep_max(exercises, info):
-    one_rep_maxes = {}
-    gender = info.get('gender')
-    user_weight = info.get('weight')
+with open('barbell_row.json') as f:
+    barbell_row_stats = json.load(f)
+with open('bench_press.json') as f:
+    bench_press_stats = json.load(f)
+with open('deadlift.json') as f:
+    deadlift_stats = json.load(f)
+with open('overhead_press.json') as f:
+    overhead_press_stats = json.load(f)
+with open('squat.json') as f:
+    squat_stats = json.load(f)
 
-    if gender == 'male':
-        coefficient = 1.0
-    elif gender == 'female':
-        coefficient = 0.75
-    else:
-        raise ValueError("Invalid gender specified")
+# Function to calculate the one rep max's
+def calc_one_rep_max(exercises):
+    one_rep_maxes = {}
 
     for exercise_name, data in exercises.items():
         weight = data['weight']
@@ -31,8 +33,45 @@ def calc_one_rep_max(exercises, info):
 
         one_rep_maxes[exercise_name] = estimated_one_rep_max
 
-
     return one_rep_maxes
+
+# compare to the one rep maxes to the strength levels in barbell_row.json, bench_press.json, deadlift.json, overhead_press.json, and squat.json
+# the file structures are as follows: 
+"""
+{
+    exercise_name: {
+        "male": {
+            "user_weight": {
+                "weight1": 20,
+                "weight2": 40,
+                "weight3": 60,
+                "weight4": 80,
+                "weight5": 100
+            },
+            "user_weight2": {
+                ...
+            }
+        "female": {
+            ...
+        }       
+    }
+}
+"""
+def calculate_strength_scores(one_rep_maxes, info):
+    scores = {}
+    for exercise, max_weight in one_rep_maxes.items():
+        with open(f'{exercise}.json', 'r') as f:
+            standards = json.load(f)[exercise]
+            user_weight_category = min(standards[info['gender']], key=lambda x:abs(int(x)-info['weight']))
+            weights = standards[info['gender']][user_weight_category]
+            score = 0
+            for weight, points in weights.items():
+                if max_weight >= int(weight):
+                    score = points
+                else:
+                    break
+            scores[exercise] = score
+    return scores
 
 # Function to connect to the SQLite database
 def connect_db():
@@ -358,14 +397,12 @@ def strength():
             if gender not in ['male', 'female']:
                 return "Invalid gender specified"
 
-            strength_scores = calc_one_rep_max(exercises, info)
-            return render_template("strength.html", strength_scores=strength_scores)
+            one_rep_maxes = calc_one_rep_max(exercises)
+            
+            strength_scores = calculate_strength_scores(one_rep_maxes, info)
+            return render_template("strength.html", strength_scores=strength_scores, one_rep_maxes=one_rep_maxes, exercises=exercises, info=info)
         return render_template("strength.html")
     return redirect(url_for("login"))
-
-
-
-
 
 # Progress page
 @app.route("/progress", methods=["GET", "POST"])
@@ -407,4 +444,4 @@ if __name__ == "__main__":
     create_table()
     create_table_ex()
     create_table_workout()
-    app.run(debug=True, port=2137)
+    app.run(debug=True)

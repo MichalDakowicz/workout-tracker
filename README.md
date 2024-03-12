@@ -38,7 +38,7 @@
 -   [Issues](#issues)
 -   [License](#license)
 
-FOR TECHNICAL DOCUMENTATION GO [HERE](TECHNICAL.md) or [HERE](technical.adoc)
+FOR TECHNICAL DOCUMENTATION GO [HERE](technical.adoc)
 
 ## Introduction
 
@@ -93,6 +93,7 @@ When you launch the application and navigate to the website, you'll encounter a 
 <br>
 
 ![Login Form](readme-images/login.png "Login Form")
+
 _picture of the login page with the login form_
 
 If you're new to the platform, click the register button located below the login form.
@@ -100,6 +101,7 @@ If you're new to the platform, click the register button located below the login
 <br>
 
 ![Register Button](readme-images/register_button.png "Register Button")
+
 _picture of the register button_
 
 You'll be directed to the registration page where you can choose a username and password.
@@ -107,6 +109,7 @@ You'll be directed to the registration page where you can choose a username and 
 <br>
 
 ![Register Form](readme-images/register.png "Register Form")
+
 _picture of the register page with the register form_
 
 Confirm your password by entering it again, then click the register button to complete the registration process. Once registered, you'll be redirected to the login page where you can proceed to log in.
@@ -116,6 +119,7 @@ Alternatively, while on the registration page, you can switch back to the login 
 <br>
 
 ![Login Button](readme-images/login_button.png "Login Button")
+
 _picture of the login button_
 
 #### Home Page
@@ -125,6 +129,7 @@ Upon successful login, you'll be directed to the home page. Here, you'll find a 
 <br>
 
 ![Home page](readme-images/home.png "Home Page")
+
 _picture of the home screen with the workout history panel_
 
 When you do a workout it will display a simple overview of it inside the _"Workout history"_ panel.
@@ -132,6 +137,7 @@ When you do a workout it will display a simple overview of it inside the _"Worko
 <br>
 
 ![Home page with a workout](readme-images/home_with_workout.png " Home Page With an Existing Workout")
+
 _picture of the home screen with the workout history panel with a workout_
 
 #### Exercise List
@@ -141,6 +147,7 @@ To access the list of exercises, click the _"Exercises"_ button at the top of th
 <br>
 
 ![Exercises](readme-images/exercises.png "Exercises Page")
+
 _picture of the exercise list (not the whole list added yet)_
 
 #### Tracking Your Workout
