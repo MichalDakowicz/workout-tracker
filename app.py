@@ -87,10 +87,16 @@ def create_table():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT NOT NULL,
             password TEXT NOT NULL,
+            icon_link TEXT,
+            icon_format TEXT,
             strength_scores TEXT,
-            body_measurements TEXT
+            segmented_bodyfat TEXT,
+            segmented_muscle TEXT,
+            body_measurements TEXT 
         )
         """
+        # body measurements are height, weight, body fat, and muscle mass AS A TOTAL NOT SEGMENTED
+        # icon format will have options for round, square, and rounded_square
     )
     conn.commit()
     conn.close()
@@ -407,32 +413,7 @@ def strength():
 # Progress page
 @app.route("/progress", methods=["GET", "POST"])
 def progress():
-    if "username" in session:
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
-        workouts = cursor.fetchall()
-        
-        for i in range(len(workouts)):
-            workout = list(workouts[i])
-            exercises = workout[3].split(",")
-            exercises = [exercise.split("\xa0")[0] for exercise in exercises if 'kg' not in exercise and exercise.strip()]
-            workout[3] = "\n".join(exercises)
-            workouts[i] = tuple(workout)
-        
-        for i in range(len(workouts)):
-            workout = list(workouts[i])
-            exercises = workout[3].split("\n")
-            exercises = [exercise for exercise in exercises if exercise.strip()]
-            workout[3] = "\n".join(exercises)
-            workouts[i] = tuple(workout)
-            
-        conn.close()
-        
-        return render_template("progress.html", workouts=workouts)
-
-    return redirect(url_for("login"))
+    return redirect(url_for("home"))
 
 # Logout
 @app.route('/logout')

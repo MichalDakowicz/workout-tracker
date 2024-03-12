@@ -1,11 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Nunito', sans-serif;
+    font-family: "Nunito", sans-serif;
 }
-
 
 body {
     margin: 0;
@@ -15,7 +14,7 @@ body {
     background-size: cover;
     display: grid;
     grid-template-columns: 60px auto;
-    grid-template-rows: 60px 100vh;
+    grid-template-rows: 60px calc(100vh - 60px);
     grid-template-areas: "header header" "sidebar body";
 }
 button {
@@ -65,7 +64,6 @@ select {
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
-
 }
 input {
     width: 100px;
@@ -80,9 +78,9 @@ svg {
     margin-right: 10px;
 }
 
-
 #body {
     grid-area: body;
+    margin: 10px;
 }
 
 #header {
@@ -255,10 +253,8 @@ svg {
     padding: 0 10px;
     box-sizing: border-box;
 }
-#workout {
-    margin-top: 70px;
-}
-#exercise-container{
+
+#exercise-container {
     height: 40px;
     display: inline-block;
 }
@@ -266,7 +262,6 @@ svg {
 #panels {
     width: 100%;
     margin: 0 auto;
-    margin-top: 90px;
     display: flex;
     flex-wrap: wrap;
 }
@@ -327,10 +322,7 @@ svg {
 .panels p a:hover {
     text-decoration: underline;
 }
-#home-page {
-    margin-left: 7px;
-    margin-right: 7px;
-}
+
 #home-page-panels {
     display: flex;
     flex-wrap: wrap;
@@ -349,15 +341,15 @@ svg {
 .home-page-panel h2 {
     text-align: center;
     font-size: 36px;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 .home-page-panel p {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 12px;
 }
 .home-page-panel h3 {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 15px;
 }
 #workouts table {
     width: 90%;
@@ -368,11 +360,7 @@ svg {
     padding: 10px;
     text-align: center;
 }
-#exercise-list {
-    margin-top: 70px;
-    margin-left: 10px;
-    margin-right: 10px;
-}
+
 .exercise-container ul {
     margin: 0;
     padding: 0;

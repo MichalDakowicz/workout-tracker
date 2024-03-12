@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <title>Workout Tracker</title>
+        <title>Home - Workout Tracker</title>
+        <link rel="icon" href="{{ url_for('static', filename='icon.png') }}" />
         <link
             rel="stylesheet"
             href="{{ url_for('static', filename='style.css') }}"
@@ -77,7 +78,10 @@
                     </div>
                     <div class="home-page-panel">
                         <h2>Body Measurements</h2>
-                        <p>Here you can track your body measurements.</p>
+                        <p>
+                            Here you can track your body measurements. <br />
+                            <b>Trunk means torso</b>
+                        </p>
                         <form action="{{ url_for('home') }}" method="post">
                             <h3>Segmented body fat percentage</h3>
                             <input
