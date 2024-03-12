@@ -6,7 +6,23 @@
 <h1 align="center">Workout Tracker</h1>
 
 <p align="center" >
-  <img alt="Github top language" src="https://img.shields.io/github/languages/top/MichalDakowicz/workout-tracker?color=56BEB8"> <img alt="Github issues" src="https://img.shields.io/github/issues/MichalDakowicz/workout-tracker?color=56BEB8" /> <img alt="Github stars" src="https://img.shields.io/github/stars/MichalDakowicz/workout-tracker?color=56BEB8" />
+  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/MichalDakowicz/workout-tracker"> <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/MichalDakowicz/workout-tracker"> <img alt="GitHub License" src="https://img.shields.io/github/license/MichalDakowicz/workout-tracker"> 
+</p>
+
+<p align="center" >
+    <a href="https://www.python.org/" target="_blank">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+</a>
+<a href="https://www.w3.org/html/" target="_blank">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+</a>
+<a href="https://www.javascript.com/" target="_blank"> 
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+</a>
+<a href="https://github.com/MichalDakowicz" target="_blank">
+    <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> 
+</a>
+
 </p>
 
 <h4 align="center">
