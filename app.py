@@ -3,8 +3,8 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
 # private code imports
-from strength_stuff import *
-from database_stuff import *
+from strength import *
+from database import *
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
