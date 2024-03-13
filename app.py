@@ -1,139 +1,13 @@
 from flask import Flask, render_template, request, url_for, redirect, session
-import sqlite3
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
-import json
+
+# private code imports
+from strength_stuff import *
+from database_stuff import *
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
-
-with open('barbell_row.json') as f:
-    barbell_row_stats = json.load(f)
-with open('bench_press.json') as f:
-    bench_press_stats = json.load(f)
-with open('deadlift.json') as f:
-    deadlift_stats = json.load(f)
-with open('overhead_press.json') as f:
-    overhead_press_stats = json.load(f)
-with open('squat.json') as f:
-    squat_stats = json.load(f)
-
-# Function to calculate the one rep max's
-def calc_one_rep_max(exercises):
-    one_rep_maxes = {}
-
-    for exercise_name, data in exercises.items():
-        weight = data['weight']
-        reps = data['reps']
-
-        if reps == 1:
-            estimated_one_rep_max = weight
-        else:
-            estimated_one_rep_max = weight / (1.0278 - 0.0278 * reps)
-
-        one_rep_maxes[exercise_name] = estimated_one_rep_max
-
-    return one_rep_maxes
-
-# compare to the one rep maxes to the strength levels in barbell_row.json, bench_press.json, deadlift.json, overhead_press.json, and squat.json
-# the file structures are as follows: 
-"""
-{
-    exercise_name: {
-        "male": {
-            "user_weight": {
-                "weight1": 20,
-                "weight2": 40,
-                "weight3": 60,
-                "weight4": 80,
-                "weight5": 100
-            },
-            "user_weight2": {
-                ...
-            }
-        "female": {
-            ...
-        }       
-    }
-}
-"""
-def calculate_strength_scores(one_rep_maxes, info): # TODO:
-    scores = {}
-    for exercise, max_weight in one_rep_maxes.items():
-        with open(f'{exercise}.json', 'r') as f:
-            standards = json.load(f)[exercise]
-            user_weight_category = min(standards[info['gender']], key=lambda x:abs(int(x)-info['weight']))
-            weights = standards[info['gender']][user_weight_category]
-            score = 0
-            for weight, points in weights.items():
-                if max_weight >= int(weight):
-                    score = points
-                else:
-                    break
-            scores[exercise] = score
-    return scores
-
-# Function to connect to the SQLite database
-def connect_db():
-    return sqlite3.connect("tracker.db", check_same_thread=False)
-
-# Create a table to store user information if not exists
-def create_table():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            password TEXT NOT NULL,
-            icon_link TEXT,
-            icon_format TEXT,
-            strength_scores TEXT,
-            segmented_bodyfat TEXT,
-            segmented_muscle TEXT,
-            body_measurements TEXT 
-        )
-        """
-        # body measurements are height, weight, body fat, and muscle mass AS A TOTAL NOT SEGMENTED
-        # icon format will have options for round, square, and rounded_square
-    )
-    conn.commit()
-    conn.close()
-
-# Exercise table
-def create_table_ex():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS exercises (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            exercise TEXT NOT NULL,
-            muscle_group TEXT NOT NULL,
-            muscle TEXT NOT NULL
-        )
-        """
-    )
-    conn.commit()
-    conn.close()
-
-# Create a table to store workout information if not exists
-def create_table_workout():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS workouts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            date TEXT NOT NULL,
-            exercises TEXT NOT NULL
-            )
-        """
-    )
-    conn.commit()
-    conn.close()
 
 @app.route("/", methods=['GET', 'POST'])
 def home():
@@ -399,19 +273,19 @@ def strength():
                         'weight': float(request.form[weight_key]),
                         'reps': int(request.form[reps_key])
                     }
-            gender = request.form.get('gender')  # Extract gender from form data
-            weight = float(request.form.get('weight'))  # Extract weight from form data
-            info['gender'] = gender
-            info['weight'] = weight
+            gender = request.form.get('gender')
+            weight = float(request.form.get('weight'))
 
             if gender not in ['male', 'female']:
                 return "Invalid gender specified"
 
             one_rep_maxes = calc_one_rep_max(exercises)
+            print(one_rep_maxes)
+
+            results = calculate_scores(gender, weight, one_rep_maxes)
+            print(results)
             
-            # TODO: strength_scores = calculate_strength_scores(one_rep_maxes, info)
-            
-            return render_template("strength.html", one_rep_maxes=one_rep_maxes, exercises=exercises, info=info) # TODO: strength_scores=strength_scores,
+            return render_template("strength.html", one_rep_maxes=one_rep_maxes, strength_scores=results, exercises=exercises, info=info)
         return render_template("strength.html")
     return redirect(url_for("login"))
 
@@ -427,7 +301,5 @@ def logout():
     return redirect(url_for('home'))
 
 if __name__ == "__main__":
-    create_table()
-    create_table_ex()
-    create_table_workout()
+    create_tables()
     app.run(debug=True)

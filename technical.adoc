@@ -355,6 +355,8 @@ THE REST CODE FRAGMENTS WILL BE ADDED AS SOON AS I FINISH THEM FULLY.
 * werkzeug.security
 * secrets
 * json
+* scipy.interpolate
+* numpy
 
 === WWW
 
