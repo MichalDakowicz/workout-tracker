@@ -25,12 +25,13 @@
 
 </p>
 
-<h4 align="center">
-	🚧  Workout Tracker 💪 Under construction...  🚧
+<h4 align="center">	🚧  Workout Tracker 💪 Under construction...  🚧 </h4>
 
-    NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin" TO ADD EXERCISES DELETE USERS AND MANAGE THE APP GO TO `http://localhost:5000/admin` OR `http://127.0.0.1:5000/admin`
+<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 3h 30min </h3>
 
-</h4>
+```
+NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin" TO ADD EXERCISES DELETE USERS AND MANAGE THE APP GO TO`http://localhost:5000/admin` OR `http://127.0.0.1:5000/admin`
+```
 
 <div align="center">
     A simple web application built with Flask for tracking workouts measuring strength and much more.
