@@ -27,7 +27,7 @@
 
 <h4 align="center">	🚧  Workout Tracker 💪 Under construction...  🚧 </h4>
 
-<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 3h 30min </h3>
+<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 6h 5min </h3>
 
 ```
 NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin" TO ADD EXERCISES DELETE USERS AND MANAGE THE APP GO TO`http://localhost:5000/admin` OR `http://127.0.0.1:5000/admin`
@@ -100,7 +100,7 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 #### Feature Plans
 
-1. IMPLEMENTING STRENGTH SCORES
+1. IMPLEMENTING STRENGTH SCORES 50% (PAGE LEFT)
 
 2. ADDING A PROGRESS PAGE
 

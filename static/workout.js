@@ -63,18 +63,26 @@ function saveRepsWeight() {
 function saveWorkout() {
     var date = document.getElementById("dateInput").value;
     var exerciseListContainer = document.getElementById("exercise-list");
-    var exerciseList =
-        exerciseListContainer.getElementsByClassName("exerciseList");
+    var exerciseList = exerciseListContainer.getElementsByClassName("exerciseList");
     var exercises = [];
     for (let index = 0; index < exerciseList.length; index++) {
-        exercises.push(exerciseList[index].innerText);
+        var exerciseText = exerciseList[index].innerText;
+        var exerciseParts = exerciseText.split("\n");
+        var exerciseName = exerciseParts[0];
+        var sets = exerciseParts.slice(1).map(setText => {
+            var setTextParts = setText.split(", ");
+            var reps = parseInt(setTextParts[0].split(" ")[1]);
+            var weight = parseInt(setTextParts[1].split(" ")[0]);
+            return {reps: reps, weight: weight};
+        });
+        exercises.push({name: exerciseName, sets: sets});
     }
     console.log(date);
     console.log(exercises);
     var dateInput = document.getElementById("date");
     var exercisesInput = document.getElementById("exercises");
     dateInput.value = date;
-    exercisesInput.value = "[" + exercises + "]";
+    exercisesInput.value = JSON.stringify({workout: exercises});
     document
         .getElementById("return-form")
         .getElementsByTagName("input")[2]
