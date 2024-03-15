@@ -48,7 +48,7 @@ def calculate_percentile(exercise_data, gender, body_weight, lifted_weight):
     lifted_weights = np.array(list(map(float, weight_data.keys())))
     percentiles = np.array(list(weight_data.values()))
     lifted_weight_func = interp1d(lifted_weights, percentiles, bounds_error=False, fill_value="extrapolate")
-    return float(lifted_weight_func(lifted_weight))
+    return round(float(lifted_weight_func(lifted_weight)), 2)
 
 # Categorize percentile
 def categorize_percentile(percentile):

@@ -1,340 +1,70 @@
-= Gym Tracker App Documentation
+= Technical Documentation for Workout Tracker
+
+This document provides technical details about the Workout Tracker application, a Flask-based web app for tracking workouts and measuring strength.
 
 == Table of Contents
-* Code Structure
+* Technologies Used
+    ** Backend
+    ** Frontend
+* Application Structure
+* Database Schema
+* Functionality
+* Future Plans
 * Code
 * Dependencies
-* Technologies
-    ** Python
-        *** Modules
-    ** WWW
-        *** Languages
-    ** SQLite
-    ** JSON
 
 For regular documentation go link:README.md[HERE]
 
-== Code Structure
+== Technologies Used
 
-The application is structured as follows:
+=== Backend:
 
-- **`app.py`**: Contains the main Flask application code.
-- **`templates/`**: Contains HTML templates for the different pages.
-- **`static/`**: Contains static files such as CSS and JavaScript.
-- **`tracker.db`**: SQLite database file to store user, exercise, and workout data.
+* **'Flask'**: Python web framework for building web applications.
+* **'SQLite'**: Lightweight database for storing application data.
+
+=== Frontend:
+
+* **'HTML/CSS'**: For structuring and styling the user interface.
+* **'JavaScript`**`: For adding interactivity to the user interface.
+
+== Application Structure
+
+The application is organized into the following components:
+
+* **'app.py'**: Main Flask application file containing the routes, logic, and database interactions.
+* **'templates/'**: Directory containing HTML templates for rendering the user interface.
+* **'static/'**: Directory containing static assets like CSS, JavaScript, and images.
+* **'strength.py'**: Module containing functions for calculating strength scores and percentiles.
+* **'database.py'**: Module containing functions for interacting with the SQLite database.
+
+== Database Schema
+
+The application uses a SQLite database with the following tables:
+
+* **'users'**: Stores user information like username, password, and optional profile data.
+* **'exercises'**: Stores a list of exercises with their muscle group and targeted muscle information.
+* **'workouts'**: Stores workout records for each user, including the date and exercises performed.
+
+== Functionality
+
+The Workout Tracker application provides the following features:
+
+* **'User Authentication'**: Users can register and log in securely using usernames and passwords.
+* **'Workout Tracking'**: Users can record and view their workouts, including the date and exercises performed.
+* **'Exercise List'**: Users can browse a list of exercises categorized by muscle group and targeted muscle.
+* **'Strength Tracking'**: Users can input their workout data to calculate estimated one-rep maximums and strength scores based on gender and body weight.
+
+== Future Plans
+
+Here are some potential future enhancements for the Workout Tracker application:
+
+* **'Progress Tracking'**: Implement a progress page to visualize workout history and track improvements over time.
+
+* **'User Profile Page`**`: Add a user profile page where users can manage their information and view their workout statistics.
 
 == Code
 
-```python
-from flask import Flask, render_template, request, url_for, redirect, session
-import sqlite3
-from werkzeug.security import generate_password_hash, check_password_hash
-import secrets
-import json
-```
-The required modules are imported for the application. The `Flask` module is used to create the web application, `render_template` is used to render HTML templates, `request` is used to handle incoming requests, `url_for` is used to generate URLs for routes, `redirect` is used to redirect to a different route, `session` is used to store user session data, `sqlite3` is used to interact with the SQLite database, `generate_password_hash` and `check_password_hash` are used for password hashing and verification, `secrets` is used to generate secure random tokens, and `json` is used to work with JSON data.
-
-```python
-app = Flask(__name__)
-app.secret_key = secrets.token_hex(16)
-```
-The Flask application is created, and a secret key is set for the session.
-
-```python
-with open('barbell_row.json') as f:
-    barbell_row_stats = json.load(f)
-with open('bench_press.json') as f:
-    bench_press_stats = json.load(f)
-with open('deadlift.json') as f:
-    deadlift_stats = json.load(f)
-with open('overhead_press.json') as f:
-    overhead_press_stats = json.load(f)
-with open('squat.json') as f:
-    squat_stats = json.load(f)
-```
-The strength standards for different exercises are loaded from JSON files. The strength standards are used to calculate the strength scores for the user.
-
-```python
-def calc_one_rep_max(exercises):
-    one_rep_maxes = {}
-
-    for exercise_name, data in exercises.items():
-        weight = data['weight']
-        reps = data['reps']
-
-        if reps == 1:
-            estimated_one_rep_max = weight
-        else:
-            estimated_one_rep_max = weight / (1.0278 - 0.0278 * reps)
-
-        one_rep_maxes[exercise_name] = estimated_one_rep_max
-
-    return one_rep_maxes
-```
-A function called `calc_one_rep_max` is defined to calculate the estimated one-rep max for each exercise. The function takes a dictionary of exercises as input and returns a dictionary of estimated one-rep maxes for each exercise.
-
-```python
-def connect_db():
-    return sqlite3.connect("tracker.db", check_same_thread=False)
-```
-A function called `connect_db` is defined to establish a connection to the SQLite database. The function returns the connection object.
-
-```python
-def create_table():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS users (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            password TEXT NOT NULL,
-            icon_link TEXT,
-            icon_format TEXT,
-            strength_scores TEXT,
-            segmented_bodyfat TEXT,
-            segmented_muscle TEXT,
-            body_measurements TEXT 
-        )
-        """
-        # body measurements are height, weight, body fat, and muscle mass AS A TOTAL NOT SEGMENTED
-        # icon format will have options for round, square, and rounded_square
-    )
-    conn.commit()
-    conn.close()
-```
-A function called `create_table` is defined to create the "users" table in the database if it does not exist. The table contains columns for the user ID, username, password, icon link, icon format, strength scores, segmented body fat, segmented muscle, and body measurements.
-
-```python
-def create_table_ex():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS exercises (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            exercise TEXT NOT NULL,
-            muscle_group TEXT NOT NULL,
-            muscle TEXT NOT NULL
-        )
-        """
-    )
-    conn.commit()
-    conn.close()
-```
-A function called `create_table_ex` is defined to create the "exercises" table in the database if it does not exist. The table contains columns for the exercise ID, exercise name, muscle group, and primary muscle worked.
-
-```python
-def create_table_workout():
-    conn = connect_db()
-    cursor = conn.cursor()
-    cursor.execute(
-        """
-        CREATE TABLE IF NOT EXISTS workouts (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            username TEXT NOT NULL,
-            date TEXT NOT NULL,
-            exercises TEXT NOT NULL
-            )
-        """
-    )
-    conn.commit()
-    conn.close()
-```
-A function called `create_table_workout` is defined to create the "workouts" table in the database if it does not exist. The table contains columns for the workout ID, username, date, and exercises performed.
-
-```python
-@app.route("/", methods=['GET', 'POST'])
-def home():
-    if "username" in session:
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        if request.method == 'POST':
-            bodyfat = request.form['body-fat']
-            left_arm_fat = request.form['left-arm-fat']
-            right_arm_fat = request.form['right-arm-fat']
-            trunk_fat = request.form['trunk-fat']
-            left_leg_fat = request.form['left-leg-fat']
-            right_leg_fat = request.form['right-leg-fat']
-            muscle = request.form['muscle']
-            left_arm_muscle = request.form['left-arm-muscle']
-            right_arm_muscle = request.form['right-arm-muscle']
-            trunk_muscle = request.form['trunk-muscle']
-            left_leg_muscle = request.form['left-leg-muscle']
-            right_leg_muscle = request.form['right-leg-muscle']
-
-            data = {
-                'body_fat': bodyfat,
-                'left_arm_fat': left_arm_fat,
-                'right_arm_fat': right_arm_fat,
-                'trunk_fat': trunk_fat,
-                'left_leg_fat': left_leg_fat,
-                'right_leg_fat': right_leg_fat,
-                'muscle': muscle,
-                'left_arm_muscle': left_arm_muscle,
-                'right_arm_muscle': right_arm_muscle,
-                'trunk_muscle': trunk_muscle,
-                'left_leg_muscle': left_leg_muscle,
-                'right_leg_muscle': right_leg_muscle
-            }
-            
-            cursor.execute("UPDATE users SET body_measurements=? WHERE username=?", (str(data), session["username"]))
-
-        cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
-        workouts = cursor.fetchall()
-        
-        for i in range(len(workouts)):
-            workout = list(workouts[i])
-            exercises = workout[3].split(",")
-            exercises = [exercise.split("\xa0")[0] for exercise in exercises if 'kg' not in exercise and exercise.strip()]
-            workout[3] = "\n".join(exercises)
-            workouts[i] = tuple(workout)
-        
-        for i in range(len(workouts)):
-            workout = list(workouts[i])
-            exercises = workout[3].split("\n")
-            exercises = [exercise for exercise in exercises if exercise.strip()]
-            workout[3] = "\n".join(exercises)
-            workouts[i] = tuple(workout)
-            
-        conn.close()
-        
-        return render_template("home.html", workouts=workouts)
-
-    return redirect(url_for("login"))
-```
-Home page route for the application.
-
-The route starts by checking if the "username" key is present in the session, indicating that the user is logged in. If the user is logged in, the route proceeds to update the user's body measurements in the database.
-
-The body measurements are obtained from the form data submitted by the user. These include body fat percentage, fat measurements for different body parts, muscle mass, and muscle measurements for different body parts. The data is stored in a dictionary called "data".
-
-The route then executes an SQL query to update the "body_measurements" column in the "users" table with the serialized "data" dictionary. The update is performed for the user with the matching "username" in the session.
-
-Next, the route executes an SQL query to retrieve all the workouts associated with the logged-in user. The workouts are fetched as a list of tuples.
-
-The route then processes each workout in the list. For each workout, the "exercises" field is split by comma (",") to obtain a list of exercises. Any exercise containing the string "kg" is filtered out, and any leading or trailing whitespace is removed from each exercise. The modified list of exercises is then joined with newline ("\n") as the separator.
-
-After processing the exercises, the modified workout tuple is updated in the list of workouts.
-
-Finally, the database connection is closed, and the "home.html" template is rendered with the "workouts" variable passed as a parameter.
-
-If the user is not logged in, the route redirects them to the login page.
-
-
-```python
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT * FROM users WHERE username=?", (username,))
-        user = cursor.fetchone()
-
-        conn.close()
-
-        if user and check_password_hash(user[2], password):
-            session["username"] = username
-            return redirect(url_for("home"))
-        else:
-            return "Invalid username or password"
-
-    return render_template("login.html")
-```
-Login page route for the application.
-
-The route starts by checking if the request method is "POST". If it is, the route proceeds to retrieve the username and password from the form data submitted by the user.
-
-The route then establishes a connection to the database and executes an SQL query to retrieve the user with the matching "username". The user is fetched as a tuple.
-
-The database connection is then closed, and the route checks if the user exists and the password matches the hashed password stored in the database. If the user exists and the password matches, the user's "username" is stored in the session, and the route redirects to the home page.
-
-If the user does not exist or the password does not match, the route returns an error message.
-
-If the request method is not "POST", the route renders the "login.html" template.
-
-```python
-@app.route("/register", methods=["GET", "POST"])
-def register():
-    if request.method == "POST":
-        username = request.form["username"]
-        password = request.form["password"]
-        password2 = request.form["password2"]
-
-        # Check if passwords match
-        if password != password2:
-            return "Passwords do not match"
-
-        # Check if the username is already in the database
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        cursor.execute("SELECT * FROM users WHERE username=?", (username,))
-        existing_user = cursor.fetchone()
-
-        conn.close()
-
-        if existing_user:
-            return "Username already exists. Please choose a different one."
-
-        # If all checks pass, proceed with registration
-        conn = connect_db()
-        cursor = conn.cursor()
-
-        hashed_password = generate_password_hash(password, method="pbkdf2:sha256")
-        cursor.execute("INSERT INTO users (username, password) VALUES (?, ?)", (username, hashed_password))
-
-        conn.commit()
-        conn.close()
-
-        return redirect(url_for("login"))
-
-    return render_template("register.html")
-```
-Register page route for the application.
-
-The route starts by checking if the request method is "POST". If it is, the route proceeds to retrieve the username, password, and password confirmation from the form data submitted by the user.
-
-The route then checks if the passwords match. If the passwords do not match, the route returns an error message.
-
-The route then establishes a connection to the database and executes an SQL query to retrieve the user with the matching "username". The user is fetched as a tuple.
-
-The database connection is then closed, and the route checks if the user exists. If the user exists, the route returns an error message.
-
-If the user does not exist and the passwords match, the route proceeds with the registration. The route establishes a connection to the database and executes an SQL query to insert the new user's "username" and hashed password into the "users" table.
-
-The database connection is then committed, and the connection is closed. The route then redirects to the login page.
-
-If the request method is not "POST", the route renders the "register.html" template.
-
-```python
-@app.route('/logout')
-def logout():
-    session.pop('username', None)
-    return redirect(url_for('home'))
-```
-Logout route for the application.
-
-The route starts by removing the "username" key from the session, effectively logging the user out. The route then redirects to the home page.
-
-```python
-if __name__ == "__main__":
-    create_table()
-    create_table_ex()
-    create_table_workout()
-    app.run(debug=True)
-```
-The main block of the application starts by calling the `create_table`, `create_table_ex`, and `create_table_workout` functions to create the required tables in the database if they do not exist.
-
-The application is then run with debugging enabled.
-
-THE REST CODE FRAGMENTS WILL BE ADDED AS SOON AS I FINISH THEM FULLY.
-
+ALL THE CODE FRAGMENTS WILL BE ADDED AS SOON AS I FINISH THEM FULLY.
 
 == Dependencies
 
@@ -343,33 +73,5 @@ THE REST CODE FRAGMENTS WILL BE ADDED AS SOON AS I FINISH THEM FULLY.
 - Werkzeug: Library for password hashing and verification.
 - Secrets: Library for generating secure random tokens.
 - JSON: Data interchange format for storing strength standards.
-
-== Technologies
-
-=== Python
-
-==== Modules
-
-* flask
-* sqlite3
-* werkzeug.security
-* secrets
-* json
-* scipy.interpolate
-* numpy
-
-=== WWW
-
-==== Languages
-
-* HTML
-* CSS
-* JavaScript
-
-=== SQLite
-
-Custom database edited using Python.
-
-=== JSON
-
-Used for storing the strength standards.
+- Numpy: Library for numerical computing and interpolation.
+- Scipy: Library for scientific computing and interpolation.
