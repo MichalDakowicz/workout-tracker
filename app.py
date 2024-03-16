@@ -6,6 +6,7 @@ import secrets
 from strength import *
 from database import *
 from other_defs import *
+from exercises import *
 
 app = Flask(__name__)
 app.secret_key = secrets.token_hex(16)
@@ -45,6 +46,7 @@ def home():
 # Login page
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    session["profile_picture"] = None
     if request.method == "POST":
         username = request.form["username"]
         password = request.form["password"]
@@ -59,6 +61,7 @@ def login():
 
         if user and check_password_hash(user[2], password):
             session["username"] = username
+            session["profile_picture"] = user[3]
             return redirect(url_for("home"))
         else:
             return "Invalid username or password"
@@ -261,7 +264,10 @@ def strength():
             
             conn = connect_db()
             cursor = conn.cursor()
-            cursor.execute("INSERT INTO users (strength_scores) VALUES (?)", (str(results)))
+            cursor.execute("UPDATE users SET strength_scores = ? WHERE username = ?", (str(results), session["username"]))
+            
+            conn.commit()
+            conn.close()
             
             return render_template("strength.html", one_rep_maxes=one_rep_maxes, strength_scores=results, exercises=exercises, info=info, subdomain_tag="Strength")
         return render_template("strength.html", subdomain_tag="Strength")
@@ -274,67 +280,62 @@ def profile():
         conn = connect_db()
         cursor = conn.cursor()
 
-        if request.method == "GET":
-            """
-            <h2>Username</h2>
-            <p>{{ username }}</p>
-            <h2>Strength Scores</h2>
-            <p>Deadlift: {{ deadlift }}</p>
-            <p>Bench Press: {{ bench_press }}</p>
-            <p>Squat: {{ squat }}</p>
-            <p>Overhead Press: {{ overhead_press }}</p>
-            <p>Barbell Row: {{ barbell_row }}</p>
-            <h2>Bodyfat</h2>
-            <p>{{ body_fat }}</p>
-            <p>{{ left_arm_bodyfat }}</p>
-            <p>{{ right_arm_bodyfat }}</p>
-            <p>{{ trunk_bodyfat }}</p>
-            <p>{{ left_leg_bodyfat }}</p>
-            <p>{{ right_leg_bodyfat }}</p>
-            <h2>Muscle Mass</h2>
-            <p>{{ muscle_mass }}</p>
-            <p>{{ left_arm_muscle }}</p>
-            <p>{{ right_arm_muscle }}</p>
-            <p>{{ trunk_muscle }}</p>
-            <p>{{ left_leg_muscle }}</p>
-            <p>{{ right_leg_muscle }}</p>
-            <h2>Body Information</h2>
-            <p>{{ height }}</p>
-            <p>{{ weight }}</p>
-            """
+        if request.method == "GET":          
+            username = session["username"]
+            cursor.execute("SELECT * FROM users WHERE username=?", (username,))
+            user = cursor.fetchone()
+            username = user[1]
+            strength_scores = eval(user[5])
+            segmented_bodyfat = eval(user[6])
+            segmented_muscle = eval(user[7])
+            body_measurements = eval(user[8])
             
-            username = cursor.execute("SELECT username FROM users WHERE username=?", (session["username"]))
-            strength_scores = cursor.execute("SELECT strength_scores FROM users WHERE username=?", (session["username"]))
+            deadlift = strength_scores['deadlift']
+            bench_press = strength_scores['bench_press']
+            squat = strength_scores['squat']
+            overhead_press = strength_scores['overhead_press']
+            barbell_row = strength_scores['barbell_row']
             
-            deadlift = strength_scores[0]
-            bench_press = strength_scores[1]
-            squat = strength_scores[2]
-            overhead_press = strength_scores[3]
-            barbell_row = strength_scores[4]
+            body_fat = segmented_bodyfat['body_fat']
+            left_arm_bodyfat = segmented_bodyfat['left_arm_fat']
+            right_arm_bodyfat = segmented_bodyfat['right_arm_fat']
+            trunk_bodyfat = segmented_bodyfat['trunk_fat']
+            left_leg_bodyfat = segmented_bodyfat['left_leg_fat']
+            right_leg_bodyfat = segmented_bodyfat['right_leg_fat']
             
-            body_fat_info = cursor.execute("SELECT segmented_bodyfat FROM users WHERE username=?", (session["username"]))
+            muscle_mass = segmented_muscle['muscle']
+            left_arm_muscle = segmented_muscle['left_arm_muscle']
+            right_arm_muscle = segmented_muscle['right_arm_muscle']
+            trunk_muscle = segmented_muscle['trunk_muscle']
+            left_leg_muscle = segmented_muscle['left_leg_muscle']
+            right_leg_muscle = segmented_muscle['right_leg_muscle']
             
-            bodyfat = body_fat_info[0]
-            left_arm_bodyfat = body_fat_info[1]
-            right_arm_bodyfat = body_fat_info[2]
-            trunk_bodyfat = body_fat_info[3]
-            left_leg_bodyfat = body_fat_info[4]
-            right_leg_bodyfat = body_fat_info[5]
+            height = body_measurements[0]
+            weight = body_measurements[1]
             
-            muscle_mass_info = cursor.execute("SELECT segmented_muscle FROM users WHERE username=?", (session["username"]))
-            
-            muscle_mass = muscle_mass_info[0]
-            left_arm_muscle_mass = muscle_mass_info[1]
-            right_arm_muscle_mass = muscle_mass_info[2]
-            trunk_muscle_mass = muscle_mass_info[3]
-            left_leg_muscle_mass = muscle_mass_info[4]
-            right_leg_muscle_mass = muscle_mass_info[5]
-            
-            body_measurements = cursor.execute("SELECT body_measurements FROM users WHERE username=?", (session["username"]))
-            
-            user_height = body_measurements[0]
-            user_weight = body_measurements[1]
-            
+            return render_template("profile.html", 
+                                    username=username, 
+                                    deadlift=deadlift, 
+                                    bench_press=bench_press, 
+                                    squat=squat, 
+                                    overhead_press=overhead_press, 
+                                    barbell_row=barbell_row, 
+                                    body_fat=body_fat, 
+                                    left_arm_bodyfat=left_arm_bodyfat, 
+                                    right_arm_bodyfat=right_arm_bodyfat, 
+                                    trunk_bodyfat=trunk_bodyfat, 
+                                    left_leg_bodyfat=left_leg_bodyfat, 
+                                    right_leg_bodyfat=right_leg_bodyfat, 
+                                    muscle_mass=muscle_mass, 
+                                    left_arm_muscle=left_arm_muscle,
+                                    right_arm_muscle=right_arm_muscle,
+                                    trunk_muscle=trunk_muscle,
+                                    left_leg_muscle=left_leg_muscle,
+                                    right_leg_muscle=right_leg_muscle,
+                                    height=height,
+                                    weight=weight,
+                                    subdomain_tag="Profile"
+                                    )
 
         if request.method == "POST":
             bodyfat = request.form['body-fat']
@@ -382,6 +383,25 @@ def profile():
 
     return redirect(url_for("login"))
 
+# change profile picture
+@app.route("/change_pfp", methods=["GET", "POST"])
+def change_pfp():
+    if "username" in session:
+        conn = connect_db()
+        cursor = conn.cursor()
+
+        if request.method == "POST":
+            username = session["username"]
+            cursor.execute("UPDATE users SET icon_link = ? WHERE username = ?", (request.form["profile_picture_link"], username))
+            session["profile_picture"] = request.form["profile_picture_link"]
+            
+            
+        conn.commit()
+        conn.close()
+        
+        return redirect(url_for("profile"))
+    return redirect(url_for("login"))
+
 # Progress page
 @app.route("/progress", methods=["GET", "POST"])
 def progress():
@@ -395,4 +415,5 @@ def logout():
 
 if __name__ == "__main__":
     create_tables()
+    add_exercises()
     app.run(debug=True)

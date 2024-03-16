@@ -44,7 +44,7 @@ def calculate_percentile(exercise_data, gender, body_weight, lifted_weight):
         else:
             closest_weight = upper_weight
     
-    weight_data = gender_data[str(int(closest_weight))]  # Convert to string
+    weight_data = gender_data[str(int(closest_weight))]
     lifted_weights = np.array(list(map(float, weight_data.keys())))
     percentiles = np.array(list(weight_data.values()))
     lifted_weight_func = interp1d(lifted_weights, percentiles, bounds_error=False, fill_value="extrapolate")
@@ -52,7 +52,9 @@ def calculate_percentile(exercise_data, gender, body_weight, lifted_weight):
 
 # Categorize percentile
 def categorize_percentile(percentile):
-    if percentile < 40:
+    if percentile < 20:
+        return 'Beginner'
+    elif percentile < 40:
         return 'Novice'
     elif percentile < 60:
         return 'Intermediate'

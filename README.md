@@ -27,7 +27,7 @@
 
 <h4 align="center">	🚧  Workout Tracker 💪 Under construction...  🚧 </h4>
 
-<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 6h 5min </h3>
+<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 8h 15min </h3>
 
 ```
 NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin" TO ADD EXERCISES DELETE USERS AND MANAGE THE APP GO TO`http://localhost:5000/admin` OR `http://127.0.0.1:5000/admin`
@@ -91,7 +91,7 @@ This Flask Workout Tracker is designed to help users keep track of their workout
 
 -   User authentication: Register and log in securely.
 -   Record and view workouts with date and exercises performed.
--   Strength tracking (currently broken)
+-   Strength tracking (not finished yet)
 -   More coming soon.
 
 #### Feature Requests
@@ -104,13 +104,19 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 2. ADDING A PROGRESS PAGE
 
-3. ADDING A USER PROFILE PAGE
+3. ADDING A USER PROFILE PAGE ✅
 
-4. ADDING PROFILE PICTURE SUPPORT
+4. ADDING PROFILE PICTURE SUPPORT ✅
 
-5. ADD MORE EXERCISES
+5. ADD MORE EXERCISES ✅
 
-6. UPDATING THE README WHEN DONE
+6. ADD AN SEARCH FOR EXERCISE FIELD IN WORKOUT SECTION
+
+6. BETTER CSS
+
+7. UPDATING THE README WHEN DONE
+
+8. ADD A WORKOUT INFO PAGE FOR WORKOUTS
 
 ## Usage
 

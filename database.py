@@ -15,15 +15,12 @@ def create_table():
             username TEXT NOT NULL,
             password TEXT NOT NULL,
             icon_link TEXT,
-            icon_format TEXT,
             strength_scores TEXT,
             segmented_bodyfat TEXT,
             segmented_muscle TEXT,
             body_measurements TEXT 
         )
         """
-        # body measurements are height, weight, body fat, and muscle mass AS A TOTAL NOT SEGMENTED
-        # icon format will have options for round, square, and rounded_square
     )
     conn.commit()
     conn.close()

@@ -403,3 +403,14 @@ svg {
 .sidebar-content svg {
     margin-left: 11px;
 }
+
+#profile-info {
+    padding-bottom: 20px;
+}
+
+#profile-pic {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
