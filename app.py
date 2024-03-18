@@ -285,10 +285,42 @@ def profile():
             cursor.execute("SELECT * FROM users WHERE username=?", (username,))
             user = cursor.fetchone()
             username = user[1]
-            strength_scores = eval(user[5])
-            segmented_bodyfat = eval(user[6])
-            segmented_muscle = eval(user[7])
-            body_measurements = eval(user[8])
+            if user[4] == None:
+                strength_scores = {
+                    'deadlift': 0,
+                    'bench_press': 0,
+                    'squat': 0,
+                    'overhead_press': 0,
+                    'barbell_row': 0
+                }
+            else:
+                strength_scores = eval(str(user[4]))
+            if user[5] == None:
+                segmented_bodyfat = {
+                    'body_fat': 0,
+                    'left_arm_fat': 0,
+                    'right_arm_fat': 0,
+                    'trunk_fat': 0,
+                    'left_leg_fat': 0,
+                    'right_leg_fat': 0
+                }
+            else:
+                segmented_bodyfat = eval(user[5])
+            if user[6] == None:
+                segmented_muscle = {
+                    'muscle': 0,
+                    'left_arm_muscle': 0,
+                    'right_arm_muscle': 0,
+                    'trunk_muscle': 0,
+                    'left_leg_muscle': 0,
+                    'right_leg_muscle': 0
+                }
+            else:
+                segmented_muscle = eval(user[6])
+            if user[7] == None:
+                body_measurements = [0, 0]
+            else:
+                body_measurements = eval(user[7])
             
             deadlift = strength_scores['deadlift']
             bench_press = strength_scores['bench_press']
