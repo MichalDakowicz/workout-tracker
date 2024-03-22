@@ -126,6 +126,8 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 13. WORKOUT SUGGESTER FROM BODY PARTS SELECTED
 
+14. WORKOUT PRESETS
+
 ## Usage
 
 #### Login and Register
