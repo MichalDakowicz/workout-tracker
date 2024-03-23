@@ -6,31 +6,34 @@
 <h1 align="center">Workout Tracker</h1>
 
 <p align="center" >
-  <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/MichalDakowicz/workout-tracker"> <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/MichalDakowicz/workout-tracker"> <img alt="GitHub License" src="https://img.shields.io/github/license/MichalDakowicz/workout-tracker"> 
-</p>
-
-<p align="center" >
-    <a href="https://www.python.org/" target="_blank">
+<a href="https://www.python.org/" target="_blank">
     <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"> 
+</a>
+<a href="https://flask.palletsprojects.com/en/3.0.x/" target="_blank">
+    <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"> 
 </a>
 <a href="https://www.w3.org/html/" target="_blank">
     <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
 </a>
 <a href="https://www.javascript.com/" target="_blank"> 
-    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+    <img src="    https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E">
+</a>
+<a href="https://www.sqlite.org" target="_blank">
+    <img src="https://img.shields.io/badge/Sqlite-003B57?style=for-the-badge&logo=sqlite&logoColor=white"> 
 </a>
 <a href="https://github.com/MichalDakowicz" target="_blank">
     <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"> 
 </a>
-
 </p>
 
 <h4 align="center">	🚧  Workout Tracker 💪 Under construction...  🚧 </h4>
 
 <h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 8h 15min </h3>
 
-```
-NOW RELEASED TO THE PUBIC FOR TESTING, WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin" TO ADD EXERCISES DELETE USERS AND MANAGE THE APP GO TO`http://localhost:5000/admin` OR `http://127.0.0.1:5000/admin`
+```bash
+NOW RELEASED TO THE PUBIC FOR TESTING
+WHEN STARTING LOG INTO THE "ADMIN" ACCOUNT USING THE PASSWORD "admin"
+TO ADD EXERCISES DELETE USERS ETC. GO TO "http://localhost:5000/admin" OR "http://127.0.0.1:5000/admin"
 ```
 
 <div align="center">
@@ -124,7 +127,9 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 12. ADD A SEPARATE CATEGORY FOR BODYWEIGHT EXERCISES
 
-13. WORKOUT SUGGESTER FROM BODY PARTS SELECTED
+13. WORKOUT SUGGESTER FROM BODY PARTS SELECTED (RANDOM EXERCISES)
+
+14. WORKOUT TEMPLATES
 
 ## Usage
 

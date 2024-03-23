@@ -6,4 +6,3 @@ def extract_exercise_names(workout_data):
             for exercise in exercise_group['workout']:
                 exercise_names.append(exercise['name'])
     return exercise_names
-                
