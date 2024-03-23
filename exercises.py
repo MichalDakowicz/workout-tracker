@@ -38,9 +38,12 @@ exercises = [
     {"name": "Cable Chest Press", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
     {"name": "Cable Flyes", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
     {"name": "Machine Chest Press", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
-    {"name": "Machine Flyes", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
     {"name": "Pec Deck", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
-    
+    {"name": "Machine Flyes", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts"},
+    {"name": "Incline Cable Flyes", "muscle_group": "Chest", "muscle": "Upper Chest, Front Delts"},
+    {"name": "Decline Cable Flyes", "muscle_group": "Chest", "muscle": "Lower Chest, Front Delts"},
+    {"name": "Plyo Push-Ups", "muscle_group": "Chest", "muscle": "Middle Chest, Front Delts, Triceps, Core"},
+        
     # Back
     {"name": "Pull Ups", "muscle_group": "Back", "muscle": "Lat, Biceps, Middle Back"}, 
     {"name": "Barbell Row", "muscle_group": "Back", "muscle": "Lat, Middle Back, Rear Delts, Biceps"}, 
@@ -51,12 +54,14 @@ exercises = [
     {"name": "Inverted Rows", "muscle_group": "Back", "muscle": "Lats, Middle Back, Rear Delts, Biceps"}, 
     {"name": "One Arm Dumbbell Row", "muscle_group": "Back", "muscle": "Lats, Middle Back, Rear Delts, Biceps"}, 
     {"name": "Cable Row", "muscle_group": "Back", "muscle": "Middle Back, Lat, Rear Delts, Biceps"},
-    {"name": "Lat Pulldown", "muscle_group": "Back", "muscle": "Lat, Middle Back, Biceps"},
     {"name": "Machine Row", "muscle_group": "Back", "muscle": "Middle Back, Lat, Rear Delts, Biceps"},
-    {"name": "Machine Pulldown", "muscle_group": "Back", "muscle": "Lat, Middle Back, Biceps"},
     {"name": "Dumbbell Pullover", "muscle_group": "Back", "muscle": "Lat, Chest, Triceps"},
     {"name": "Chest Supported Row", "muscle_group": "Back", "muscle": "Middle Back, Lat, Rear Delts, Biceps"},
-    {"name": "Straight Arm Pulldown", "muscle_group": "Back", "muscle": "Lat, Middle Back, Triceps"},
+    {"name": "Pullover", "muscle_group": "Back", "muscle": "Lat, Middle Back, Triceps"},
+    {"name": "Bent Over Row", "muscle_group": "Back", "muscle": "Lats, Middle Back, Rear Delts, Biceps"},
+    {"name": "Chin-Ups", "muscle_group": "Back", "muscle": "Lats, Biceps, Middle Back"},
+    {"name": "Lat Pulldown (Wide Grip)", "muscle_group": "Back", "muscle": "Lats (Outer), Middle Back, Biceps"},
+    {"name": "Lat Pulldown (Close Grip)", "muscle_group": "Back", "muscle": "Lats (Inner), Middle Back, Biceps"},
     
     # Legs
     {"name": "Deadlift", "muscle_group": "Legs", "muscle": "Hamstrings, Glutes, Lower Back"},
@@ -65,7 +70,6 @@ exercises = [
     {"name": "Lunges", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Adductors"}, 
     {"name": "Leg Curls", "muscle_group": "Legs", "muscle": "Hamstrings"}, 
     {"name": "Leg Extensions", "muscle_group": "Legs", "muscle": "Quads"}, 
-    {"name": "Calf Raises", "muscle_group": "Legs", "muscle": "Calves, Tibialis Anterior"}, 
     {"name": "Front Squats", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Adductors"},
     {"name": "Hack Squats", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings"},
     {"name": "Bulgarian Split Squat", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings"},
@@ -73,16 +77,14 @@ exercises = [
     {"name": "Goblet Squat", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Adductors"}, 
     {"name": "Sumo Deadlift", "muscle_group": "Legs", "muscle": "Hamstrings, Glutes, Lower Back, Adductors"},
     {"name": "Stiff Leg Deadlift", "muscle_group": "Legs", "muscle": "Hamstrings, Glutes, Lower Back"},
-    {"name": "Seated Leg Curl", "muscle_group": "Legs", "muscle": "Hamstrings"},
-    {"name": "Standing Leg Curl", "muscle_group": "Legs", "muscle": "Hamstrings"},
     {"name": "Seated Calf Raise", "muscle_group": "Legs", "muscle": "Calves, Tibialis Anterior"},
     {"name": "Standing Calf Raise", "muscle_group": "Legs", "muscle": "Calves, Tibialis Anterior"},
-    {"name": "Leg Press Calf Raise", "muscle_group": "Legs", "muscle": "Calves, Tibialis Anterior"},
-    {"name": "Smith Machine Squat", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Adductors"},
-    {"name": "Smith Machine Lunges", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Adductors"},
+    {"name": "Good Mornings", "muscle_group": "Legs", "muscle": "Hamstrings, Glutes, Lower Back"},  
+    {"name": "Box Jumps", "muscle_group": "Legs", "muscle": "Quads, Glutes, Hamstrings, Calves"}, 
+    {"name": "Hip Thrusts", "muscle_group": "Legs", "muscle": "Glutes, Hamstrings"},
+    {"name": "Nordic Hamstring Curl", "muscle_group": "Legs", "muscle": "Hamstrings"}, 
     
     # Shoulders
-    {"name": "Shoulder Press", "muscle_group": "Shoulders", "muscle": "Front Delts, Triceps, Upper Chest"}, 
     {"name": "Lateral Raises", "muscle_group": "Shoulders", "muscle": "Side Delts"}, 
     {"name": "Rear Delt Flyes", "muscle_group": "Shoulders", "muscle": "Rear Delts, Middle Back"}, 
     {"name": "Barbell Shrugs", "muscle_group": "Shoulders", "muscle": "Traps, Upper Back"}, 
@@ -95,7 +97,10 @@ exercises = [
     {"name": "Overhead Press", "muscle_group": "Shoulders", "muscle": "Front Delts, Side Delts, Triceps, Upper Chest"},
     {"name": "Dumbbell Shoulder Press", "muscle_group": "Shoulders", "muscle": "Front Delts, Side Delts, Triceps, Upper Chest"},
     {"name": "Machine Shoulder Press", "muscle_group": "Shoulders", "muscle": "Front Delts, Side Delts, Triceps, Upper Chest"},
-        
+    {"name": "Military Press", "muscle_group": "Shoulders", "muscle": "Front Delts, Side Delts, Triceps, Upper Chest"}, 
+    {"name": "Pike Push-Ups", "muscle_group": "Shoulders", "muscle": "Front Delts, Side Delts, Triceps"},
+    {"name": "Cable Upright Rows", "muscle_group": "Shoulders", "muscle": "Traps, Front Delts, Side Delts, Biceps"},
+
     # Arms
     {"name": "Bicep Curls", "muscle_group": "Arms", "muscle": "Biceps, Forearms"}, 
     {"name": "Tricep Pushdown", "muscle_group": "Arms", "muscle": "Triceps"}, 
@@ -116,6 +121,9 @@ exercises = [
     {"name": "Dumbbell Bicep Curl", "muscle_group": "Arms", "muscle": "Biceps, Forearms"},
     {"name": "Dumbbell Tricep Extension", "muscle_group": "Arms", "muscle": "Triceps"},
     {"name": "Machine Preacher Curl", "muscle_group": "Arms", "muscle": "Biceps, Forearms"},
+    {"name": "Zottman Curl", "muscle_group": "Arms", "muscle": "Biceps, Forearms"},
+    {"name": "Incline Dumbbell Curls", "muscle_group": "Arms", "muscle": "Biceps, Forearms" },
+    {"name": "Overhead Dumbbell Tricep Extension", "muscle_group": "Arms", "muscle": "Triceps"},
     
     # Core
     {"name": "Crunches", "muscle_group": "Core", "muscle": "Upper Abs"}, 

@@ -131,6 +131,8 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 14. WORKOUT TEMPLATES
 
+14. WORKOUT PRESETS
+
 ## Usage
 
 #### Login and Register
