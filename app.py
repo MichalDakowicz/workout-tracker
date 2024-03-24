@@ -18,22 +18,18 @@ def home():
         cursor = conn.cursor()
         cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
         workouts = cursor.fetchall()
-        workout_data = []
         workouts_return = []
         for workout in workouts:
             if workout[3] == "[]":
                 pass
             else:
                 workout_date = workout[2]
-                workout = "{" + workout[3] + "}"
-                workouts_list = [eval(workout)]
-                
-                workout_data = [[workout_date, workouts_list]]
-                                                
-                for workout in workout_data:
-                    exercise_names = extract_exercise_names(workout_data)
-                    print(exercise_names)
-                    workouts_return.append([workout[0], exercise_names])
+                workout_data_post = "{" + workout[3] + "}"
+                workout_data = eval(workout_data_post)
+                print(workout_data)
+                workout_name = get_workout_name(workout_data)
+                exercise_names = extract_exercise_names(workout_data)
+                workouts_return.append([workout_name, workout_date, exercise_names])
         
         conn.close()            
         
@@ -185,10 +181,15 @@ def workout():
             exercises = exercises[1:-1]
 
             cursor.execute("INSERT INTO workouts (username, date, exercises) VALUES (?, ?, ?)", (username, date, exercises))
-
             conn.commit()
+            
+            if exercises != None:
+                conn.close()
+                return redirect(url_for("home"))
 
         conn.close()
+        
+        
 
         # Pass the list of exercises to the template
         return render_template("workout.html", exercises=exercises_list, subdomain_tag="Workout")
@@ -464,4 +465,11 @@ def logout():
 if __name__ == "__main__":
     create_tables()
     add_exercises()
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users")
+    users = cursor.fetchall()
+    conn.close()
+    if "ADMIN" not in [user[1] for user in users]:
+        create_admin()
     app.run(debug=True)

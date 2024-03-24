@@ -14,12 +14,14 @@
                             <table>
                                 <tr>
                                     <th>Date</th>
+                                    <th>Name</th>
                                     <th>Exercises</th>
                                 </tr>
                                 {% for workout in workouts %}
                                 <tr>
+                                    <td>{{ workout[1] }}</td>
                                     <td>{{ workout[0] }}</td>
-                                    <td>{{ ', '.join(workout[1]) }}</td>
+                                    <td>{{ ', '.join(workout[2]) }}</td>
                                 </tr>
                                 {% endfor %}
                             </table>
