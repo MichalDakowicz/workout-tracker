@@ -80,7 +80,7 @@ function saveWorkout() {
             var weight = parseInt(setTextParts[1].split(" ")[0]);
             return [reps, weight];
         });
-        exercises.push([exerciseName, sets]);
+        exercises.push({ [exerciseName]: sets });
     }
     console.log(date);
     console.log(exercises);

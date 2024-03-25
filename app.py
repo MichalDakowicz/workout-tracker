@@ -24,8 +24,7 @@ def home():
                 pass
             else:
                 workout_date = workout[2]
-                workout_data_post = "{" + workout[3] + "}"
-                workout_data = eval(workout_data_post)
+                workout_data = eval("{" + workout[3] + "}")
                 print(workout_data)
                 workout_name = get_workout_name(workout_data)
                 exercise_names = extract_exercise_names(workout_data)
