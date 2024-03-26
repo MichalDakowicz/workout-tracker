@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect, session
+from flask import Flask, render_template, request, url_for, redirect, session, abort
 from werkzeug.security import generate_password_hash, check_password_hash
 import secrets
 
@@ -437,23 +437,7 @@ def change_pfp():
 # Progress page
 @app.route("/progress", methods=["GET", "POST"])
 def progress():
-    if "username" in session:
-        # fetch the exercise history from users workouts then display it on a graph
-        conn = connect_db()
-        cursor = conn.cursor()
-        cursor.execute("SELECT * FROM workouts WHERE username=?", (session["username"],))
-        workouts = cursor.fetchall()
-        workout_data = []
-        for workout in workouts:
-            workout_date = workout[2]
-            workout = "{" + workout[3] + "}"
-            workouts_list = [eval(workout)]
-            workout_data.append([workout_date, workouts_list])
-        
-        exercise_names = extract_exercise_names(workout_data)
-        print(exercise_names)
-        # exercise_data = extract_exercise_data(workout_data, user)
-        # print(exercise_data)
+    return abort(418)
         
 # Logout
 @app.route('/logout')

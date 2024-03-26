@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="panels">
                 <div class="panels">
                     <h2>Add Exercise</h2>
@@ -83,7 +85,8 @@
                 </div>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
+{% endblock %}
+
+{% block scripts %}
     <script src="{{ url_for('static', filename='admin.js') }}"></script>
-</html>
+{% endblock %}
