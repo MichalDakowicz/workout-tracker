@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="login_register_box">
                 <br />
                 <h1>Workout Tracker</h1>
@@ -28,7 +30,8 @@
                 </p>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
-    <script src="{{ url_for('static', filename='register.js') }}"></script>
-</html>
+        {% endblock %}
+
+ {% block scripts %}
+     <script src="{{ url_for('static', filename='register.js') }}"></script>
+ {% endblock %}

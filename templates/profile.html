@@ -1,141 +1,155 @@
-{% include 'header.html' %}
-                <div id="profile-page">
-                    <h1>Profile</h1>
-                    <p>Here you can see your profile information.</p>
-                    <div id="profile-info">
-                        <h2>Username</h2>
-                        <p>{{ username }}</p>
-                        <h2>Strength Scores</h2>
-                        <p>Deadlift: {{ deadlift[0] }} - {{ deadlift[1] }}</p>
-                        <p>Bench Press: {{ bench_press[0] }} - {{ bench_press[1] }}</p>
-                        <p>Squat: {{ squat[0] }} - {{ squat[1] }}</p>
-                        <p>Overhead Press: {{ overhead_press[0] }} - {{ overhead_press[1] }}</p>
-                        <p>Barbell Row: {{ barbell_row[0] }} - {{ barbell_row[1] }}</p>
-                        <h2>Bodyfat</h2>
-                        <p>Bodyfat: {{ body_fat }}%</p>
-                        <p>Left Arm Bodyfat: {{ left_arm_bodyfat }}%</p>
-                        <p>Right Arm Bodyfat: {{ right_arm_bodyfat }}%</p>
-                        <p>Trunk Bodyfat: {{ trunk_bodyfat }}%</p>
-                        <p>Left Leg Bodyfat: {{ left_leg_bodyfat }}%</p>
-                        <p>Right Leg Bodyfat: {{ right_leg_bodyfat }}%</p>
-                        <h2>Muscle Mass</h2>
-                        <p>Overall Muscle Mass: {{ muscle_mass }} kg</p>
-                        <p>Left Arm Muscle Mass: {{ left_arm_muscle }} kg</p>
-                        <p>Right Arm Muscle Mass: {{ right_arm_muscle }} kg</p>
-                        <p>Trunk Muscle Mass: {{ trunk_muscle }} kg</p>
-                        <p>Left Leg Muscle Mass: {{ left_leg_muscle }} kg</p>
-                        <p>Right Leg Muscle Mass: {{ right_leg_muscle }} kg</p>                        
-                        <h2>Body Information</h2>
-                        <p>Height: {{ height }} cm</p>
-                        <p>Weight: {{ weight }} kg</p>
-                        <br>
-                        <h2>Update Body Measurements</h2>
-                        <form action="{{ url_for('profile') }}" method="post">
-                            <h3>Segmented body fat percentage</h3>
-                            <input
-                                type="number"
-                                name="body-fat"
-                                step=0.01
-                                placeholder="Body fat"
-                                required
-                            />
-                            <input
-                                type="number"
-                                name="left-arm-fat"
-                                step=0.01
-                                placeholder="Left Arm"
-                            />
-                            <input
-                                type="number"
-                                name="right-arm-fat"
-                                step=0.01
-                                placeholder="Right Arm"
-                            />
-                            <input
-                                type="number"
-                                name="trunk-fat"
-                                step=0.01
-                                placeholder="Trunk"
-                            />
-                            <input
-                                type="number"
-                                name="left-leg-fat"
-                                step=0.01
-                                placeholder="Left Leg"
-                            />
-                            <input
-                                type="number"
-                                name="right-leg-fat"
-                                step=0.01
-                                placeholder="Right Leg"
-                            />
-                            <h3>Segmented muscle mass</h3>
-                            <input
-                                type="number"
-                                name="muscle"
-                                step=0.01
-                                placeholder="Muscle mass"
-                                required
-                            />
-                            <input
-                                type="number"
-                                name="left-arm-muscle"
-                                step=0.01
-                                placeholder="Left Arm"
-                            />
-                            <input
-                                type="number"
-                                name="right-arm-muscle"
-                                step=0.01
-                                placeholder="Right Arm"
-                            />
-                            <input
-                                type="number"
-                                name="trunk-muscle"
-                                step=0.01
-                                placeholder="Trunk"
-                            />
-                            <input
-                                type="number"
-                                name="left-leg-muscle"
-                                step=0.01
-                                placeholder="Left Leg"
-                            />
-                            <input
-                                type="number"
-                                name="right-leg-muscle"
-                                step=0.01
-                                placeholder="Right Leg"
-                            />
-                            <br>
-                            <h3>Body information</h3>
-                            <input
-                                type="number"
-                                name="height"
-                                step=0.01
-                                placeholder="Height"
-                                required
-                            />
-                            <input
-                                type="number"
-                                name="weight"
-                                step=0.01
-                                placeholder="Weight"
-                                required
-                            />
-                            <input type="submit" value="Submit" />
-                        </form>
+{% extends 'base.html' %} {% block main %}
+<div id="profile-page">
+    <h1>Profile</h1>
+    <p>Here you can see your profile information.</p>
+    <div id="profile-info">
+        <h2>Username</h2>
+        <p>{{ username }}</p>
+        <h2>Strength Scores</h2>
+        <p>Deadlift: {{ deadlift[0] }} - {{ deadlift[1] }}</p>
+        <p>Bench Press: {{ bench_press[0] }} - {{ bench_press[1] }}</p>
+        <p>Squat: {{ squat[0] }} - {{ squat[1] }}</p>
+        <p>Overhead Press: {{ overhead_press[0] }} - {{ overhead_press[1] }}</p>
+        <p>Barbell Row: {{ barbell_row[0] }} - {{ barbell_row[1] }}</p>
+        <h2>Bodyfat</h2>
+        <p>Bodyfat: {{ body_fat }}%</p>
+        <p>Left Arm Bodyfat: {{ left_arm_bodyfat }}%</p>
+        <p>Right Arm Bodyfat: {{ right_arm_bodyfat }}%</p>
+        <p>Trunk Bodyfat: {{ trunk_bodyfat }}%</p>
+        <p>Left Leg Bodyfat: {{ left_leg_bodyfat }}%</p>
+        <p>Right Leg Bodyfat: {{ right_leg_bodyfat }}%</p>
+        <h2>Muscle Mass</h2>
+        <p>Overall Muscle Mass: {{ muscle_mass }} kg</p>
+        <p>Left Arm Muscle Mass: {{ left_arm_muscle }} kg</p>
+        <p>Right Arm Muscle Mass: {{ right_arm_muscle }} kg</p>
+        <p>Trunk Muscle Mass: {{ trunk_muscle }} kg</p>
+        <p>Left Leg Muscle Mass: {{ left_leg_muscle }} kg</p>
+        <p>Right Leg Muscle Mass: {{ right_leg_muscle }} kg</p>
+        <h2>Body Information</h2>
+        <p>Height: {{ height }} cm</p>
+        <p>Weight: {{ weight }} kg</p>
+        <br />
+        <h2>Update Body Measurements</h2>
+        <form action="{{ url_for('profile') }}" method="post">
+            <h3>Segmented body fat percentage</h3>
+            <input
+                type="number"
+                name="body-fat"
+                step="0.01"
+                placeholder="Body fat"
+                required
+            />
+            <input
+                type="number"
+                name="left-arm-fat"
+                step="0.01"
+                placeholder="Left Arm"
+            />
+            <input
+                type="number"
+                name="right-arm-fat"
+                step="0.01"
+                placeholder="Right Arm"
+            />
+            <input
+                type="number"
+                name="trunk-fat"
+                step="0.01"
+                placeholder="Trunk"
+            />
+            <input
+                type="number"
+                name="left-leg-fat"
+                step="0.01"
+                placeholder="Left Leg"
+            />
+            <input
+                type="number"
+                name="right-leg-fat"
+                step="0.01"
+                placeholder="Right Leg"
+            />
+            <h3>Segmented muscle mass</h3>
+            <input
+                type="number"
+                name="muscle"
+                step="0.01"
+                placeholder="Muscle mass"
+                required
+            />
+            <input
+                type="number"
+                name="left-arm-muscle"
+                step="0.01"
+                placeholder="Left Arm"
+            />
+            <input
+                type="number"
+                name="right-arm-muscle"
+                step="0.01"
+                placeholder="Right Arm"
+            />
+            <input
+                type="number"
+                name="trunk-muscle"
+                step="0.01"
+                placeholder="Trunk"
+            />
+            <input
+                type="number"
+                name="left-leg-muscle"
+                step="0.01"
+                placeholder="Left Leg"
+            />
+            <input
+                type="number"
+                name="right-leg-muscle"
+                step="0.01"
+                placeholder="Right Leg"
+            />
+            <br />
+            <h3>Body information</h3>
+            <input
+                type="number"
+                name="height"
+                step="0.01"
+                placeholder="Height"
+                required
+            />
+            <input
+                type="number"
+                name="weight"
+                step="0.01"
+                placeholder="Weight"
+                required
+            />
+            <input type="submit" value="Submit" />
+        </form>
 
-                        <form action="{{ url_for('change_pfp') }}" method="post" enctype="multipart/form-data">
-                            <h2>Change Profile Picture</h2>
-                            <input type="text" name="profile_picture_link" id="profile_picture_link" required>
-                            <input type="submit" value="Upload">
-                            <p>Image Preview: </p>
-                            <img src="{{ session['profile_picture'] }}" id="img_preview" width="100px" height="100px" style="border-radius: 50%;">
-                        </form>
-                    </div>
-                </div>
-        {% include 'sidebar.html' %}
-    </body>
-    <script src="{{ url_for('static', filename='profile.js') }}"></script>
-</html>
+        <form
+            action="{{ url_for('change_pfp') }}"
+            method="post"
+            enctype="multipart/form-data"
+        >
+            <h2>Change Profile Picture</h2>
+            <input
+                type="text"
+                name="profile_picture_link"
+                id="profile_picture_link"
+                required
+            />
+            <input type="submit" value="Upload" />
+            <p>Image Preview:</p>
+            <img
+                src="{{ session['profile_picture'] }}"
+                id="img_preview"
+                width="100px"
+                height="100px"
+                style="border-radius: 50%"
+            />
+        </form>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='profile.js') }}"></script>
+{% endblock %}

@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="strength-page">
                 <h1>Calculate Strength</h1>
                 <form action="{{ url_for('strength') }}" method="post">
@@ -113,6 +115,7 @@
                 </form>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
-</html>
+        {% endblock %}
+
+        {% block scripts %}
+        {% endblock %}

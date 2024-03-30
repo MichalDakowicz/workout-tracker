@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="workout">
                 <h1>Workout</h1>
                 <label for="dateInput">Date:</label>
@@ -32,7 +34,8 @@
                 </div>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
-    <script src="{{ url_for('static', filename='workout.js') }}"></script>
-</html>
+        {% endblock %}
+
+        {% block scripts %}
+            <script src="{{ url_for('static', filename='workout.js') }}"></script>
+        {% endblock %}

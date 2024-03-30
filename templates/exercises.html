@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="exercise-list">
                 <h1>Exercises</h1>
                 <div class="exercise-container">
@@ -51,6 +53,7 @@
                 </div>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
-</html>
+{% endblock %}
+
+{% block scripts %}
+{% endblock %}

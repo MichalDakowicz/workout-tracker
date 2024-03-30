@@ -1,4 +1,6 @@
-{% include 'header.html' %}
+{% extends 'base.html' %}
+
+{% block main %}
             <div id="login_register_box">
                 <br />
                 <h1>Workout Tracker</h1>
@@ -23,6 +25,8 @@
                 </p>
             </div>
         </div>
-        {% include 'sidebar.html' %}
-    </body>
-</html>
+{% endblock %}
+
+{% block scripts %}
+
+{% endblock %}
