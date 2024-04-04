@@ -66,7 +66,7 @@ Here are some potential future enhancements for the Workout Tracker application:
 
 === HTML/JS
 
-base.html
+_**base.html**_
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -325,7 +325,7 @@ The `{% block scripts %}{% endblock %}` is another Jinja2 block tag. It allows y
 
 The `{{ session['username'] }}` is a Flask session variable. It stores data that you want to persist between requests. In this case, it's used to store the username of the currently logged in user.
 
-home.js
+_**home.js**_
 ```javascript
 function bmi() {
     var weight = document.getElementById("weight").value;
@@ -342,7 +342,7 @@ The `toFixed(2)` method is used to round the BMI value to two decimal places.
 
 Finally, the function updates the innerHTML of an element with the ID "bmi" to display the calculated BMI value.
 
-profile.js
+_**profile.js**_
 ```javascript
 var image_preview = document.getElementById("img_preview");
 var image_input = document.getElementById("profile_picture_link");
@@ -359,7 +359,7 @@ The `image_preview` variable stores a reference to the image element, and the `i
 
 The `addEventListener()` method is used to attach an event handler to the input field. The event handler function updates the `src` attribute of the image element to display the selected image.
 
-script.js
+_**script.js**_
 ```javascript
 function toggleSidebar() {
     const sidebar = document.getElementById("sidebar");
@@ -377,7 +377,7 @@ The function retrieves the sidebar element using `document.getElementById("sideb
 
 The function is typically called when a user clicks on a button or link to expand or collapse the sidebar.
 
-workout.js
+_**workout.js**_
 ```javascript
 // Set the current date as the default value for the date input
 document.getElementById("dateInput").valueAsDate = new Date();
