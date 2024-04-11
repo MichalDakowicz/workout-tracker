@@ -277,7 +277,151 @@ The `saveWorkout()` function saves the workout data, including the date and exer
 
 === Python
 
-ALL THE REST OF CODE FRAGMENTS WILL BE ADDED AS SOON AS I FINISH THEM FULLY.
+_**app.py**_
+
+This is the main Flask application file for the Workout Tracker application. It contains the routes, logic, and database interactions for the application.
+
+```python
+from flask import Flask, render_template, request, url_for, redirect, session, abort
+from werkzeug.security import generate_password_hash, check_password_hash
+import secrets
+
+# private code imports
+from strength import *
+from database import *
+from other_defs import *
+from exercises import *
+```
+
+The `app.py` file imports the necessary modules and functions for the application, including Flask, render_template, request, url_for, redirect, session, abort, generate_password_hash, check_password_hash, secrets, strength, database, other_defs, and exercises.
+
+```python
+app = Flask(__name__)
+app.secret_key = secrets.token_hex(16)
+```
+
+The `app` variable creates a new Flask application instance with the name `__name__`. It also sets a secret key for the application using the `secrets.token_hex(16)` function to generate a random 16-byte token.
+
+```python
+if __name__ == "__main__":
+    create_tables()
+    add_exercises()
+    conn = connect_db()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM users")
+    users = cursor.fetchall()
+    conn.close()
+    if "ADMIN" not in [user[1] for user in users]:
+        create_admin()
+    app.run(debug=True)
+```
+
+The `if __name__ == "__main__":` block initializes the database tables, adds exercises to the database, creates an admin user if one does not exist, and starts the Flask application in debug mode.
+
+_**strength.py**_
+
+This module contains functions for calculating strength scores and percentiles based on the user input.
+
+```python
+import numpy as np
+from scipy.interpolate import interp1d
+import json
+```
+
+The `strength.py` module imports the necessary modules and functions for calculating strength scores and percentiles, including numpy, scipy.interpolate, and json.
+
+```python
+# Function to calculate the one rep max's
+def calc_one_rep_max(exercises):
+    one_rep_maxes = {}
+
+    for exercise_name, data in exercises.items():
+        weight = data['weight']
+        reps = data['reps']
+
+        if reps == 1:
+            estimated_one_rep_max = weight
+        else:
+            estimated_one_rep_max = weight / (1.0278 - 0.0278 * reps)
+
+        one_rep_maxes[exercise_name] = estimated_one_rep_max
+
+    return one_rep_maxes
+```
+
+The `calc_one_rep_max()` function calculates the estimated one-rep maximums for a list of exercises based on the weight lifted and the number of reps performed. It uses the Epley formula to estimate the one-rep max for each exercise.
+
+```python
+# Load exercise data from JSON files
+def load_exercise_data():
+    exercises = ['barbell_row', 'bench_press', 'deadlift', 'overhead_press', 'squat']
+    data = {}
+    for exercise in exercises:
+        with open(f'{exercise}.json') as f:
+            data[exercise] = json.load(f)[exercise]
+    return data
+```
+
+The `load_exercise_data()` function loads exercise data from JSON files for the barbell row, bench press, deadlift, overhead press, and squat exercises. It returns a dictionary containing the exercise data for each exercise.
+
+```python
+# Calculate percentile
+def calculate_percentile(exercise_data, gender, body_weight, lifted_weight):
+    gender_data = exercise_data[gender]
+    body_weights = np.array(list(gender_data.keys())).astype(float)
+    closest_weights = np.sort(np.array([w for w in body_weights if w <= body_weight])[-1:] \
+                              .tolist() + np.array([w for w in body_weights if w >= body_weight])[:1].tolist())
+    
+    if len(closest_weights) == 1:
+        closest_weight = closest_weights[0]
+    else:
+        lower_weight, upper_weight = closest_weights
+        if body_weight - lower_weight < upper_weight - body_weight:
+            closest_weight = lower_weight
+        else:
+            closest_weight = upper_weight
+    
+    weight_data = gender_data[str(int(closest_weight))]
+    lifted_weights = np.array(list(map(float, weight_data.keys())))
+    percentiles = np.array(list(weight_data.values()))
+    lifted_weight_func = interp1d(lifted_weights, percentiles, bounds_error=False, fill_value="extrapolate")
+    return round(float(lifted_weight_func(lifted_weight)), 2)
+```
+
+The `calculate_percentile()` function calculates the percentile for a lifted weight based on the exercise data for a specific exercise, gender, body weight, and lifted weight. It uses interpolation to find the closest body weight and lifted weight values in the exercise data and calculates the corresponding percentile. The function then categorizes the percentile into different strength levels.
+
+```python
+# Categorize percentile
+def categorize_percentile(percentile):
+    if percentile < 20:
+        return 'Beginner'
+    elif percentile < 40:
+        return 'Novice'
+    elif percentile < 60:
+        return 'Intermediate'
+    elif percentile < 75:
+        return 'Advanced'
+    elif percentile < 90:
+        return 'Elite'
+    else:
+        return 'World Class'
+```
+
+The `categorize_percentile()` function categorizes the percentile into different strength levels based on the following ranges: Beginner (0-20), Novice (20-40), Intermediate (40-60), Advanced (60-75), Elite (75-90), and World Class (90-100).
+
+```python
+# Main function to load data, calculate percentile, and categorize for all exercises
+def calculate_scores(gender, body_weight, lifted_weights):
+    exercise_data = load_exercise_data()
+    results = {}
+    for exercise, weight in lifted_weights.items():
+        percentile = calculate_percentile(exercise_data[exercise], gender, body_weight, weight)
+        category = categorize_percentile(percentile)
+        results[exercise] = (percentile, category)
+    return results
+```
+
+The `calculate_scores()` function loads exercise data, calculates the percentile, and categorizes the strength level for all exercises based on the user input. It returns a dictionary containing the percentile and strength category for each exercise.
 
 == Dependencies
 
