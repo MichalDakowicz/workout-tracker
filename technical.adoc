@@ -67,122 +67,52 @@ Here are some potential future enhancements for the Workout Tracker application:
 === HTML/JS
 
 _**base.html**_
+
+This is a base HTML template used in a Flask web application. It defines the basic structure of the web pages and includes common elements like the head, header, and main content area.
+
+_head_
 ```html
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <title>{{ subdomain_tag }} - Workout Tracker</title>
-        <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}" />
-        <link
-            rel="stylesheet"
-            href="{{ url_for('static', filename='style.css') }}"
-        />
-        <script src="{{ url_for('static', filename='script.js') }}"></script>
-    </head>
-    <body>
-        <div id="header" style="display: flex; justify-content: center">
-            <div id="banner" style="margin-left: 60px">
-                <img
-                    src="{{ url_for('static', filename='images/logo.png') }}"
-                    alt="Banner"
-                    style="height: 60px; width: auto"
-                />
-            </div>
-        </div>
-        <main id="body">
-            {% block main %}{% endblock %}
-        </main>
-        </div>        
-        <div id="sidebar" style="width: 60px; transition: 0.5s">
-            <a
-                href="javascript:void(0)"
-                class="close-btn"
-                onclick="toggleSidebar()"
-                style="margin-left: 9.5px"
-            >
-                <img src="{{ url_for('static', filename='svg/burger_menu.svg') }}" style="margin-left: 0px;">
-            </a>
-            <div id="sdb">
-                <div id="sdb1">
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('home') }}">
-                            Home
-                            <img src="{{ url_for('static', filename='svg/home.svg') }}">
-                        </a>
-                    </div>
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('exercises') }}">
-                            Exercises
-                            <img src="{{ url_for('static', filename='svg/dumbbell.svg') }}">
-                        </a>
-                    </div>
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('workout') }}">
-                            Workout
-                            <img src="{{ url_for('static', filename='svg/list.svg') }}">
-                        </a>
-                    </div>
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('progress') }}">
-                            Progress
-                            <img src="{{ url_for('static', filename='svg/trend_up.svg') }}">
-                        </a>
-                    </div>
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('strength') }}">
-                            Strength
-                            <img src="{{ url_for('static', filename='svg/weight.svg') }}">
-                        </a>
-                    </div>
-                </div>
-                <div id="sdb2">
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('profile') }}">
-                            <b><p>{{ session['username'] }}</p></b>
-                            {% if session['profile_picture'] != None %}
-                            <img
-                                src="{{ session['profile_picture'] }}"
-                                alt="Profile Picture"
-                                style="width: 40px; height: 40px; border-radius: 50%;"
-                                id="profile-pic"
-                            />
-                            {% else %}
-                            <img src="{{ url_for('static', filename='svg/profile.svg') }}">
-                            {% endif %}
-                        </a>
-                    </div>
-                    <p style="font-size: 7px;">&nbsp;</p>
-                    <div class="sidebar-content">
-                        <a href="{{ url_for('logout') }}">
-                            Logout
-                            <img src="{{ url_for('static', filename='svg/leave.svg') }}">
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {% block scripts %}{% endblock %}
-    </body>
-</html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{{ subdomain_tag }} - Workout Tracker</title>
+    <link rel="icon" href="{{ url_for('static', filename='images/icon.png') }}" />
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    />
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
 ```
-This is an HTML template file used in a Flask web application. Flask uses a templating engine called Jinja2, which allows you to inject data into your HTML.
+The head section of the base template includes the page title, favicon, CSS stylesheet, and JavaScript file. The page title is dynamically set based on the subdomain tag provided by the route. The favicon is a small icon displayed in the browser tab. The CSS stylesheet and JavaScript file are linked using the `url_for()` function to load the static assets from the `static` directory.
 
-The file is structured as a standard HTML document with `<!DOCTYPE html>`, `<html>`, `<head>`, and `<body>` tags.
+_header_
+```html
+<div id="header" style="display: flex; justify-content: center">
+    <div id="banner" style="margin-left: 60px">
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="Banner"
+            style="height: 60px; width: auto"
+        />
+    </div>
+</div>
+```
 
-In the `<head>` section, there are several meta tags and links to stylesheets and JavaScript files. The `{{ url_for('static', filename='style.css') }}` is a Flask function that generates a URL to the static files in your application.
+The header section of the base template includes a banner image with the Workout Tracker logo. The banner is centered on the page using flexbox and has a margin on the left side to align it with the sidebar.
 
-The `<body>` section contains the main content of the webpage. It includes a header with an image, a main section, and a sidebar. The `{% block main %}{% endblock %}` is a Jinja2 block tag. It allows you to define sections in your template that child templates can override.
+_main_
+```html
+<main id="body">
+    {% block main %}{% endblock %}
+</main>
+```
 
-The sidebar contains several links, each with an icon and text. The `{{ url_for('...') }}` is another Flask function that generates a URL to the '...' route in your application.
-
-The `{% if session['profile_picture'] != None %}` is a Jinja2 conditional statement. It checks if the user has a profile picture. If they do, it displays the picture. If they don't, it displays a default icon.
-
-The `{% block scripts %}{% endblock %}` is another Jinja2 block tag. It allows you to inject additional JavaScript files into your template from child templates.
-
-The `{{ session['username'] }}` is a Flask session variable. It stores data that you want to persist between requests. In this case, it's used to store the username of the currently logged in user.
+The main section of the base template includes a placeholder for the main content of the page. The content is defined in blocks that can be overridden by child templates.
 
 _**home.js**_
+
+This is a JavaScript file used in a Flask web application. It contains a function called `bmi()` that calculates the Body Mass Index (BMI) based on the weight and height entered by the user.
+
 ```javascript
 function bmi() {
     var weight = document.getElementById("weight").value;
@@ -191,7 +121,6 @@ function bmi() {
     document.getElementById("bmi").innerHTML = bmi.toFixed(2);
 }
 ```
-This is a JavaScript file used in a Flask web application. It contains a function called `bmi()` that calculates the Body Mass Index (BMI) based on the weight and height entered by the user.
 
 The function retrieves the weight and height values from the input fields with the IDs "weight" and "height". It then calculates the BMI using the formula `weight / (((height / 100) * height) / 100)`.
 
@@ -200,6 +129,9 @@ The `toFixed(2)` method is used to round the BMI value to two decimal places.
 Finally, the function updates the innerHTML of an element with the ID "bmi" to display the calculated BMI value.
 
 _**profile.js**_
+
+This is a JavaScript file used in a Flask web application. It contains an event listener that listens for changes to an input field with the ID "profile_picture_link". It is used in a Flask web application. It contains a function called `toggleSidebar()` that toggles the width of a sidebar element between 60px and 170px. 
+
 ```javascript
 var image_preview = document.getElementById("img_preview");
 var image_input = document.getElementById("profile_picture_link");
@@ -208,7 +140,7 @@ image_input.addEventListener("input", function () {
     image_preview.src = this.value;
 });
 ```
-This is a JavaScript file used in a Flask web application. It contains an event listener that listens for changes to an input field with the ID "profile_picture_link".
+
 
 When the input field changes, the event listener updates the `src` attribute of an image element with the ID "img_preview" to display the selected image.
 
@@ -228,17 +160,18 @@ function toggleSidebar() {
     }
 }
 ```
-This is a JavaScript file used in a Flask web application. It contains a function called `toggleSidebar()` that toggles the width of a sidebar element between 60px and 170px.
-
 The function retrieves the sidebar element using `document.getElementById("sidebar")`. It then checks the current width of the sidebar. If the width is 60px, it sets the width to 170px. If the width is 170px, it sets the width to 60px.
 
 The function is typically called when a user clicks on a button or link to expand or collapse the sidebar.
 
-_**workout.js**_
-```javascript
-// Set the current date as the default value for the date input
-document.getElementById("dateInput").valueAsDate = new Date();
 
+_**workout.js**_
+
+This is a JavaScript file used in a Flask web application. It contains several functions that handle the dynamic addition of workout sets, saving reps and weight data, and saving workout data.
+
+The functions use DOM manipulation to create and update elements on the page dynamically based on user input.
+
+```javascript
 function addSetsFields() {
     const sets = document.getElementById("setsInput").value;
     const setsFieldsContainer = document.getElementById("setsFieldsContainer");
@@ -263,7 +196,11 @@ function addSetsFields() {
     setsFieldsContainer.innerHTML = "";
     setsFieldsContainer.appendChild(setsFields);
 }
+```
 
+The `addSetsFields()` function dynamically adds input fields for reps and weight based on the number of sets selected by the user. It creates a new `div` element with the class "setsFields" and populates it with input fields for each set. It also adds a "Save" button to save the reps and weight data.
+
+```javascript
 function saveRepsWeight() {
     const sets = document.getElementById("setsInput").value;
     const ListRepWeight = [];
@@ -291,6 +228,13 @@ function saveRepsWeight() {
     exerciseList.innerHTML = `${exercise}<br> ${List2.join(", <br>")}`;
     exerciseListContainer.appendChild(exerciseList);
 }
+```
+
+The `saveRepsWeight()` function collects the reps and weight data for each set and saves it to a list. It then displays the exercise list with the reps and weight data for each set.
+
+```javascript
+// Set the current date as the default value for the date input
+document.getElementById("dateInput").valueAsDate = new Date();
 
 function saveWorkout() {
     const date = document.getElementById("dateInput").value;
@@ -328,16 +272,8 @@ function saveWorkout() {
         .click();
 }
 ```
-This is a JavaScript file used in a Flask web application. It contains several functions that handle the dynamic addition of workout sets, saving reps and weight data, and saving workout data.
-
-The `addSetsFields()` function dynamically adds input fields for reps and weight based on the number of sets selected by the user. It creates a new `div` element with the class "setsFields" and populates it with input fields for each set. It also adds a "Save" button to save the reps and weight data.
-
-The `saveRepsWeight()` function collects the reps and weight data for each set and saves it to a list. It then displays the exercise list with the reps and weight data for each set.
 
 The `saveWorkout()` function saves the workout data, including the date and exercise list, to hidden input fields in a form. It then submits the form to save the workout data to the database.
-
-The functions use DOM manipulation to create and update elements on the page dynamically based on user input.
-
 
 === Python
 
