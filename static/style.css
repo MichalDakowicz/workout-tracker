@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +17,7 @@ body {
     grid-template-rows: 60px calc(100vh - 60px);
     grid-template-areas: "header header" "sidebar body";
 }
+
 button {
     color: #fff;
     width: 100px;
@@ -26,6 +28,7 @@ button {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 input[type="button"] {
     color: #fff;
     width: 100px;
@@ -35,10 +38,13 @@ input[type="button"] {
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
+    transition: 0.3s;
 }
+
 input[type="button"]:hover {
     background-color: #666;
 }
+
 input[type="submit"] {
     color: #fff;
     width: 100px;
@@ -52,9 +58,11 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #666;
 }
+
 button:hover {
     background-color: #666;
 }
+
 select {
     width: 100px;
     height: 40px;
@@ -64,6 +72,7 @@ select {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 input {
     width: 100px;
     height: 40px;
@@ -73,9 +82,16 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
+/* OGÓLNE */
+
 #sidebar img {
     margin-right: 10px;
     margin-left: 10px;
+}
+
+.sidebar-content img {
+    padding-left: 2px;
 }
 
 #body {
@@ -93,37 +109,44 @@ input {
     top: 0;
     left: 0;
 }
+
 #menu {
     width: 75%;
     height: 100%;
     float: left;
 }
+
 #menu ul {
     margin: 0;
     padding: 0;
     list-style: none;
     line-height: 60px;
 }
+
 #menu ul li {
     float: left;
     width: 100px;
     height: 100%;
     background-color: #333;
 }
+
 #menu ul li a {
     text-decoration: none;
     color: #fff;
     display: block;
     text-align: center;
 }
+
 #menu ul li a:hover {
     background-color: #666;
 }
+
 #profile {
     width: 25%;
     height: 100%;
     float: right;
 }
+
 #profile p {
     float: right;
     margin-top: 15px;
@@ -132,6 +155,7 @@ input {
     margin-right: 20px;
     font-size: 23px;
 }
+
 #login_register_box {
     width: 400px;
     height: 400px;
@@ -141,16 +165,19 @@ input {
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
 }
+
 #login_register_box h1 {
     text-align: center;
     font-size: 36px;
     margin-top: 40px;
 }
+
 #login_register_box form {
     width: 300px;
     margin: 0 auto;
     margin-top: 40px;
 }
+
 #login_register_box form input {
     width: 100%;
     height: 40px;
@@ -160,26 +187,32 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 #login_register_box form input[type="submit"] {
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
 }
+
 #login_register_box form input[type="submit"]:hover {
     background-color: #666;
 }
+
 #login_register_box p {
     text-align: center;
     margin-top: 20px;
 }
+
 #login_register_box p a {
     text-decoration: none;
     color: #333;
 }
+
 #login_register_box p a:hover {
     text-decoration: underline;
 }
+
 #add-exercise-panel {
     width: 400px;
     height: 400px;
@@ -189,16 +222,19 @@ input {
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
 }
+
 #add-exercise-panel h1 {
     text-align: center;
     font-size: 36px;
     margin-top: 40px;
 }
+
 #add-exercise-panel form {
     width: 300px;
     margin: 0 auto;
     margin-top: 40px;
 }
+
 #add-exercise-panel form input {
     width: 100%;
     height: 40px;
@@ -208,6 +244,7 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 #add-exercise-panel select {
     width: 100%;
     height: 40px;
@@ -217,26 +254,32 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 #add-exercise-panel form input[type="submit"] {
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
 }
+
 #add-exercise-panel form input[type="submit"]:hover {
     background-color: #666;
 }
+
 #add-exercise-panel p {
     text-align: center;
     margin-top: 20px;
 }
+
 #add-exercise-panel p a {
     text-decoration: none;
     color: #333;
 }
+
 #add-exercise-panel p a:hover {
     text-decoration: underline;
 }
+
 #weightInput {
     width: 100px;
     height: 40px;
@@ -245,6 +288,7 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 #repsInput {
     width: 100px;
     height: 40px;
@@ -274,16 +318,19 @@ input {
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
 }
+
 .panels h2 {
     text-align: center;
     font-size: 36px;
     margin-top: 40px;
 }
+
 .panels form {
     width: 300px;
     margin: 0 auto;
     margin-top: 40px;
 }
+
 .panels form input {
     width: 100%;
     height: 40px;
@@ -293,6 +340,7 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 .panels select {
     width: 100%;
     height: 40px;
@@ -302,31 +350,49 @@ input {
     padding: 0 10px;
     box-sizing: border-box;
 }
+
 .panels form input[type="submit"] {
     background-color: #333;
     color: #fff;
     border: none;
     cursor: pointer;
 }
+
 .panels form input[type="submit"]:hover {
     background-color: #666;
 }
+
 .panels p {
     text-align: center;
     margin-top: 20px;
 }
+
 .panels p a {
     text-decoration: none;
     color: #333;
 }
+
 .panels p a:hover {
     text-decoration: underline;
+}
+
+#home-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+#home-page-intro {
+    width: 100%;
+    margin: 0;
 }
 
 #home-page-panels {
     display: flex;
     flex-wrap: wrap;
 }
+
 .home-page-panel {
     width: 400px;
     height: 450px;
@@ -338,23 +404,34 @@ input {
     box-shadow: 0 0 3px #333;
     padding: 10px;
 }
+
 .home-page-panel h2 {
     text-align: center;
     font-size: 36px;
     margin-top: 20px;
 }
+
 .home-page-panel p {
     text-align: center;
     margin-top: 12px;
 }
+
 .home-page-panel h3 {
     text-align: center;
     margin-top: 15px;
 }
+
+.home-page-panel form input {
+    width: 300px;
+    margin: 0 auto;
+    margin-top: 5px;
+}
+
 #workouts table {
     width: 90%;
     margin: 0 auto;
 }
+
 #workouts table tr td {
     border: 1px solid #ccc;
     padding: 10px;
@@ -367,6 +444,29 @@ input {
     list-style: none;
 }
 
+.exercise-container li {
+    display: flex;
+    padding: 10px;
+    font-size: 110%;
+    border-bottom: 1px solid #ccc;
+}
+
+#muscle-group-select {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#muscle-group-select option {
+    font-size: 16px;
+}
+
 #sidebar {
     grid-area: sidebar;
     background-color: #333;
@@ -376,23 +476,28 @@ input {
     height: 100vh;
     margin-top: 60px;
 }
+
 #sidebar a {
     text-decoration: none;
     color: white;
 }
+
 #sdb {
     display: flex;
     flex-direction: column;
     align-items: end;
 }
+
 #sdb2 {
     position: fixed;
     bottom: 5px;
 }
+
 .sidebar-content {
     font-size: 24px;
     width: 170px;
 }
+
 .sidebar-content a {
     text-decoration: none;
     color: white;
@@ -400,6 +505,7 @@ input {
     height: 40px;
     justify-content: right;
 }
+
 .sidebar-content svg {
     margin-left: 11px;
 }
@@ -413,4 +519,107 @@ input {
     height: 40px;
     margin-right: 10px;
     margin-left: 10px;
+}
+
+#workout {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.workout-panel {
+    width: 400px;
+    height: 450px;
+    background-color: #fff;
+    margin: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #333;
+    padding: 10px;
+}
+
+#workout-header {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+#date-input-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#date-input-container label {
+    margin-right: 10px;
+    margin-top: 7px;
+}
+
+#date-input-container input {
+    width: 130px;
+    border-radius: 30px;
+}
+
+#workout-name-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#workout-name-container input {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#exercise-input-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#exercise-input-container select {
+    width: 100%;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#reps-input-container {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+}
+
+#reps-input-container input {
+    width: 170px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#reps-input-container button {
+    width: 40%;
+    margin-right: 10px;
+}
+
+#draft-sets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+#draft-sets-container button {
+    width: 350px;
+    margin: 5px;
+    transition: 0.3s;
+}
+
+#draft-sets-container button:hover {
+    background-color: #666;
+}
+
+#draft-sets-container input {
+    width: 170px;
+    margin: 5px;
 }

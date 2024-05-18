@@ -115,7 +115,7 @@ Have a suggestion or want to see a new feature added? Your input is invaluable! 
 
 6. ADD AN SEARCH FOR EXERCISE FIELD IN WORKOUT SECTION
 
-7. BETTER CSS
+7. BETTER CSS 50%
 
 8. UPDATING THE README WHEN DONE
 

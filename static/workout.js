@@ -9,12 +9,12 @@ function addSetsFields() {
 
     // Initialize the innerHTML with the first set
     setsFields.innerHTML =
-        'Set 1 <label for="repsInput1">Reps:</label><input type="number" id="repsInput1" min="1" value="1"><label for="weightInput1">Weight:</label><input type="number" id="weightInput1" min="0" value="0">kg';
+        '<input type="number" id="repsInput1" min="1" placeholder="Set 1 reps"><input type="number" id="weightInput1" min="0" placeholder="Kg">';
 
     // Add the remaining sets
     for (let i = 1; i < sets; i++) {
         const setNumber = i + 1;
-        setsFields.innerHTML += `<br>Set ${setNumber} <label for="repsInput${setNumber}">Reps:</label><input type="number" id="repsInput${setNumber}" min="1" value="1"><label for="weightInput${setNumber}">Weight:</label><input type="number" id="weightInput${setNumber}" min="0" value="0">kg`;
+        setsFields.innerHTML += `<br><input type="number" id="repsInput${setNumber}" min="1" placeholder="Set ${setNumber} reps"><input type="number" id="weightInput${setNumber}" min="0" placeholder="Kg">`;
     }
 
     // Add the save button

@@ -1,63 +1,59 @@
-{% extends 'base.html' %}
-
-{% block main %}
-            <div id="home-page">
-                <h1>Welcome to the Workout Tracker</h1>
-                <p>Here you can track your workouts, progress and strength.</p>
-                <p>Use the menu to navigate through the site.</p>
-                <div id="home-page-panels">
-                    <div class="home-page-panel">
-                        <h2>Workout history</h2>
-                        <p>Here you can see your workout history.</p>
-                        {% if workouts == [] %}
-                        <h3>No workouts yet.</h3>
-                        {% endif %} {% if workouts != [] %}
-                        <div id="workouts">
-                            <table>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Name</th>
-                                    <th>Exercises</th>
-                                </tr>
-                                {% for workout in workouts %}
-                                <tr>
-                                    <td>{{ workout[1] }}</td>
-                                    <td>{{ workout[0] }}</td>
-                                    <td>{{ ', '.join(workout[2]) }}</td>
-                                </tr>
-                                {% endfor %}
-                            </table>
-                        </div>
-                        {% endif %}
-                    </div>
-                    <div class="home-page-panel">
-                        <h2>BMI Calculator</h2>
-                        <p>Calculate your BMI here.</p>
-                        <form>
-                            <input
-                                type="number"
-                                id="weight"
-                                placeholder="Weight in kg"
-                                required
-                            />
-                            <input
-                                type="number"
-                                id="height"
-                                placeholder="Height in cm"
-                                required
-                            />
-                            <input
-                                type="button"
-                                value="Calculate"
-                                onclick="bmi()"
-                            />
-                        </form>
-                        <p>Your BMI is: <span id="bmi"></span></p>
-                    </div>
-                </div>
+{% extends 'base.html' %} {% block main %}
+<div id="home-page">
+    <div id="home-page-header">
+        <h1>Welcome to the Workout Tracker</h1>
+    </div>
+    <div id="home-page-intro">
+        <p>Here you can track your workouts, progress and strength.</p>
+        <p>Use the menu to navigate through the site.</p>
+    </div>
+    <div id="home-page-panels">
+        <div class="home-page-panel">
+            <h2>Workout history</h2>
+            <p>Here you can see your workout history.</p>
+            {% if workouts == [] %}
+            <h3>No workouts yet.</h3>
+            {% endif %} {% if workouts != [] %}
+            <div id="workouts">
+                <table>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Exercises</th>
+                    </tr>
+                    {% for workout in workouts %}
+                    <tr>
+                        <td>{{ workout[1] }}</td>
+                        <td>{{ workout[0] }}</td>
+                        <td>{{ ', '.join(workout[2]) }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
             </div>
-{% endblock %}
-
-{% block scripts %}
-    <script src="{{ url_for('static', filename='home.js') }}"></script>
+            {% endif %}
+        </div>
+        <div class="home-page-panel">
+            <h2>BMI Calculator</h2>
+            <p>Calculate your BMI here.</p>
+            <form>
+                <input
+                    type="number"
+                    id="weight"
+                    placeholder="Weight in kg"
+                    required
+                />
+                <input
+                    type="number"
+                    id="height"
+                    placeholder="Height in cm"
+                    required
+                />
+                <input type="button" value="Calculate" onclick="bmi()" />
+            </form>
+            <p>Your BMI is: <span id="bmi"></span></p>
+        </div>
+    </div>
+</div>
+{% endblock %} {% block scripts %}
+<script src="{{ url_for('static', filename='home.js') }}"></script>
 {% endblock %}

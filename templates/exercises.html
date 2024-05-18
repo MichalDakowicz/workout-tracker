@@ -3,51 +3,53 @@
 {% block main %}
             <div id="exercise-list">
                 <h1>Exercises</h1>
-                <div class="exercise-container">
-                    <h2>Chest</h2>
+                <select name="muscle-group-select" id="muscle-group-select">
+                    <option value="chest">Chest</option>
+                    <option value="back">Back</option>
+                    <option value="legs">Legs</option>
+                    <option value="shoulders">Shoulders</option>
+                    <option value="arms">Arms</option>
+                    <option value="abs">Core</option>
+                </select>
+                <div class="exercise-container" id="chest">
                     <ul>
                         {% for exercise in chest_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="exercise-container">
-                    <h2>Back</h2>
+                <div class="exercise-container" id="back">
                     <ul>
                         {% for exercise in back_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="exercise-container">
-                    <h2>Legs</h2>
+                <div class="exercise-container" id="legs">
                     <ul>
                         {% for exercise in legs_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="exercise-container">
-                    <h2>Shoulders</h2>
+                <div class="exercise-container" id="shoulders">
                     <ul>
                         {% for exercise in shoulders_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="exercise-container">
-                    <h2>Arms</h2>
+                <div class="exercise-container" id="arms">
                     <ul>
                         {% for exercise in arms_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
-                <div class="exercise-container">
-                    <h2>Core</h2>
+                <div class="exercise-container" id="core">
                     <ul>
                         {% for exercise in abs_exercises %}
-                        <li>{{ exercise[1] }} - {{ exercise[3] }}</li>
+                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
                         {% endfor %}
                     </ul>
                 </div>
@@ -56,4 +58,5 @@
 {% endblock %}
 
 {% block scripts %}
+    <script src="{{ url_for('static', filename='exercises.js') }}"></script>
 {% endblock %}

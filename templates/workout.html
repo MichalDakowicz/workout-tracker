@@ -2,29 +2,44 @@
 
 {% block main %}
             <div id="workout">
-                <h1>Workout</h1>
-                <label for="dateInput">Date:</label>
-                <input type="date" id="dateInput" style="width: 130px" />
-                <label for="workoutName">Name: </label>
-                <input type="text" id="workoutName" style="width: 150px" />
-                <br />
-                <div class="exercise-container">
-                    <label for="exerciseSelect">Exercise:</label>
-                    <select id="exerciseSelect" style="width: 150px">
-                        {% for exercise in exercises %}
-                        <option value="{{ exercise }}">{{ exercise }}</option>
-                        {% endfor %}
-                    </select>
-                    <label for="setsInput">Sets:</label>
-                    <input type="number" id="setsInput" min="1" value="1" />
-                    <button onclick="addSetsFields()">Add exercise</button>
+                <div id="workout-header">
+                    <h1>Workout</h1>
+                    <p>Here you can type in your workout routine and save<br>it for later comparison or just for the record</p>
                 </div>
-
-                <div id="setsFieldsContainer"></div>
-
-                <div id="exercise-list"></div>
-                <button onclick="saveWorkout()">Save Workout</button>
-
+                <div class="workout-panel">
+                    <div id="date-input-container">
+                        <label for="dateInput">Date:</label>
+                        <input type="date" id="dateInput"/>
+                    </div>
+                    <div id = "workout-name-container">
+                        <input 
+                        type="text"
+                        id="workoutName"
+                        placeholder="Workout Name"
+                        />
+                    </div>
+                    <div id="exercise-input-container">
+                        <select id="exerciseSelect">
+                            {% for exercise in exercises %}
+                            <option value="{{ exercise }}">{{ exercise }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div id="reps-input-container">
+                        <input 
+                        type="number" 
+                        id="setsInput" 
+                        min="1" 
+                        placeholder="Sets"
+                        />
+                        <button onclick="addSetsFields()">Add exercise</button>
+                        <button onclick="saveWorkout()">Save Workout</button>
+                    </div>
+                    <div id="draft-sets-container">
+                        <div id="setsFieldsContainer"></div>
+                        <div id="exercise-list"></div>
+                    </div>
+                </div>
                 <div id="return-form" style="display: none">
                     <form action="{{ url_for('workout') }}" method="post">
                         <input type="date" name="date" id="date" />
