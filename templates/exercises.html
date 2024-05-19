@@ -9,49 +9,51 @@
                     <option value="legs">Legs</option>
                     <option value="shoulders">Shoulders</option>
                     <option value="arms">Arms</option>
-                    <option value="abs">Core</option>
+                    <option value="core">Core</option>
                 </select>
-                <div class="exercise-container" id="chest">
-                    <ul>
-                        {% for exercise in chest_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="exercise-container" id="back">
-                    <ul>
-                        {% for exercise in back_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="exercise-container" id="legs">
-                    <ul>
-                        {% for exercise in legs_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="exercise-container" id="shoulders">
-                    <ul>
-                        {% for exercise in shoulders_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="exercise-container" id="arms">
-                    <ul>
-                        {% for exercise in arms_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                <div class="exercise-container" id="core">
-                    <ul>
-                        {% for exercise in abs_exercises %}
-                        <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
-                        {% endfor %}
-                    </ul>
+                <div id="exercise-lists">
+                    <div class="exercise-container" id="chest">
+                        <ul>
+                            {% for exercise in chest_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="exercise-container" id="back">
+                        <ul>
+                            {% for exercise in back_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="exercise-container" id="legs">
+                        <ul>
+                            {% for exercise in legs_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="exercise-container" id="shoulders">
+                        <ul>
+                            {% for exercise in shoulders_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="exercise-container" id="arms">
+                        <ul>
+                            {% for exercise in arms_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="exercise-container" id="core">
+                        <ul>
+                            {% for exercise in abs_exercises %}
+                            <li><p><b>{{ exercise[1] }}</b> - {{ exercise[3] }}</p></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
