@@ -28,8 +28,8 @@ function bmi() {
 
     bmiPercentage = ((bmi - 17) / 18) * 100;
 
-    if (bmiPercentage > 98.5) {
-        bmiPercentage = 98.5;
+    if (bmiPercentage > 99) {
+        bmiPercentage = 99;
     } else if (bmiPercentage < 0) {
         bmiPercentage = 0;
     }

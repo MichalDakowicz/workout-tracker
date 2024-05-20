@@ -1,29 +1,45 @@
 // Set the current date as the default value for the date input
 document.getElementById("dateInput").valueAsDate = new Date();
 
-function addSetsFields() {
-    const sets = document.getElementById("setsInput").value;
+function addSetsFields(num) {
     const setsFieldsContainer = document.getElementById("setsFieldsContainer");
     const setsFields = document.createElement("div");
     setsFields.className = "setsFields";
+    const buttons = document.getElementById("buttons");
 
     // Initialize the innerHTML with the first set
-    setsFields.innerHTML =
-        '<input type="number" id="repsInput1" min="1" placeholder="Set 1 reps"><input type="number" id="weightInput1" min="0" placeholder="Kg">';
+    setsFields.innerHTML = `<input type="number" id="repsInput${num}" min="1" placeholder="Set ${num} reps"><input type="number" id="weightInput${num}" min="0" placeholder="Kg">`;
 
-    // Add the remaining sets
-    for (let i = 1; i < sets; i++) {
-        const setNumber = i + 1;
-        setsFields.innerHTML += `<br><input type="number" id="repsInput${setNumber}" min="1" placeholder="Set ${setNumber} reps"><input type="number" id="weightInput${setNumber}" min="0" placeholder="Kg">`;
+    if (num > 1) {
+        // Add Remove Set Button
+        setsFields.innerHTML += `<button onclick="removeSetsFields(${
+            num - 1
+        })">Remove Set</button>`;
+    }
+
+    // Remove the save button and previous Add Set button
+    const saveButton = document.getElementById("save-button");
+    if (saveButton) {
+        saveButton.remove();
+    }
+    const addSetButton = document.getElementById("add-set-button");
+    if (addSetButton) {
+        addSetButton.remove();
     }
 
     // Add the save button
-    setsFields.innerHTML +=
-        '<br><button onclick="saveRepsWeight()">Save</button>';
+    buttons.innerHTML += `<button id="save-button" onclick="saveRepsWeight()">Save</button><button id="add-set-button" onclick="addSetsFields(${
+        num + 1
+    })">Add Set</button>`;
 
-    // Clear the container and add the new fields
-    setsFieldsContainer.innerHTML = "";
     setsFieldsContainer.appendChild(setsFields);
+}
+
+function removeSetsFields(num) {
+    const setsFields = document.getElementsByClassName("setsFields");
+
+    // Remove the last set
+    setsFields[setsFields.length - 1].remove();
 }
 
 function saveRepsWeight() {
