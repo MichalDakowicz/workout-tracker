@@ -68,6 +68,7 @@ select {
     height: 40px;
     border: 1px solid #ccc;
     background-color: #fff;
+    color: #000;
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
@@ -78,6 +79,7 @@ input {
     height: 40px;
     border: 1px solid #ccc;
     background-color: #fff;
+    color: #000;
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
