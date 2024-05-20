@@ -28,7 +28,7 @@
 
 <h4 align="center">	🚧  Workout Tracker 💪 Under construction...  🚧 </h4>
 
-<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: 13 hrs </h3>
+<h3 align="center"> CODING TIME SINCE REPO IS PUBLIC: ~30 hrs </h3>
 
 ```bash
 NOW RELEASED TO THE PUBIC FOR TESTING
