@@ -625,3 +625,44 @@ input {
     width: 170px;
     margin: 5px;
 }
+
+/* PROGRESS */
+.progress {
+    background-color: #fff;
+    height: 1em;
+    width: 320px;
+    margin: auto;
+}
+.progress-bar {
+    background-image: linear-gradient(
+        to right,
+        #00eeff 10%,
+        #00ff22 20%,
+        #eeff00 50%,
+        #ffb700 75%,
+        #ff2200 100%
+    );
+    background-size: 320px 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 5px;
+}
+
+#marker {
+    position: absolute;
+    width: 4px;
+    height: 1.5em;
+    background-color: #333;
+    top: 50%;
+    transform: translateY(-50%);
+    border-radius: 3px;
+}
+
+#level {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 20px;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 5px;
+}
