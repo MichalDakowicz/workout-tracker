@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap");
 
+@font-face {
+    font-family: "Recharge";
+    src: url("fonts/recharge.ttf");
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -685,4 +690,3 @@ input {
     flex-wrap: wrap;
     justify-content: center;
 }
-
