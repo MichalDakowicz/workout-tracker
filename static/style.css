@@ -596,23 +596,20 @@ input {
 
 #reps-input-container {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     padding: 5px;
 }
 
 #reps-input-container input {
     width: 170px;
-    margin-left: 10px;
-    margin-right: 10px;
 }
 
 #reps-input-container button {
-    width: 40%;
-    margin-right: 10px;
+    width: 170px;
 }
 
 #draft-sets-container {
-    justify-content: center;
+    justify-content: space-around;
 }
 
 #draft-sets-container button {
@@ -675,13 +672,13 @@ input {
     width: 100%;
     height: 180px;
     background-color: #fff;
-    margin: 6px;
-    margin-top: 6px;
-    margin-bottom: 6px;
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
+    margin-top: 10px;
     padding: 10px;
-    float: left;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: left;
 }
 
 #update-measurements {
@@ -689,4 +686,37 @@ input {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+
+.separator {
+    height: 160px;
+    width: 3px;
+    background-color: #333;
+    border-radius: 2px;
+    box-shadow: 0 0 3px #000000;
+}
+
+#setsFieldsContainer {
+    padding: 0 5px;
+}
+
+.setsFields {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.setsFields input {
+    width: 170px;
+    border: 1px solid #ccc;
+}
+
+#buttons {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px;
+}
+
+#buttons button {
+    width: 170px;
 }

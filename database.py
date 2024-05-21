@@ -68,6 +68,6 @@ def create_tables():
 def create_admin():
     conn = connect_db()
     cursor = conn.cursor()
-    cursor.execute("INSERT INTO users (username, password) VALUES ('ADMIN', 'pbkdf2:sha256:600000$Ayp01LytbMpmXqK7$0b2d8c750bb1142939181e47f85dd0377fd2eeb13c4e0493cf89e31fadfdfd30')")
+    cursor.execute("INSERT INTO users (username, password) VALUES ('ADMIN', '0pbkdf2:sha256:600000$Ayp01LytbMpmXqK7$0b2d8c750bb1142939181e47f85dd0377fd2eeb13c4e0493cf89e31fadfdfd3')")
     conn.commit()
     conn.close()

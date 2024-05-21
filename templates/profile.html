@@ -5,33 +5,42 @@
         <h3>Welcome to your profile page. Here you can track your body information and see your strength scores.</h3>
         <div id = "profile-measurement">
             <div class="profile-page-panel">
-                <h2>Strength Scores</h2>
-                <p>Deadlift: {{ deadlift[0] }} - {{ deadlift[1] }}</p>
-                <p>Bench Press: {{ bench_press[0] }} - {{ bench_press[1] }}</p>
-                <p>Squat: {{ squat[0] }} - {{ squat[1] }}</p>
-                <p>Overhead Press: {{ overhead_press[0] }} - {{ overhead_press[1] }}</p>
-                <p>Barbell Row: {{ barbell_row[0] }} - {{ barbell_row[1] }}</p>
-                
-                <h2>Bodyfat</h2>
-                <p>Bodyfat: {{ body_fat }}%</p>
-                <p>Left Arm Bodyfat: {{ left_arm_bodyfat }}%</p>
-                <p>Right Arm Bodyfat: {{ right_arm_bodyfat }}%</p>
-                <p>Trunk Bodyfat: {{ trunk_bodyfat }}%</p>
-                <p>Left Leg Bodyfat: {{ left_leg_bodyfat }}%</p>
-                <p>Right Leg Bodyfat: {{ right_leg_bodyfat }}%</p>
-
-                <h2>Muscle Mass</h2>
-                <p>Overall Muscle Mass: {{ muscle_mass }} kg</p>
-                <p>Left Arm Muscle Mass: {{ left_arm_muscle }} kg</p>
-                <p>Right Arm Muscle Mass: {{ right_arm_muscle }} kg</p>
-                <p>Trunk Muscle Mass: {{ trunk_muscle }} kg</p>
-                <p>Left Leg Muscle Mass: {{ left_leg_muscle }} kg</p>
-                <p>Right Leg Muscle Mass: {{ right_leg_muscle }} kg</p>
+                <div id="strength-scores">
+                    <h2>Strength Scores</h2>
+                    <p>Deadlift: {{ deadlift[0] }} - {{ deadlift[1] }}</p>
+                    <p>Bench Press: {{ bench_press[0] }} - {{ bench_press[1] }}</p>
+                    <p>Squat: {{ squat[0] }} - {{ squat[1] }}</p>
+                    <p>Overhead Press: {{ overhead_press[0] }} - {{ overhead_press[1] }}</p>
+                    <p>Barbell Row: {{ barbell_row[0] }} - {{ barbell_row[1] }}</p>
+                </div>
+                <div class="separator"></div>
+                <div id="bodyfat">
+                    <h2>Bodyfat</h2>
+                    <p>Bodyfat: {{ body_fat }}%</p>
+                    <p>Left Arm Bodyfat: {{ left_arm_bodyfat }}%</p>
+                    <p>Right Arm Bodyfat: {{ right_arm_bodyfat }}%</p>
+                    <p>Trunk Bodyfat: {{ trunk_bodyfat }}%</p>
+                    <p>Left Leg Bodyfat: {{ left_leg_bodyfat }}%</p>
+                    <p>Right Leg Bodyfat: {{ right_leg_bodyfat }}%</p>
+                </div>
+                <div class="separator"></div>
+                <div id="muscle-mass">
+                    <h2>Muscle Mass</h2>
+                    <p>Overall Muscle Mass: {{ muscle_mass }} kg</p>
+                    <p>Left Arm Muscle Mass: {{ left_arm_muscle }} kg</p>
+                    <p>Right Arm Muscle Mass: {{ right_arm_muscle }} kg</p>
+                    <p>Trunk Muscle Mass: {{ trunk_muscle }} kg</p>
+                    <p>Left Leg Muscle Mass: {{ left_leg_muscle }} kg</p>
+                    <p>Right Leg Muscle Mass: {{ right_leg_muscle }} kg</p>
+                </div>
+                <div class="separator"></div>
+                <div id="body-information">
+                    <h2>Body Information</h2>
+                    <p>Height: {{ height }} cm</p>
+                    <p>Weight: {{ weight }} kg</p>
+                </div>
             </div>
         </div>
-        <h2>Body Information</h2>
-        <p>Height: {{ height }} cm</p>
-        <p>Weight: {{ weight }} kg</p>
         <div id = "update-measurements">
             <h2>Update Body Measurements</h2>
             <form action="{{ url_for('profile') }}" method="post">
