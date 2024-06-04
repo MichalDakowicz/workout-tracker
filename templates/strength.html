@@ -3,116 +3,106 @@
 {% block main %}
             <div id="strength-page">
                 <h1>Calculate your strength</h1>
-                <form action="{{ url_for('strength') }}" method="post">
-                    <h2>Weight and Gender</h2>
-                    <label for="weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="weight"
-                        name="weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
+                <div id = "strength-panel">
+                    <form action="{{ url_for('strength') }}" method="post">
+                        <h2>Weight and Gender</h2>
+                        <input
+                            type="number"
+                            id="weight"
+                            name="weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <br/>
+                        <select id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                        <br />
+                        <br />
+                        <h2>Bench Press</h2>
+                        <input
+                            type="number"
+                            id="bench_press_weight"
+                            name="bench_press_weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <input
+                            type="number"
+                            id="bench_press_reps"
+                            name="bench_press_reps"
+                            min="0"
+                            placeholder="Reps"
+                        />
 
-                    <label for="gender">Gender:</label>
-                    <select id="gender" name="gender">
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
-                    <br />
-                    <br />
-                    <h2>Bench Press</h2>
-                    <label for="bench_press_weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="bench_press_weight"
-                        name="bench_press_weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
-                    <label for="bench_press_reps">Reps:</label>
-                    <input
-                        type="number"
-                        id="bench_press_reps"
-                        name="bench_press_reps"
-                        min="0"
-                        placeholder="0"
-                    />
+                        <h2>Deadlift</h2>
+                        <input
+                            type="number"
+                            id="deadlift_weight"
+                            name="deadlift_weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <input
+                            type="number"
+                            id="deadlift_reps"
+                            name="deadlift_reps"
+                            min="0"
+                            placeholder="Reps"
+                        />
 
-                    <h2>Deadlift</h2>
-                    <label for="deadlift_weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="deadlift_weight"
-                        name="deadlift_weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
-                    <label for="deadlift_reps">Reps:</label>
-                    <input
-                        type="number"
-                        id="deadlift_reps"
-                        name="deadlift_reps"
-                        min="0"
-                        placeholder="0"
-                    />
+                        <h2>Squat</h2>
+                        <input
+                            type="number"
+                            id="squat_weight"
+                            name="squat_weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <input
+                            type="number"
+                            id="squat_reps"
+                            name="squat_reps"
+                            min="0"
+                            placeholder="Reps"
+                        />
 
-                    <h2>Squat</h2>
-                    <label for="squat_weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="squat_weight"
-                        name="squat_weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
-                    <label for="squat_reps">Reps:</label>
-                    <input
-                        type="number"
-                        id="squat_reps"
-                        name="squat_reps"
-                        min="0"
-                        placeholder="0"
-                    />
+                        <h2>Overhead Press</h2>
+                        <input
+                            type="number"
+                            id="overhead_press_weight"
+                            name="overhead_press_weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <input
+                            type="number"
+                            id="overhead_press_reps"
+                            name="overhead_press_reps"
+                            min="0"
+                            placeholder="Reps"
+                        />
 
-                    <h2>Overhead Press</h2>
-                    <label for="overhead_press_weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="overhead_press_weight"
-                        name="overhead_press_weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
-                    <label for="overhead_press_reps">Reps:</label>
-                    <input
-                        type="number"
-                        id="overhead_press_reps"
-                        name="overhead_press_reps"
-                        min="0"
-                        placeholder="0"
-                    />
-
-                    <h2>Barbell Row</h2>
-                    <label for="barbell_row_weight">Weight:</label>
-                    <input
-                        type="number"
-                        id="barbell_row_weight"
-                        name="barbell_row_weight"
-                        min="0"
-                        placeholder="0"
-                    />kg&nbsp&nbsp
-                    <label for="barbell_row_reps">Reps:</label>
-                    <input
-                        type="number"
-                        id="barbell_row_reps"
-                        name="barbell_row_reps"
-                        min="0"
-                        placeholder="0"
-                    />
-                    <br />
-                    <button type="submit">Calculate Strength</button>
-                </form>
+                        <h2>Barbell Row</h2>
+                        <input
+                            type="number"
+                            id="barbell_row_weight"
+                            name="barbell_row_weight"
+                            min="0"
+                            placeholder="Weight (kg)"
+                        />
+                        <input
+                            type="number"
+                            id="barbell_row_reps"
+                            name="barbell_row_reps"
+                            min="0"
+                            placeholder="Reps"
+                        />
+                        <br />
+                        <button type="submit">Calculate Strength</button>
+                    </form>
+                </div>
             </div>
         </div>
         {% endblock %}

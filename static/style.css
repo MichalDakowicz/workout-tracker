@@ -787,3 +787,21 @@ input {
 #buttons button {
     width: 170px;
 }
+#strength-panel {
+    width: 400px;
+    height: auto;
+    background-color: #fff;
+    margin: 6px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+    border-radius: 10px;
+    box-shadow: 0 0 3px #333;
+    padding: 10px;
+    justify-content: center;
+}
+
+#strength-page {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
