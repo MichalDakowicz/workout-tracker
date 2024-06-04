@@ -33,10 +33,22 @@
                 <div id="muscle-mass">
                     <h2>Muscle Mass</h2>
                 </div>
+                <div class="dropdown-content">
+                    <p>Overall Muscle Mass: {{ muscle_mass }} kg</p>
+                    <p>Left Arm Muscle Mass: {{ left_arm_muscle }} kg</p>
+                    <p>Right Arm Muscle Mass: {{ right_arm_muscle }} kg</p>
+                    <p>Trunk Muscle Mass: {{ trunk_muscle }} kg</p>
+                    <p>Left Leg Muscle Mass: {{ left_leg_muscle }} kg</p>
+                    <p>Right Leg Muscle Mass: {{ right_leg_muscle }} kg</p>
+                </div>
             </div>
             <div class="profile-page-panel">
                 <div id="body-information">
                     <h2>Body Information</h2>
+                </div>
+                <div class="dropdown-content">
+                    <p>Height: {{ height }} cm</p>
+                    <p>Weight: {{ weight }} kg</p>
                 </div>
             </div>
         </div>
@@ -150,7 +162,7 @@
                         required
                         min="0"
                     />
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="Submit"/>
                 </form>
             </div>
         </div>
