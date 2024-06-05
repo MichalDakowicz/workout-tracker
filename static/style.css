@@ -32,6 +32,7 @@ button {
     border-radius: 5px;
     padding: 0 10px;
     box-sizing: border-box;
+    cursor: pointer;
 }
 
 input[type="button"] {
@@ -606,6 +607,8 @@ input {
 
 #reps-input-container button {
     width: 170px;
+    transition: 0.3s ease-out;
+    cursor: pointer;
 }
 
 #draft-sets-container {
@@ -615,6 +618,7 @@ input {
 #draft-sets-container button {
     width: 350px;
     margin: 5px;
+    cursor: pointer;
     transition: 0.3s;
 }
 
@@ -680,10 +684,12 @@ input {
     justify-content: space-evenly;
     text-align: left;
     position: relative;
-    color: #a4a4a4;
+    color: #fff;
+    transition: background-color 0.3s ease-out;
 }
 
 .dropdown-content {
+    max-height: 0;
     padding: auto;
     margin-top: 35px;
     position: absolute;
@@ -691,18 +697,21 @@ input {
     border-radius: 10px;
     border-top-left-radius: 0px;
     border-top-right-radius: 0px;
-    max-height: 0;
     overflow: hidden;
     width: 100%;
-    color: #333;
-    transition: max-height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1);
+    color: #fff;
+    transition: max-height 0.5s cubic-bezier(0.215, 0.610, 0.355, 1), background-color 0.3s ease-out;
+}
+
+.dropdown-content p {
+    padding: 10px;
+    margin: 0;
+    border-bottom: 1px solid #999;
 }
 
 .profile-page-panel:hover .dropdown-content {
-    max-height: 200px;
+    max-height: 275px;
     background-color: #666;
-    padding: 10px;
-    color: #fff;
     opacity: 1;
     z-index: 1;
 }
@@ -711,8 +720,6 @@ input {
     color: #fff;
     background-color: #666;
 }
-
-
 
 #profile-measurement {
     width: auto;
@@ -728,9 +735,14 @@ input {
     justify-content: center;
 }
 
+#measurements-header {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
 #profile-page-measurements {
     width: auto;
-    float: left;
     height: auto;
     margin-bottom: 10px;
     margin-top: 10px;
@@ -786,22 +798,69 @@ input {
 
 #buttons button {
     width: 170px;
+    cursor: pointer;
 }
+
 #strength-panel {
     width: 400px;
     height: auto;
     background-color: #fff;
     margin: 6px;
-    margin-top: 6px;
-    margin-bottom: 6px;
     border-radius: 10px;
     box-shadow: 0 0 3px #333;
     padding: 10px;
-    justify-content: center;
+    justify-content: space-evenly;
+    text-align: center;
 }
 
 #strength-page {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+#strength-header {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+}
+
+#strength-panel form input[type="number"] {
+    float: left;
+    width: 47.3%;
+    margin: 5px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#strength-panel form select {
+    float: left;
+    width: 47.3%;
+    margin: 5px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+#strength-panel form {
+    justify-content: space-evenly;
+    text-align: center;
+}
+
+#strength-panel form button[type="submit"] {
+    width: 98%;
+    height: 40px;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.3s ease-out;
+    margin-top: 5px;
+}
+
+#strength-panel form button[type="submit"]:hover {
+    background-color: #666;
 }

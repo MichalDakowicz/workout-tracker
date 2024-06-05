@@ -2,7 +2,9 @@
 
 {% block main %}
             <div id="strength-page">
-                <h1>Calculate your strength</h1>
+                <div id= "strength-header">
+                    <h1>Calculate your strength</h1>
+                </div>
                 <div id = "strength-panel">
                     <form action="{{ url_for('strength') }}" method="post">
                         <h2>Weight and Gender</h2>
@@ -13,7 +15,6 @@
                             min="0"
                             placeholder="Weight (kg)"
                         />
-                        <br/>
                         <select id="gender" name="gender">
                             <option value="male">Male</option>
                             <option value="female">Female</option>
@@ -35,7 +36,7 @@
                             min="0"
                             placeholder="Reps"
                         />
-
+                        <br />
                         <h2>Deadlift</h2>
                         <input
                             type="number"
@@ -51,7 +52,7 @@
                             min="0"
                             placeholder="Reps"
                         />
-
+                        <br />
                         <h2>Squat</h2>
                         <input
                             type="number"
@@ -67,7 +68,7 @@
                             min="0"
                             placeholder="Reps"
                         />
-
+                        <br />
                         <h2>Overhead Press</h2>
                         <input
                             type="number"
@@ -83,7 +84,7 @@
                             min="0"
                             placeholder="Reps"
                         />
-
+                        <br />
                         <h2>Barbell Row</h2>
                         <input
                             type="number"
@@ -99,7 +100,6 @@
                             min="0"
                             placeholder="Reps"
                         />
-                        <br />
                         <button type="submit">Calculate Strength</button>
                     </form>
                 </div>
