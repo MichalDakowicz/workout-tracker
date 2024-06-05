@@ -706,19 +706,13 @@ input {
 .dropdown-content p {
     padding: 10px;
     margin: 0;
-    border-bottom: 1px solid #999;
+    border-top: 1px solid #999;
 }
 
 .profile-page-panel:hover .dropdown-content {
     max-height: 275px;
-    background-color: #666;
     opacity: 1;
     z-index: 1;
-}
-
-.profile-page-panel:hover {
-    color: #fff;
-    background-color: #666;
 }
 
 #profile-measurement {
@@ -751,8 +745,25 @@ input {
     box-shadow: 0 0 3px #333;
     padding: 10px;
     display: flex;
-    justify-content: space-evenly;
-    text-align: left;
+    justify-content: center;
+    text-align: center;
+}
+
+#profile-page-measurements form input[type="number"] {
+    margin: 5px;
+    height: 40px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#profile-page-measurements form input[type="submit"] {
+    margin-top: 5px;
+    height: 40px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
 }
 
 .separator {
@@ -764,25 +775,12 @@ input {
 }
 
 #setsFieldsContainer {
-    padding: 0 5px;
-}
-
-#setsFieldsFirst {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-#setsFieldsFirst input {
-    width: 170px;
-    border: 1px solid #ccc;
+    padding: 10px;
 }
 
 .setsFields {
-    display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     width: 100%;
-    height: 100px;
-    background-color: blue;
 }
 
 .setsFields input {
@@ -792,7 +790,7 @@ input {
 
 #buttons {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     padding: 5px;
 }
 

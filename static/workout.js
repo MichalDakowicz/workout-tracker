@@ -9,7 +9,7 @@ function addSetsFields() {
     const buttons = document.getElementById("buttons");
 
     // Initialize the innerHTML with the first set
-    setsFields.innerHTML = `<input type="number" id="repsInput${num}" min="1" placeholder="Set ${num} reps"><input type="number" id="weightInput${num}" min="0" placeholder="Kg">`;
+    setsFields.innerHTML = `<input type="number" id="repsInput${num}" min="1" placeholder="Set ${num} reps"><input type="number" id="weightInput${num}" min="0" placeholder="Weight (kg)">`;
 
     // Remove the previous Remove Set button if it exists
     try {
@@ -39,7 +39,7 @@ function addSetsFields() {
     // Add the save button
     buttons.innerHTML += `<button id="add-set-button" onclick="addSetsFields(${
         num + 1
-    })">Add Set</button><button id="save-button" onclick="saveRepsWeight()">Save</button>`;
+    })">Add Set</button><button id="save-button" onclick="saveRepsWeight()">Save reps</button>`;
 
     setsFieldsContainer.appendChild(setsFields);
 }
